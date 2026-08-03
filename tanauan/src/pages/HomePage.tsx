@@ -18,7 +18,7 @@ import StatusUpdates2025Section from '../components/sections/StatusUpdates2025Se
 
 function HomePage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white pt-24">
       {/* Hero Section */}
       <HeroSection />
 
