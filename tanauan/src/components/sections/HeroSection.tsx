@@ -1,6 +1,6 @@
 function HeroSection() {
   return (
-    <section id="hero" className="relative w-full h-[768px] min-h-[768px] overflow-hidden -mt-8">
+    <section id="hero" className="relative w-full h-[768px] min-h-[768px] overflow-hidden -mt-30">
       {/* Video Background */}
       <video
         autoPlay
