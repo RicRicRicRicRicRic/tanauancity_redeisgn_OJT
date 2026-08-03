@@ -1,20 +1,113 @@
 function CityServicesSection() {
   return (
-    <section id="city-services" className="h-[768px] min-h-[768px] flex items-center justify-center bg-gray-50 overflow-hidden">
-      <div className="w-full px-6 md:px-12 lg:px-16">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">City Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-3">Permits & Licenses</h3>
-            <p className="text-gray-600">Business permits, barangay clearances, and other regulatory documents.</p>
+    <section id="city-services" className="w-full h-[768px] min-h-[768px] overflow-hidden relative ">
+
+      <div className="w-full h-full flex flex-col items-center justify-center px-6 md:px-12 lg:px-16 py-12 relative z-10 mt-[15px]">
+        <div className="w-full max-w-[795px] max-h-[575px]">
+          {/* Header Section */}
+          <div className="text-center mb-8">
+            <h2 className="!text-4xl font-bold gradient-text mb-2">
+              City services
+            </h2>
+            <div className="w-24 h-1 bg-[#E91E8C] mx-auto mb-4"></div>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Access important city services and resources designed to meet the needs of our citizens
+            </p>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-3">Public Safety</h3>
-            <p className="text-gray-600">Police, fire, and emergency response services for citizen protection.</p>
+
+          {/* 2x2 Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5">
+          {/* Card 1: Online Services (Top-Left) */}
+          <div className="relative h-[208px] rounded-lg overflow-hidden group cursor-pointer">
+            <img 
+              src="/src/assets/sections/city-services/Online Services.png" 
+              alt="Online Services"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:blur-md"
+            />
+            <div className="absolute inset-0 bg-[#0096ff] opacity-70 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <h3 className="text-3xl font-bold text-white text-center transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:text-[#0096ff]">
+                Online Services
+              </h3>
+              <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mx-14 group-hover: duration-300 ease-out">
+                <p className="text-white text-left text-sm mb-2">
+                  Access various city services online anytime, anywhere
+                </p>
+                <span className="text-white font-bold text-base transition-colors duration-500 ease-out group-hover:text-[#0096ff]">
+                  Learn More {'>'}
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-3">Health Services</h3>
-            <p className="text-gray-600">Medical assistance, vaccination programs, and health monitoring.</p>
+
+          {/* Card 2: Business Portal (Top-Right) */}
+          <div className="relative h-[208px] rounded-lg overflow-hidden group cursor-pointer">
+            <img 
+              src="/src/assets/sections/city-services/Business Portal.png" 
+              alt="Business Portal"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:blur-md"
+            />
+            <div className="absolute inset-0 bg-[#00ff5e] opacity-70 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <h3 className="text-3xl font-bold text-white text-center transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:text-[#00ff5e]">
+                Business Portal
+              </h3>
+              <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mx-14 group-hover: duration-300 ease-out">
+                <p className="text-white text-left text-sm mb-2">
+                  Access various city services online anytime, anywhere
+                </p>
+                <span className="text-white font-bold text-base transition-colors duration-500 ease-out group-hover:text-[#00ff5e]">
+                  Learn More {'>'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Citizen Support (Bottom-Left) */}
+          <div className="relative h-[208px] rounded-lg overflow-hidden group cursor-pointer">
+            <img 
+              src="/src/assets/sections/city-services/Citizen Support.png" 
+              alt="Citizen Support"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:blur-md"
+            />
+            <div className="absolute inset-0 bg-[#e000ff] opacity-70 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <h3 className="text-3xl font-bold text-white text-center transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:text-[#e000ff]">
+                Citizen Support
+              </h3>
+              <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mx-14 group-hover: duration-300 ease-out">
+                <p className="text-white text-left text-sm mb-2">
+                  Access various city services online anytime, anywhere
+                </p>
+                <span className="text-white font-bold text-base transition-colors duration-500 ease-out group-hover:text-[#e000ff]">
+                  Learn More {'>'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 4: City Departments (Bottom-Right) */}
+          <div className="relative h-[208px] rounded-lg overflow-hidden group cursor-pointer">
+            <img 
+              src="/src/assets/sections/city-services/City Departments.png" 
+              alt="City Departments"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:blur-md"
+            />
+            <div className="absolute inset-0 bg-[#ff0039] opacity-70 transition-opacity duration-500 ease-out group-hover:opacity-0"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <h3 className="text-3xl font-bold text-white text-center transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:text-[#ff0039]">
+                City Departments
+              </h3>
+              <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mx-14 group-hover: duration-300 ease-out">
+                <p className="text-white text-left text-sm mb-2">
+                  Access various city services online anytime, anywhere
+                </p>
+                <span className="text-white font-bold text-base transition-colors duration-500 ease-out group-hover:text-[#ff0039]">
+                  Learn More {'>'}
+                </span>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
       </div>

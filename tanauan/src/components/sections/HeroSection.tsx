@@ -31,16 +31,7 @@ function HeroSection() {
             </h1>
 
             {/* Tagline */}
-            <h2 
-              className="text-2xl md:text-3xl font-semibold inline-block"
-              style={{
-                background: 'linear-gradient(to right, #ff0000, #ff016c, #f140b0)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                WebkitTextFillColor: 'transparent !important',
-                color: 'transparent !important'
-              }}
-            >
+            <h2 className="!text-2xl md:text-3xl font-semibold inline-block gradient-text">
               Cradle of Noble Heroes
             </h2>
 
@@ -53,7 +44,7 @@ function HeroSection() {
       </div>
 
       {/* Mayor Image - Right Side */}
-      <div className="absolute right-0 bottom-0 z-20 pointer-events-none -mr-26 ">
+      <div className="absolute right-0 bottom-0 z-20 pointer-events-none -mr-[37px] ">
         <img
           src="/src/assets/sections/hero/mayor_tanauan.png"
           alt="Mayor of Tanauan City"
