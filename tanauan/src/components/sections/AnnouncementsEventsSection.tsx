@@ -8,6 +8,13 @@ import {
   Grid 
 } from 'lucide-react';
 
+// Image imports (using relative path from src/components/sections/)
+import kip1Img from '../../assets/sections/AnnouncementsES/Kip1.jpg';
+import kip2Img from '../../assets/sections/AnnouncementsES/Kip2.jpg';
+import kip3Img from '../../assets/sections/AnnouncementsES/Kip3.jpg';
+import kip4Img from '../../assets/sections/AnnouncementsES/Kip4.jpg';
+import kip5Img from '../../assets/sections/AnnouncementsES/Kip5.jpg';
+
 // Card data (8 items total)
 const itemsData = [
   {
@@ -16,7 +23,7 @@ const itemsData = [
     title: 'Estado ng mga pagawaing Bayan sa Lungsod ng Tanauan, tinalakay sa Local Project Monitoring 3rd Quarter Meeting.',
     description: 'Patuloy na pinatitibay ng Pamahalaang Lungsod ng Tanauan ang kanilang pagsusulong ng mga proyektong maghahatid ng kaunlaran...',
     date: 'Aug 13, 2025',
-    image: '', 
+    image: kip1Img, 
   },
   {
     id: 2,
@@ -24,7 +31,7 @@ const itemsData = [
     title: 'Happy Suplang Senior Citizens\' Day! 🥳👵👴',
     description: 'Sa Lungsod ng Tanauan, kinikilala ng pamahalaang lokal ang mahalagang papel ng senior citizens bilang importanteng sektor ng...',
     date: 'Aug 13, 2025',
-    image: '', 
+    image: kip2Img, 
   },
   {
     id: 3,
@@ -32,7 +39,7 @@ const itemsData = [
     title: 'Bagong BOT Members, Enrollment Status, Foundation Week Activities, at mga Programa ng Tanauan City College, Tinalakay sa 2025 TCC 5th Board of Trustees Meeting',
     description: 'Sa pangunguna nina TCC BOT Chair Mayor Sonny Perez Collantes at TCC OIC Mr. Jun Goguanco, pormal na kinilala sa 2025 TCC 5th...',
     date: 'Aug 13, 2025',
-    image: '', 
+    image: kip3Img, 
   },
   {
     id: 4,
@@ -40,7 +47,7 @@ const itemsData = [
     title: '2024 Tanauan City Top 10 Business and Real Property Taxpayers, binigyang-pagkilala ng Tanauan LGU!',
     description: '2024 Tanauan City Top 10 Business and Real Property Taxpayers, binigyang-pagkilala ng Tanauan LGU! Sa pag-unlad ng Lungsod ng...',
     date: 'Jul 16, 2025',
-    image: '', 
+    image: kip4Img, 
   },
   {
     id: 5,
@@ -48,7 +55,7 @@ const itemsData = [
     title: 'Mas malinis at Ligtas na suplay ng Tubig para sa malusog na mag-aaral!',
     description: 'Mas malinis at Ligtas na suplay ng Tubig para sa malusog na mag-aaral! Malinis at Ligtas na inuming tubig para sa kabataang Tanauan...',
     date: 'Jul 16, 2025',
-    image: '', 
+    image: kip5Img, 
   },
   {
     id: 6,
