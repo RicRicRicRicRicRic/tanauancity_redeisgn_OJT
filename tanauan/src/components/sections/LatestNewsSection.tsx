@@ -22,7 +22,7 @@ function LatestNewsSection() {
     { id: 2, badge: "News", title: "Local AICS pasa sa mga Tanaueno at mga Senior Citizens' Cash incentives sabayang ipinamahagi ng Tanauan LGU!", date: "June 11, 2026" },
     { id: 3, badge: "News", title: "Ngayon sa tanauan, agarang natutugunan ang pangangailangang medikal ng ating mga kababayan!", date: "June 11, 1524" },
     { id: 4, badge: "News", title: "Oathtaking ng mga Newly-hired at mga Promoted na mga guro, Pinangunahan ni Mayor Sonny Perez Collantes", date: "June 10, 2026" },
-    { id: 5, badge: "News", title: "Free Eye Checkup Medical Mission, muling inihatid para sa mga Tanaueno!", date: "June 11, 2026, 2026" },
+    { id: 5, badge: "News", title: "Free Eye Checkup Medical Mission, muling inihatid para sa mga Tanaueno!", date: "June 11, 2026" },
     { id: 6, badge: "News", title: "Pamahalaang lungsod ng tanauan", date: "December 15, 2026" },
     { id: 7, badge: "News", title: "Programa sa kalusugan para sa lahat", date: "January 10, 2027" },
     { id: 8, badge: "News", title: "Pagpapaganda ng mga public works", date: "February 04, 2027" },
