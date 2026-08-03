@@ -14,6 +14,9 @@ import kip2Img from '../../assets/sections/AnnouncementsES/Kip2.jpg';
 import kip3Img from '../../assets/sections/AnnouncementsES/Kip3.jpg';
 import kip4Img from '../../assets/sections/AnnouncementsES/Kip4.jpg';
 import kip5Img from '../../assets/sections/AnnouncementsES/Kip5.jpg';
+import kip6Img from '../../assets/sections/AnnouncementsES/Kip6.jpg';
+import kip7Img from '../../assets/sections/AnnouncementsES/Kip7.jpg';
+import kip8Img from '../../assets/sections/AnnouncementsES/Kip8.jpg';
 
 // Card data (8 items total)
 const itemsData = [
@@ -63,7 +66,7 @@ const itemsData = [
     title: 'Matagumpay na pagbubukas ng School Year 2025-2026 at mga dagdag-programang edukasyon, tinalakay sa 2025 5th Tanauan Local School Board',
     description: 'Matagumpay na pagbubukas ng School Year 2025-2026 at mga dagdag-programang edukasyon, tinalakay sa 2025 5th Tanauan Local School Board...',
     date: 'Jun 25, 2025',
-    image: '', 
+    image: kip6Img, 
   },
   {
     id: 7,
@@ -71,7 +74,7 @@ const itemsData = [
     title: 'PABATID | LIBRENG FAMILY PLANNING SA PAMILYANG TANAUEÑO!',
     description: 'Alinsunod sa inisyatibo ni Mayor Sonny Perez Collantes katuwang ang Tanauan City Health na paigtingin ang reproductive health at...',
     date: 'Jun 25, 2025',
-    image: '', 
+    image: kip7Img, 
   },
   {
     id: 8,
@@ -79,7 +82,7 @@ const itemsData = [
     title: 'Local AICS para sa mga Tanaueño at Cash Incentives para sa mga Senior Citizens, muling inihatid ni Mayor Sonny Perez Collantes!',
     description: 'Mula sa regular na implementasyon ng Local AICS sa Lungsod, mas dumami pa ang mga Tanaueñong natulungan ni Mayor Sonny Perez...',
     date: 'Jun 6, 2025',
-    image: '', 
+    image: kip8Img, 
   },
 ];
 
