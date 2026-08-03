@@ -1,12 +1,20 @@
-# Tanauan City Government Website - Agent & Developer Skills Guide (`skills.md`)
+# Tanauan City Government Website - Cline AI Rules (`.clinerules`)
 
-This document outlines the architectural standards, conventions, and routing rules for developing and maintaining the official **Tanauan City Government Website** codebase in TypeScript React. All AI agents and human contributors must follow these guidelines to ensure consistency, WCAG compliance, and maintainability.
+You are Cline, an autonomous AI programming assistant working on the official **Tanauan City Government Website** codebase in TypeScript React. Follow these architectural directives, design standards, and coding conventions strictly.
 
 ---
 
-## 1. Directory Architecture Overview
+## 1. Core Directives & Context
 
-The source code (`src/`) strictly follows a hybrid modular and feature-driven architecture separating low-level primitives from business domains, localized content, and global configurations.
+- **Project:** Tanauan City Government Portal (TypeScript, React, Tailwind CSS).
+- **Compliance:** All features must adhere to **WCAG 2.1 AA** accessibility standards and support multi-language localization via `src/i18n/`.
+- **Primary Source of Truth:** This file is the complete architectural and coding standard for the project.
+
+---
+
+## 2. Directory Architecture Overview
+
+The source code (`src/`) follows a hybrid modular and feature-driven architecture that separates low-level primitives from business domains, localized content, and global configurations.
 
 ```text
 src/
@@ -79,49 +87,67 @@ src/
 │
 ├── App.tsx               # Root component wrapping providers
 └── main.tsx              # Application entry point
+
 ```
 
----
+## 3. Component Placement Rules (Strict Enforcement)
 
-## 2. Component Placement Rules
+When creating or moving files within `src/`, adhere strictly to the following directory structure and conventions:
 
-When deciding where a new component belongs, adhere strictly to these rules:
+Directory Structure & Responsibilities
 
-1. **`src/components/ui/` (Atoms & Primitives)**
-   - Use for stateless or minimal-state building blocks with no domain business logic (e.g., buttons, inputs, modals, floating action icons).
-   - Must be fully accessible (WAI-ARIA compliant, keyboard navigation supported).
-
-2. **`src/components/common/` (Complex Shared Widgets)**
-   - Use for composite widgets used across multiple pages that manage complex interactions or internal state (e.g., `Slideshow.tsx` for hero announcements, `NoticeBanner.tsx` for emergency advisories).
-
-3. **`src/components/layout/` (Structural Framework)**
-   - Reserved for core layout shells (`Header`, `Footer`, `Sidebar`, `AccessibilityBar`) that wrap around page routes.
-
-4. **`src/features/<domain>/components/` (Feature Isolation)**
-   - Use when a component is tied exclusively to a specific government domain module (e.g., `services`, `transparency`, `news`). Do not place domain-specific tables or forms in global `components/`.
+1. `src/components/ui/` (Atoms & Primitives)
+* **Scope:** Low-level, stateless, or minimal-state building blocks with no domain business logic.
+* **Examples:** `Button.tsx`, `Input.tsx`, `Modal.tsx`, `FloatingIcon.tsx`
+* **Requirements:**
+  * Must be fully **WAI-ARIA compliant**.
+  * Must be fully **keyboard-navigable**.
 
 ---
 
-## 3. Coding Standards & Conventions
+2. `src/components/common/` (Complex Shared Widgets)
+* **Scope:** Composite widgets used across multiple pages that manage internal state or complex interactions.
+* **Examples:** `Slideshow.tsx`, `NoticeBanner.tsx`
 
-### TypeScript & Strict Typing
-- **No `any` Types:** All component props, API responses, and state models must be explicitly typed using interfaces or type aliases.
-- **Data Models:** Place shared domain types in `src/types/` or feature-specific types in `src/features/<domain>/types/`.
-
-### Accessibility (WCAG 2.1 AA Compliance)
-- All interactive elements must support proper `aria-*` attributes.
-- The website must integrate seamlessly with `src/store/accessibilityStore.ts` to allow text resizing, high-contrast mode toggles, and screen reader optimizations.
-- Color palettes must meet contrast ratios for public sector accessibility guidelines.
-
-### Localization (`i18n`)
-- Hardcoding static text in UI components is prohibited. All user-facing labels, headings, and notices must use translation keys managed under `src/i18n/`.
-
-### Styling & Assets
-- Use Tailwind CSS configured via `src/assets/styles/`.
-- Official Tanauan City seals, logos, and typography must be stored under `src/assets/images/` and `src/assets/fonts/`.
+---
+3. `src/components/layout/` (Structural Framework)
+* **Scope:** Core layout shells only.
+* **Allowed Files:** `Header.tsx`, `Footer.tsx`, `Sidebar.tsx`, `AccessibilityBar.tsx`
 
 ---
 
-## 4. Git & Contribution Workflow
-1. **Branch Naming:** `feature/`, `bugfix/`, or `hotfix/` followed by a descriptive kebab-case name (e.g., `feature/transparency-seal-table`).
-2. **Pull Requests:** Must pass TypeScript compilation checks (`tsc --noEmit`), linting rules, and accessibility audits before merging into `main`.
+4. `src/features/<domain>/components/` (Feature Isolation)
+* **Scope:** Any component tied exclusively to a specific domain (e.g., services, transparency, news).
+* **Strict Rule:** **Never** place domain-specific forms, tables, or business logic in the global `src/components/` directory.
+
+## 4. Coding Standards & Conventions
+TypeScript & Strict Typing
+
+Absolutely no any types allowed.
+Explicitly type all component props, state objects, and API response contracts.
+Place shared types in src/types/ or feature-specific types in src/features/<domain>/types/.
+
+Localization (i18n)
+
+Never hardcode user-facing strings in components.
+Always use translation keys from src/i18n/.
+
+Accessibility (WCAG 2.1 AA)
+
+All interactive elements must use proper aria-* attributes.
+Integrate cleanly with src/store/accessibilityStore.ts for font sizing, high-contrast mode, and screen-reader support.
+Color contrast must meet public-sector accessibility guidelines.
+
+Styling & Assets
+
+Use Tailwind CSS classes styled according to src/assets/styles/.
+Official city seals, logos, and typography must come from src/assets/images/ and src/assets/fonts/.
+
+
+## 5. Git & Code Modification Guidelines
+When implementing changes, always check file paths against the src/ hierarchy defined above.
+Ensure all code builds cleanly and passes TypeScript type checking (tsc --noEmit) before completing any task.
+Branch Naming: feature/, bugfix/, or hotfix/ followed by a descriptive kebab-case name (e.g., feature/transparency-seal-table).
+Pull Requests: Must pass TypeScript compilation, linting, and accessibility audits before merging into main.
+
+text
