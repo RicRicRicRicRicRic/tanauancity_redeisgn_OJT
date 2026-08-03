@@ -1,0 +1,37 @@
+# Tanauan City Government Website - Cline AI Rules (`.clinerules`)
+
+You are Cline, an autonomous AI programming assistant working on the official **Tanauan City Government Website** codebase in TypeScript React. Follow these architectural directives, design standards, and coding conventions strictly.
+
+---
+
+## 1. Core Directives & Context
+
+- **Project:** Tanauan City Government Portal (TypeScript, React, Tailwind CSS).
+- **Compliance:** All features must adhere to **WCAG 2.1 AA** accessibility standards and support multi-language localization via `src/i18n/`.
+- **Primary Source of Truth:** Refer to `skills.md` for complete architectural rules and component placements.
+
+---
+
+## 2. Directory Structure & Component Placement Enforcement
+
+When creating or moving files within `src/`, adhere strictly to these routing rules:
+
+- **`src/components/ui/`**: Low-level, stateless, or minimal-state primitives with no domain logic (e.g., `Button.tsx`, `Input.tsx`, `Modal.tsx`, `FloatingIcon.tsx`) . Must be WAI-ARIA compliant [cite: 2].
+- **`src/components/common/`**: Compound or complex shared widgets managing internal state across multiple pages (e.g., `Slideshow.tsx`, `NoticeBanner.tsx`) [cite: 2].
+- **`src/components/layout/`**: Structural layout shells (`Header.tsx`, `Footer.tsx`, `Sidebar.tsx`, `AccessibilityBar.tsx`) [cite: 2].
+- **`src/features/<domain>/`**: Isolated feature modules containing domain-specific components, hooks, types, and logic (e.g., `services`, `transparency`, `news`) [cite: 2]. Never place domain-specific forms/tables in global `components/` [cite: 2].
+
+---
+
+## 3. Coding Conventions & Quality Checks
+
+- **Strict TypeScript:** Absolutely **no `any` types** allowed [cite: 2]. Explicitly type all component props, state objects, and API response contracts under `src/types/` or feature-specific types directories [cite: 2].
+- **Localization (`i18n`):** Never hardcode user-facing strings in components [cite: 2]. Always use translation keys from `src/i18n/` [cite: 2].
+- **Accessibility Integration:** Ensure interactive elements integrate cleanly with `src/store/accessibilityStore.ts` for font sizing, contrast toggles, and screen reader modes [cite: 2].
+- **Styling:** Use Tailwind CSS classes styled per `src/assets/styles/` [cite: 2]. Use official city assets from `src/assets/images/` [cite: 2].
+
+---
+
+## 4. Git & Code Modification Guidelines
+- When implementing changes, check file paths against the `src/` hierarchy outlined above.
+- Ensure all code builds cleanly and passes TypeScript type checking (`tsc --noEmit`) before completing tasks [cite: 2].
