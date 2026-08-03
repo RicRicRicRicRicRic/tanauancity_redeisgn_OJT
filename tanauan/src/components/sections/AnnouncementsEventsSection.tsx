@@ -309,7 +309,7 @@ export default function AnnouncementsEventsSection() {
             href="#"
             className="group flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold text-white bg-[#901c1c] hover:bg-[#721515] transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105"
           >
-            <span>Browse News Archive</span>
+            <span>View All Announcements</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
           </a>
         </div>
