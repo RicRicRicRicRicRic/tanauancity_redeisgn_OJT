@@ -121,33 +121,45 @@ Directory Structure & Responsibilities
 * **Strict Rule:** **Never** place domain-specific forms, tables, or business logic in the global `src/components/` directory.
 
 ## 4. Coding Standards & Conventions
-TypeScript & Strict Typing
 
-Absolutely no any types allowed.
-Explicitly type all component props, state objects, and API response contracts.
-Place shared types in src/types/ or feature-specific types in src/features/<domain>/types/.
+1. TypeScript & Strict Typing
+* **No `any` Types:** Strict typing is strictly enforced. Never use `any`.
+* **Explicit Contracts:** Explicitly define types for all component props, state objects, and API responses.
+* **Type Organization:**
+  * Place shared/global types in `src/types/`.
+  * Place feature-scoped types in `src/features/<domain>/types/`.
 
-Localization (i18n)
+2. Localization (i18n)
+* **No Hardcoded Text:** Never hardcode user-facing strings directly inside components.
+* **Translation Keys:** Always extract and reference user-facing text using translation keys from `src/i18n/`.
 
-Never hardcode user-facing strings in components.
-Always use translation keys from src/i18n/.
+3. Accessibility (WCAG 2.1 AA)
+* **ARIA Attributes:** Ensure all interactive elements feature appropriate `aria-*` attributes.
+* **State Integration:** Connect cleanly with `src/store/accessibilityStore.ts` to support font sizing, high-contrast mode, and screen readers.
+* **Color Contrast:** Verify that all visual designs strictly meet public-sector color contrast guidelines.
 
-Accessibility (WCAG 2.1 AA)
-
-All interactive elements must use proper aria-* attributes.
-Integrate cleanly with src/store/accessibilityStore.ts for font sizing, high-contrast mode, and screen-reader support.
-Color contrast must meet public-sector accessibility guidelines.
-
-Styling & Assets
-
-Use Tailwind CSS classes styled according to src/assets/styles/.
-Official city seals, logos, and typography must come from src/assets/images/ and src/assets/fonts/.
+4. Styling & Assets
+* **Tailwind CSS:** Apply Tailwind utility classes consistent with rules configured in `src/assets/styles/`.
+* **Branding & Assets:** Use official logos, city seals, and custom typography exclusively from:
+  * Images: `src/assets/images/`
+  * Fonts: `src/assets/fonts/`
 
 
 ## 5. Git & Code Modification Guidelines
-When implementing changes, always check file paths against the src/ hierarchy defined above.
-Ensure all code builds cleanly and passes TypeScript type checking (tsc --noEmit) before completing any task.
-Branch Naming: feature/, bugfix/, or hotfix/ followed by a descriptive kebab-case name (e.g., feature/transparency-seal-table).
-Pull Requests: Must pass TypeScript compilation, linting, and accessibility audits before merging into main.
 
-text
+1. Code Integrity & Building
+* **Path Verification:** Always verify file paths against the `src/` hierarchy before creating or editing files.
+* **Type Checking:** Ensure all code builds cleanly and passes TypeScript type checking (`tsc --noEmit`) before marking any task complete.
+
+2. Branch Naming Strategy
+* Standardize branch names using the format `<type>/<descriptive-kebab-case-name>`:
+  * `feature/` (e.g., `feature/transparency-seal-table`)
+  * `bugfix/`
+  * `hotfix/`
+
+3. Pull Request Requirements
+* Before merging into `main`, pull requests must successfully pass:
+  * TypeScript compilation (`tsc --noEmit`)
+  * Linter checks
+  * Accessibility audits (WCAG 2.1 AA compliance)
+
