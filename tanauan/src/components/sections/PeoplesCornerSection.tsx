@@ -135,19 +135,21 @@ export function PeoplesCornerSection() {
           {/* Grid Content Container */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
             
-            {/* Left Column (4 Cols): STICKY SIDEBAR CENTERED ON VIEWPORT */}
+            {/* Left Column (4 Cols): VERTICALLY CENTERED CARDS */}
             <div className="lg:col-span-4 h-full relative">
-              <div className="lg:sticky lg:top-[calc(50vh-220px)] transition-all duration-300 flex flex-col gap-5 z-20">
+              <div className="lg:flex lg:flex-col lg:justify-center lg:gap-5 lg:h-full z-20">
                 
                 {/* How It Works Card */}
                 <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm relative overflow-hidden hover:shadow-md transition-all duration-300">
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-red-600 to-rose-500" />
 
-                  <h3 className="text-base font-bold text-slate-900 tracking-tight mb-1 flex items-center gap-2">
-                    <span>How It Works</span>
-                    <SparklesIcon className="w-4 h-4 text-red-500" />
-                  </h3>
-                  <p className="text-xs text-slate-500 mb-5">
+                  <div className="text-center mb-1">
+                    <h3 className="text-base font-bold text-slate-900 tracking-tight inline-flex items-center gap-2">
+                      <span>How It Works</span>
+                      <SparklesIcon className="w-4 h-4 text-red-500" />
+                    </h3>
+                  </div>
+                  <p className="text-xs text-slate-500 text-center mb-5">
                     We value your input and respond to your concerns.
                   </p>
 
@@ -198,7 +200,7 @@ export function PeoplesCornerSection() {
 
                 {/* Other Ways to Reach Us Card */}
                 <div className="bg-slate-900 text-white rounded-2xl p-5 border border-slate-800 shadow-md space-y-3 hover:border-slate-700 transition-colors">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-red-400">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-red-400 text-center">
                     Other Ways to Reach Us
                   </h4>
 
@@ -405,7 +407,7 @@ export function PeoplesCornerSection() {
             <h3 className="text-2xl font-black text-slate-900 tracking-tight">
               Frequently Asked Questions
             </h3>
-            <p className="text-xs text-slate-500 max-w-md mx-auto">
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
               Find quick answers to common questions about submitting concerns and feedback.
             </p>
           </div>
