@@ -152,8 +152,6 @@ export function PeoplesCornerSection() {
                   <p className="text-xs text-slate-500 text-center mb-5">
                     We value your input and respond to your concerns.
                   </p>
-
-                  {/* Steps Timeline */}
                   <div className="space-y-4 relative before:absolute before:left-3.5 before:top-3 before:bottom-3 before:w-[2px] before:bg-slate-100">
                     
                     {/* Step 1 */}
@@ -200,7 +198,7 @@ export function PeoplesCornerSection() {
 
                 {/* Other Ways to Reach Us Card */}
                 <div className="bg-slate-900 text-white rounded-2xl p-5 border border-slate-800 shadow-md space-y-3 hover:border-slate-700 transition-colors">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-red-400 text-center">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-red-400">
                     Other Ways to Reach Us
                   </h4>
 
