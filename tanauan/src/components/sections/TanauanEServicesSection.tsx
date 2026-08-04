@@ -171,7 +171,7 @@ export function TanauanEServicesSection() {
             Welcome to <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-700 via-rose-600 to-amber-600">Tanauan City eServices</span>
           </h1>
 
-          <p className="text-xs md:text-sm text-slate-600 leading-relaxed max-w-xl mx-auto">
+          <p className="text-xs md:text-sm text-slate-600 leading-relaxed max-w-3xl mx-auto text-center">
             Your gateway to efficient and convenient city services. Create an account now to access our digital services anytime, anywhere.
           </p>
         </div>

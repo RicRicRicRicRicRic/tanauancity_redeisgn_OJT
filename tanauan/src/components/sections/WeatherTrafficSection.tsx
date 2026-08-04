@@ -152,7 +152,7 @@ function WeatherTrafficSection() {
                 <button
                   onClick={() => setActiveRadar('rain')}
                   className={`px-2 py-0.5 rounded transition ${
-                    activeRadar === 'rain' ? 'bg-sky-600 text-white font-semibold' : 'text-slate-600 hover:text-slate-900'
+                    activeRadar === 'rain' ? 'bg-[#901c1c] text-white font-semibold shadow-xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   Rain
@@ -160,7 +160,7 @@ function WeatherTrafficSection() {
                 <button
                   onClick={() => setActiveRadar('wind')}
                   className={`px-2 py-0.5 rounded transition ${
-                    activeRadar === 'wind' ? 'bg-sky-600 text-white font-semibold' : 'text-slate-600 hover:text-slate-900'
+                    activeRadar === 'wind' ? 'bg-[#901c1c] text-white font-semibold shadow-xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   Wind
@@ -168,7 +168,7 @@ function WeatherTrafficSection() {
                 <button
                   onClick={() => setActiveRadar('temp')}
                   className={`px-2 py-0.5 rounded transition ${
-                    activeRadar === 'temp' ? 'bg-sky-600 text-white font-semibold' : 'text-slate-600 hover:text-slate-900'
+                    activeRadar === 'temp' ? 'bg-[#901c1c] text-white font-semibold shadow-xs' : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   Temp
