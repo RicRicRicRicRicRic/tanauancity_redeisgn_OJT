@@ -209,6 +209,13 @@ export function CulturalHeritageSection() {
           display: block;
           border: 1px solid var(--border-color);
           background: #ffffff;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+
+        /* Float upward effect on hover */
+        .panel-media:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 24px -6px rgba(144, 28, 28, 0.15);
         }
 
         .panel-media img {
@@ -216,11 +223,6 @@ export function CulturalHeritageSection() {
           height: 100%;
           object-fit: cover;
           display: block;
-          transition: transform 0.5s ease;
-        }
-
-        .panel-media:hover img {
-          transform: scale(1.04);
         }
 
         .panel-media-cta {
