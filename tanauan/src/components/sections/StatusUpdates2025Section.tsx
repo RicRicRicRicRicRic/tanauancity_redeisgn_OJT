@@ -71,9 +71,8 @@ export default function StatusUpdates2025Section() {
               The growing numbers reflect our city&apos;s continued development and progress towards becoming a premier urban center in Batangas.
             </p>
 
-            {/* Quick Stat Summary Chip with Static Solid Red Dot */}
-            <div className="inline-flex items-center gap-3 py-2 px-3.5 bg-[#901c1c]/5 rounded-full">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#901c1c]" />
+            {/* Quick Stat Summary Chip without Dot */}
+            <div className="inline-flex items-center py-2 px-3.5 bg-[#901c1c]/5 rounded-full">
               <span className="text-xs font-bold text-gray-800">
                 Continuous Urban Growth & Development
               </span>
