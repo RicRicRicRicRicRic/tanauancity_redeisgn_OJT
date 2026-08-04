@@ -145,7 +145,7 @@ function WeatherTrafficSection() {
           {/* Card 2: Interactive Radar Map */}
           <div className="bg-white/90 backdrop-blur-md border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
-              <h3 className="text-base font-bold text-slate-800">Interactive Radar</h3>
+              <h3 className="text-base font-bold text-slate-800">Weather</h3>
               
               <div className="flex bg-slate-100 p-1 rounded-lg border border-slate-200 text-[11px]">
                 <button
