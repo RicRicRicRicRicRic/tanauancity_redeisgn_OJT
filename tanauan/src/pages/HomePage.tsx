@@ -1,6 +1,7 @@
 import HeroSection from '../components/sections/HeroSection.tsx'
 import CityServicesSection from '../components/sections/CityServicesSection.tsx'
 import DigitalCityServicesSection from '../components/sections/DigitalCityServicesSection.tsx'
+import GadTanauanSection from '../components/sections/GadTanauan.tsx'
 import LatestNewsSection from '../components/sections/LatestNewsSection.tsx'
 import SonnyAllSection from '../components/sections/SonnyAllSection.tsx'
 import AnnouncementsEventsSection from '../components/sections/AnnouncementsEventsSection.tsx'
@@ -27,6 +28,9 @@ function HomePage() {
 
       {/* Digital City Services */}
       <DigitalCityServicesSection />
+
+        {/* Gad Tanauan Services */}
+      <GadTanauanSection />
 
       {/* Latest News and Publication */}
       <LatestNewsSection />
