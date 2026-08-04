@@ -77,8 +77,7 @@ function WeatherTrafficSection() {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-4 border-b border-slate-200">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 border border-sky-200 text-sky-800 text-xs font-semibold tracking-wider uppercase mb-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <div className="inline-flex items-center gap-2 py-1 text-sky-800 text-xs font-semibold tracking-wider uppercase mb-2">
               Live Monitoring • Tanauan City
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
@@ -87,7 +86,7 @@ function WeatherTrafficSection() {
           </div>
 
           {/* Real-Time Metrics Bar */}
-          <div className="flex items-center gap-4 bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm rounded-xl px-4 py-2 text-xs text-slate-700">
+          <div className="flex items-center gap-4 px-4 py-2 text-xs text-slate-700">
             <div className="text-center">
               <span className="block text-slate-500 font-medium">Temperature</span>
               <span className="font-bold text-sky-600">
