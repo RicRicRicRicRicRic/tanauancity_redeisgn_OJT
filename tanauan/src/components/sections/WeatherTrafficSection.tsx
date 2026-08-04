@@ -82,7 +82,7 @@ function WeatherTrafficSection() {
               Live Monitoring • Tanauan City
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-              Weather &amp; Traffic Command Center
+              Weather &amp; Traffic Monitoring
             </h2>
           </div>
 
