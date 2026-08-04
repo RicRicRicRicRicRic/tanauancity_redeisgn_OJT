@@ -70,7 +70,13 @@ function Navbar() {
       </div>
 
       {/* Main Red Navigation Bar */}
-      <nav className="w-full bg-red-700" role="navigation" aria-label="Main navigation">
+      <nav
+        className={`w-full transition-all duration-300 ease-in-out ${
+          isAtTop ? 'bg-red-700' : 'bg-red-700/80'
+        }`}
+        role="navigation"
+        aria-label="Main navigation"
+      >
         <div className="w-full px-4 py-1.5">
           <div className="flex items-center justify-between">
             {/* Left Brand Section */}
