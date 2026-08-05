@@ -3,87 +3,125 @@ import mayorImg from '../../assets/sections/Mayor/Mayor.webp';
 
 const Mayor: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[90vh] flex items-center justify-start py-12 px-4 md:px-12 lg:px-16 overflow-hidden bg-[#210203]">
+    <section className="relative w-full min-h-[90vh] flex items-center justify-center py-16 px-4 md:px-8 lg:px-12 overflow-hidden bg-[#1a0203]">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_35%_50%,_#7b151b_0%,_#4d090c_45%,_#2b0305_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,_#5c0d12_0%,_#330407_50%,_#140102_100%)] opacity-95" />
 
-      {/* Main Container - Shifted Left */}
-      <div className="max-w-[1400px] w-full flex flex-col md:flex-row items-center justify-start gap-6 md:gap-0 relative z-10 lg:-ml-30">
+      {/* Main Two-Column Grid Container */}
+      <div className="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
+        
+        {/* ================= LEFT COLUMN ================= */}
+        <div className="flex flex-col items-center justify-center text-center space-y-3 w-full overflow-hidden">
+          
+          {/* Office Badge */}
+          <div className="flex items-center justify-center gap-3">
+            <span className="w-8 h-[2px] bg-[#e38d92]" />
+            <span className="uppercase tracking-[0.35em] text-xs sm:text-sm font-semibold text-[#FFD6D1] drop-shadow-[0_0_8px_rgba(255,214,209,0.3)]">
+              Office of the Mayor
+            </span>
+            <span className="w-8 h-[2px] bg-[#e38d92]" />
+          </div>
 
-        {/* Left Side: Mayor Image */}
-        <div className="w-full md:w-[50%] flex justify-center md:justify-start items-center h-full relative z-0 md:-ml-12">
-          <img
-            src={mayorImg}
-            alt="Mayor Nelson Sonny Perez Collantes"
-            className="w-full max-w-[690px] lg:max-w-[820px] h-auto max-h-[92vh] object-contain object-center scale-[1.42] origin-center drop-shadow-[0_25px_35px_rgba(0,0,0,0.8)]"
-          />
+          {/* Centered & Enlarged Mayor Image */}
+          <div className="w-full flex justify-center items-center relative">
+            <img
+              src={mayorImg}
+              alt="Mayor Nelson Sonny Perez Collantes"
+              className="w-full max-w-[550px] lg:max-w-[680px] h-auto object-contain scale-105 sm:scale-115 transform origin-center drop-shadow-[0_20px_30px_rgba(0,0,0,0.85)]"
+            />
+          </div>
+
+          {/* Scaled-Down Compact Marquee Slideshow (Right to Left) */}
+          <div className="w-full overflow-hidden relative py-1.5 bg-[#2b0507]/60 border-y border-[#8a2228]/40 backdrop-blur-sm">
+            {/* Inline keyframe animation setup (Right-to-Left Scroll) */}
+            <style>{`
+              @keyframes marquee-forward {
+                0% { transform: translateX(0%); }
+                100% { transform: translateX(-50%); }
+              }
+              .animate-marquee-left {
+                display: flex;
+                width: max-content;
+                animation: marquee-forward 22s linear infinite;
+              }
+              .animate-marquee-left:hover {
+                animation-play-state: paused;
+              }
+            `}</style>
+
+            <div className="animate-marquee-left flex gap-6 whitespace-nowrap">
+              {/* Repeated twice for smooth infinite loop */}
+              {[1, 2].map((key) => (
+                <div key={key} className="flex items-center gap-6 font-serif text-sm sm:text-base lg:text-lg font-bold italic tracking-wide text-white drop-shadow-[0_1px_8px_rgba(255,255,255,0.3)]">
+                  <span>
+                    “In the Service of our People,{' '}
+                    <span className="text-[#FFE485] font-serif not-italic font-extrabold drop-shadow-[0_0_10px_rgba(255,228,133,0.5)]">
+                      We Will Always Remain
+                    </span>”
+                  </span>
+                  <span className="text-[#e38d92] not-italic text-sm">•</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mayor Name & Title (Hardcoded text color with inline styles) */}
+          <div className="pt-3 border-t border-[#8a2228]/50 w-full max-w-md text-center relative z-20 space-y-1">
+            <h2 
+              className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-wide drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
+              style={{ color: '#F1E5DF' }}
+            >
+              Mayor Nelson "Sonny" Perez Collantes
+            </h2>
+            <p 
+              className="uppercase tracking-[0.3em] text-xs sm:text-sm font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+              style={{ color: '#F1E5DF' }}
+            >
+              City Mayor — Tanauan
+            </p>
+          </div>
+
         </div>
 
-        {/* Right Side */}
-<div className="w-full md:w-[50%] flex flex-col justify-center text-left relative z-10 md:-ml-20">
+        {/* ================= RIGHT COLUMN (NEWSPAPER THEME) ================= */}
+        <div className="relative bg-[#260507]/80 backdrop-blur-md border border-[#8a2228]/40 p-8 sm:p-10 rounded-sm shadow-2xl space-y-6">
+          
+          {/* Newspaper Header */}
+          <div className="border-b-2 border-double border-[#d48b90]/40 pb-4 text-center lg:text-left space-y-1">
+            <div className="flex items-center justify-between text-xs tracking-widest text-[#f5c2be] uppercase font-mono border-b border-[#5e1216] pb-2 mb-3">
+              <span>Official Address</span>
+              <span>City of Tanauan</span>
+            </div>
+            <h3 className="font-serif text-2xl sm:text-3xl font-black tracking-wide text-[#FFFFFF] uppercase">
+              Welcome to Tanauan City
+            </h3>
+            <p className="text-xs italic text-[#f0b5b0] font-serif">
+              "Building a progressive, inclusive, and resilient community together."
+            </p>
+          </div>
 
-  {/* Office */}
-  <div className="flex items-center gap-5 mb-5">
+          {/* Newspaper Content Body */}
+          <div className="text-[#FCEEEA] text-sm sm:text-base leading-relaxed font-sans space-y-4 text-justify">
+            <p className="first-letter:text-4xl first-letter:font-bold first-letter:font-serif first-letter:text-[#FFE485] first-letter:mr-2 first-letter:float-left first-letter:leading-none">
+              Warmest greetings to all residents, visitors, and partners of Tanauan City. As we steer our beloved city toward greater heights, our commitment remains anchored on transparent governance, economic advancement, and the well-being of every Tanaueño.
+            </p>
 
-    <span className="w-12 h-[1.5px] bg-[#a85a5d]" />
+            <p>
+              Through unified action and continuous innovation, we strive to build a vibrant environment where businesses thrive, families prosper, and sustainable growth reaches every corner of our community. 
+            </p>
 
-    <span className="uppercase tracking-[0.45em] text-[17px] font-semibold text-[#FFD2CC] drop-shadow-[0_2px_6px_rgba(255,210,204,0.2)]">
-  OFFICE OF THE MAYOR
-</span>
+            <p>
+              We invite you to explore our initiatives, engage in our local programs, and join hands with us in shaping a brighter, more resilient future for Tanauan City.
+            </p>
+          </div>
 
-  </div>
+          {/* Newspaper Footer */}
+          <div className="pt-6 border-t border-[#601317] flex items-center justify-between text-xs text-[#f0b5b0] font-serif italic">
+            <span>Leadership & Public Service</span>
+            <span className="font-semibold text-[#FFE485]">— Office of the Mayor</span>
+          </div>
 
-  {/* Headline */}
-  <div className="relative">
-
-    {/* Quote */}
-    <span className="absolute top-1 -left-2 text-[52px] leading-none font-serif text-[#b14d50]">
-  “
-</span>
-
-   <h1 className="text-4xl sm:text-5xl lg:text-[5.8rem]
-font-extrabold
-leading-[0.92]
-tracking-[-0.03em]
-text-white
-[text-shadow:0_0_8px_rgba(255,255,255,0.35),0_3px_20px_rgba(255,255,255,0.25)]">
-      In the Service of
-      <br />
-      our People,
-      <span className="text-[#FFE38A] [text-shadow:0_0_10px_rgba(255,230,120,0.45)]">
-  We <br />
-  Will Always <br />
-  Remain
-</span>
-    </h1>
-
-    {/* Closing Quote */}
-    <span className="absolute bottom-1 right-6 text-[70px] leading-none font-serif text-[#8a3537]/60 select-none">
-      ”
-    </span>
-
-  </div>
-
-  {/* Mayor Info */}
-  <div className="mt-12">
-
-    <div className="flex items-center gap-4 mb-4">
-
-      <span className="w-5 h-[1.5px] bg-[#6c1d20]" />
-
-     <h2 className="text-[34px] font-bold text-white">
-  Mayor Nelson "Sonny" Perez Collantes
-</h2>
-
-    </div>
-
-    <p className="uppercase tracking-[0.38em] text-[#F1E5DF] text-[17px] font-medium">
-      CITY MAYOR — TANAUAN
-    </p>
-
-  </div>
-
-</div>
+        </div>
 
       </div>
     </section>
