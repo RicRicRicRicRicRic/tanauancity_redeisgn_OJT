@@ -28,8 +28,6 @@ function PlanningDocumentsSection() {
             City Planning Documents
           </h2>
 
-          <div className="w-20 h-1 bg-red-600 rounded-full mx-auto mt-4 mb-5" />
-
           <p className="text-gray-600 text-lg">
             Access official planning documents that guide our city's
             development.

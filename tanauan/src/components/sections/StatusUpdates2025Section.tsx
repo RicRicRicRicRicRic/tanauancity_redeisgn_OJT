@@ -72,7 +72,7 @@ export default function StatusUpdates2025Section() {
             </p>
 
             {/* Quick Stat Summary Chip without Dot */}
-            <div className="inline-flex items-center py-2 px-3.5 bg-[#901c1c]/5 rounded-full">
+            <div className="inline-flex items-center py-2">
               <span className="text-xs font-bold text-gray-800">
                 Continuous Urban Growth & Development
               </span>
