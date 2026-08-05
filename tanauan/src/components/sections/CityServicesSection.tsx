@@ -1,7 +1,11 @@
+import FloatBlobs from '../common/float-blobs'
+
 function CityServicesSection() {
   return (
     <section id="city-services" className="w-full h-[768px] min-h-[768px] overflow-hidden relative ">
 
+      <FloatBlobs />
+      
       <div className="w-full h-full flex flex-col items-center justify-center px-6 md:px-12 lg:px-16 py-12 relative z-10 mt-[15px]">
         <div className="w-full max-w-[795px] max-h-[575px]">
           {/* Header Section */}
@@ -31,7 +35,7 @@ function CityServicesSection() {
               </h3>
               <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mx-14 group-hover: duration-300 ease-out">
                 <p className="text-white text-left text-sm mb-2">
-                  Access various city services online anytime, anywhere
+                  Access digital government services from the comfort of your home
                 </p>
                 <span className="text-white font-bold text-base transition-colors duration-500 ease-out group-hover:text-[#0096ff]">
                   Learn More {'>'}
@@ -54,7 +58,7 @@ function CityServicesSection() {
               </h3>
               <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mx-14 group-hover: duration-300 ease-out">
                 <p className="text-white text-left text-sm mb-2">
-                  Access various city services online anytime, anywhere
+                  Resources for business owners and entrepreneurs in our city
                 </p>
                 <span className="text-white font-bold text-base transition-colors duration-500 ease-out group-hover:text-[#00ff5e]">
                   Learn More {'>'}
@@ -77,7 +81,7 @@ function CityServicesSection() {
               </h3>
               <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mx-14 group-hover: duration-300 ease-out">
                 <p className="text-white text-left text-sm mb-2">
-                  Access various city services online anytime, anywhere
+                  Get help with city services and find answers to common questions
                 </p>
                 <span className="text-white font-bold text-base transition-colors duration-500 ease-out group-hover:text-[#e000ff]">
                   Learn More {'>'}
@@ -100,7 +104,7 @@ function CityServicesSection() {
               </h3>
               <div className="max-h-0 overflow-hidden opacity-0 group-hover:max-h-40 group-hover:opacity-100 group-hover:mx-14 group-hover: duration-300 ease-out">
                 <p className="text-white text-left text-sm mb-2">
-                  Access various city services online anytime, anywhere
+                  Learn about our city departments and how they serve you
                 </p>
                 <span className="text-white font-bold text-base transition-colors duration-500 ease-out group-hover:text-[#ff0039]">
                   Learn More {'>'}

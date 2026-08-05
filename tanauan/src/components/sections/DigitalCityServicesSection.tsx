@@ -54,9 +54,84 @@ const slides: Slide[] = [
 
 function DigitalCityServicesSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+  const [dragOffset, setDragOffset] = useState(0)
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index)
+  }
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0]
+    setDragStart({ x: touch.clientX, y: touch.clientY })
+    setIsDragging(true)
+    setDragOffset(0)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return
+    const touch = e.touches[0]
+    const offset = touch.clientX - dragStart.x
+    setDragOffset(offset)
+  }
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return
+    
+    const minSwipeDistance = 50
+    if (Math.abs(dragOffset) > minSwipeDistance) {
+      if (dragOffset > 0 && currentSlide > 0) {
+        // Swipe right - go to previous slide
+        goToSlide(currentSlide - 1)
+      } else if (dragOffset < 0 && currentSlide < slides.length - 1) {
+        // Swipe left - go to next slide
+        goToSlide(currentSlide + 1)
+      }
+    }
+    
+    setIsDragging(false)
+    setDragOffset(0)
+  }
+
+  // Mouse handlers for desktop drag
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setDragStart({ x: e.clientX, y: e.clientY })
+    setIsDragging(true)
+    setDragOffset(0)
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return
+    const offset = e.clientX - dragStart.x
+    setDragOffset(offset)
+  }
+
+  const handleMouseUp = () => {
+    if (!isDragging) return
+    
+    const minSwipeDistance = 50
+    if (Math.abs(dragOffset) > minSwipeDistance) {
+      if (dragOffset > 0 && currentSlide > 0) {
+        // Drag right - go to previous slide
+        goToSlide(currentSlide - 1)
+      } else if (dragOffset < 0 && currentSlide < slides.length - 1) {
+        // Drag left - go to next slide
+        goToSlide(currentSlide + 1)
+      }
+    }
+    
+    setIsDragging(false)
+    setDragOffset(0)
+  }
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false)
+      setDragOffset(0)
+    }
   }
 
   const currentSlideData = slides[currentSlide]
@@ -363,10 +438,27 @@ function DigitalCityServicesSection() {
           </h2>
         </div>
 
-        {/* Two Column Layout */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 items-center relative">
-          {/* Left Column - Text & Features */}
-          <div className="flex flex-col justify-center space-y-4 -mt-4 min-h-[500px]">
+         {/* Two Column Layout */}
+         <div 
+           className="flex-1 grid grid-cols-1 lg:grid-cols-2 items-center relative"
+           onTouchStart={handleTouchStart}
+           onTouchMove={handleTouchMove}
+           onTouchEnd={handleTouchEnd}
+           onMouseDown={handleMouseDown}
+           onMouseMove={handleMouseMove}
+           onMouseUp={handleMouseUp}
+           onMouseLeave={handleMouseLeave}
+           style={{ userSelect: 'none' }}
+         >
+           {/* Left Column - Text & Features */}
+           <div 
+             className="flex flex-col justify-center space-y-4 -mt-4 min-h-[500px]"
+             style={{ 
+               transform: isDragging ? `translateX(${dragOffset * 0.3}px)` : 'translateX(0)',
+               transition: isDragging ? 'none' : 'transform 0.3s ease-out',
+               cursor: 'grab'
+             }}
+           >
             {/* App Logo & Header */}
             <div className="flex items-center gap-3 mb-2">
               {currentSlide === 1 ? (
