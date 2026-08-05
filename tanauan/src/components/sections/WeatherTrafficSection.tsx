@@ -55,12 +55,12 @@ function WeatherTrafficSection() {
 
   const getAdvisoryText = (code?: number) => {
     if (code === undefined) return 'Monitoring regional weather conditions...';
-    if (code === 0) return 'Clear skies reported across Tanauan City and neighboring highways. Excellent travel conditions.';
-    if (code >= 1 && code <= 3) return 'Partly cloudy skies overhead. Normal traffic and travel flow expected.';
+    if (code === 0) return 'Clear skies reported across Tanauan City and neighboring highways.';
+    if (code >= 1 && code <= 3) return 'Partly cloudy skies overhead. Normal travel flow expected.';
     if (code >= 51 && code <= 67) return 'Light rain showers detected in the region. Drive safely and keep headlights on.';
     if (code >= 80 && code <= 82) return 'Rain showers active in local transit corridors. Expect wet road conditions.';
-    if (code >= 95) return 'Severe weather / thunderstorm alert in the vicinity. Exercise extra caution on primary highways.';
-    return 'Moderate regional weather conditions. Traffic flow normal.';
+    if (code >= 95) return 'Severe weather / thunderstorm alert in the vicinity. Exercise extra caution.';
+    return 'Moderate regional weather conditions.';
   };
 
   return (
