@@ -31,22 +31,22 @@ function Navbar() {
           isAtTop ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}
         style={{
-          background: 'rgba(255, 255, 255, 0.1)',
+          background: 'rgba(210, 36, 36, 0.65)',
         }}
       >
         <div className="w-full px-4 py-1">
           <div className="flex items-center justify-between">
             {/* Left Side - Utility Buttons */}
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
+              <button className="flex items-center gap-2 bg-[#931818] hover:bg-[#7a1414] text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
                 <Monitor className="w-4 h-4" />
                 <span>E-services</span>
               </button>
-              <button className="flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
+              <button className="flex items-center gap-2 bg-[#931818] hover:bg-[#7a1414] text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
                 <FileText className="w-4 h-4" />
                 <span>Transparency</span>
               </button>
-              <button className="flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
+              <button className="flex items-center gap-2 bg-[#931818] hover:bg-[#7a1414] text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
                 <AlertCircle className="w-4 h-4" />
                 <span>Alerts</span>
               </button>
@@ -54,12 +54,12 @@ function Navbar() {
 
             {/* Right Side - Announcement Banner */}
             <div className="flex items-center">
-              <div className="flex items-center gap-3 bg-slate-600 hover:bg-slate-700 text-white px-4 py-1.5 rounded-full transition-colors cursor-pointer">
+              <div className="flex items-center gap-3 bg-[#931818] hover:bg-[#7a1414] text-white px-4 py-1.5 rounded-full transition-colors cursor-pointer">
                 <Megaphone className="w-4 h-4" />
                 <span className="text-sm font-medium">
                   ANNOUNCEMENT | Tanauan City's Applicants Admission
                 </span>
-                <div className="flex items-center gap-1.5 bg-slate-500 hover:bg-slate-600 px-2.5 py-0.5 rounded-full">
+                <div className="flex items-center gap-1.5 bg-[#661414] hover:bg-[#551010] px-2.5 py-0.5 rounded-full">
                   <Calendar className="w-3.5 h-3.5" />
                   <span className="text-xs font-medium">June 6, 2025</span>
                 </div>
