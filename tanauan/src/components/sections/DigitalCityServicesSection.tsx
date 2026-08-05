@@ -134,7 +134,7 @@ function DigitalCityServicesSection() {
           </div>
 
           {/* Access RPT Portal Button */}
-          <div className="pt-2">
+          <div className="pt-2 flex justify-center md:justify-start">
             <a
               href="#"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 rounded-full text-gray-800 font-semibold hover:bg-blue-50 transition-colors w-full md:w-auto"
@@ -266,7 +266,7 @@ function DigitalCityServicesSection() {
           </div>
 
           {/* Access e-BPLS Portal Button */}
-          <div>
+          <div className="flex justify-center md:justify-start">
             <a
               href="https://eservices.tanauancity.gov.ph"
               target="_blank"

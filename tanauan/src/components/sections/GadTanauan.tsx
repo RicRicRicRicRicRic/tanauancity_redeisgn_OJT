@@ -16,7 +16,7 @@ import gadLogo from '../../assets/sections/gadlogo/gadtanauanlogo.webp';
 
 export default function GadTanauan() {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-slate-900 via-slate-800/95 to-slate-900 text-slate-100 relative overflow-hidden font-sans flex flex-col justify-between selection:bg-purple-600 selection:text-white">
+    <div className="w-full h-[768px] min-h-[768px] bg-gradient-to-b from-slate-900 via-slate-800/95 to-slate-900 text-slate-100 relative overflow-hidden font-sans flex flex-col justify-between selection:bg-purple-600 selection:text-white">
       
       {/* Lightened Ambient Background Glows */}
       <div className="absolute top-1/4 right-10 w-[450px] h-[450px] bg-purple-600/25 rounded-full blur-[120px] pointer-events-none animate-pulse" />
@@ -26,7 +26,7 @@ export default function GadTanauan() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0c_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0c_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
       {/* Main Full-Page Layout Container */}
-      <main className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-6 lg:py-8 flex-1 flex flex-col justify-center">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-6 lg:py-8 flex-1 flex flex-col justify-center mt-[15px]">
         
         {/* Top Tag Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/90 border border-slate-600/60 text-purple-300 text-xs font-semibold w-fit mb-6 shadow-sm backdrop-blur-xl">
