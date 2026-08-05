@@ -161,7 +161,7 @@ export function TanauanEServicesSection() {
       <section className="min-h-screen flex flex-col justify-between px-6 py-10 md:px-12 lg:px-20 max-w-7xl mx-auto border-b border-slate-200/80">
         
         {/* HEADER */}
-        <div className="pt-6 text-center space-y-3 max-w-3xl mx-auto">
+        <div className="flex flex-col pt-6 text-center items-center justify-center space-y-3 max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200/60 text-red-700 text-xs font-bold uppercase tracking-widest shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-red-600 animate-pulse" />
             <span>Official Service Portal</span>
@@ -171,7 +171,7 @@ export function TanauanEServicesSection() {
             Welcome to <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-700 via-rose-600 to-amber-600">Tanauan City eServices</span>
           </h1>
 
-          <p className="text-xs md:text-sm text-slate-600 leading-relaxed max-w-xl mx-auto">
+          <p className="text-xs md:text-sm text-gray-600 max-w-lg leading-relaxed text-center">
             Your gateway to efficient and convenient city services. Create an account now to access our digital services anytime, anywhere.
           </p>
         </div>
