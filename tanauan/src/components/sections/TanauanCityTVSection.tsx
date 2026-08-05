@@ -76,15 +76,15 @@ function TanauanCityTVSection() {
       className="w-full h-[768px] min-h-[768px] bg-gray-900 relative flex flex-col py-8 px-6 md:px-12 lg:px-16 overflow-x-hidden"
     >
       {/* Parent container for header, main content, and playlist */}
-      <div className="mt-15 flex-1 flex flex-col">
+      <div className="mt-20 flex-1 flex flex-col">
         {/* Header Section */}
         <h2 className="text-3xl md:text-4xl font-bold text-center text-white">
           Tanauan City TV
         </h2>
 
-        {/* Main Content Area - Video Player with Hoverable Playlist Overlay */}
+        {/* Main Content Area - Video Player with Hoverable Overlays */}
         <div className="flex-1 flex items-center justify-center max-w-6xl mx-auto w-full min-h-0 relative -mt-6">
-        {/* Main YouTube Video Player with Hover Trigger */}
+        {/* Main YouTube Video Player with Hover Triggers */}
           <div 
             className="w-full max-w-3xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl"
             onMouseEnter={() => setIsHovering(true)}
@@ -97,6 +97,61 @@ function TanauanCityTVSection() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
+          </div>
+
+          {/* Left-Side Channel Promo Overlay */}
+          <div 
+            className={`absolute -left-16 top-0 h-full w-64 bg-gray-900 bg-opacity-95 backdrop-blur-sm transform transition-all duration-300 ease-in-out ${
+              isHovering ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
+            }`}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          >
+            <div className="p-4 h-full flex flex-col justify-center">
+              {/* Channel Profile Image */}
+              <div className="flex justify-center mb-4">
+                <img
+                  src="/src/assets/sections/TanauanCityTVSection/tanauan-chennel-profile.jpg"
+                  alt="Tanauan City Channel"
+                  className="w-20 h-20 rounded-full object-cover border-2 border-gray-600"
+                />
+              </div>
+
+              <h3 className="text-lg font-bold text-white mb-3 text-center">
+                Official Channel
+              </h3>
+              
+              {/* Stats Columns */}
+              <div className="flex justify-center gap-8 mb-4">
+                <div className="text-center">
+                  <p className="text-white font-semibold text-sm">1K</p>
+                  <p className="text-gray-400 text-xs">Subscribers</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-white font-semibold text-sm">340+</p>
+                  <p className="text-gray-400 text-xs">Videos</p>
+                </div>
+              </div>
+
+              <p className="text-sm text-gray-300 !mb-4 text-center">
+                Check out all our past broadcasts, city events, and updates on our official YouTube channel.
+              </p>
+              <a
+                href="https://www.youtube.com/@CityGovernmentofTanauan/videos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-[#0F0F0F] hover:bg-[#1A1A1A] text-white font-medium py-3 px-5 rounded-full transition-colors duration-200 border border-gray-700"
+              >
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+                  <img
+                    src="/src/assets/sections/TanauanCityTVSection/youtube-logo-transparent.webp"
+                    alt="YouTube"
+                    className="w-6 h-6"
+                  />
+                </div>
+                <span className="text-sm">Visit Our YouTube Channel</span>
+              </a>
+            </div>
           </div>
 
           {/* Vertical Playlist Overlay */}
