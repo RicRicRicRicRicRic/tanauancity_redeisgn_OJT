@@ -76,14 +76,14 @@ function TanauanCityTVSection() {
       className="w-full h-[768px] min-h-[768px] bg-gray-900 relative flex flex-col py-8 px-6 md:px-12 lg:px-16 overflow-x-hidden"
     >
       {/* Parent container for header, main content, and playlist */}
-      <div className="mt-20 flex-1 flex flex-col">
+      <div className="mt-15 flex-1 flex flex-col">
         {/* Header Section */}
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-white">
           Tanauan City TV
         </h2>
 
         {/* Main Content Area - Video Player with Hoverable Playlist Overlay */}
-        <div className="flex-1 flex items-center justify-center max-w-6xl mx-auto w-full min-h-0 relative">
+        <div className="flex-1 flex items-center justify-center max-w-6xl mx-auto w-full min-h-0 relative -mt-6">
         {/* Main YouTube Video Player with Hover Trigger */}
           <div 
             className="w-full max-w-3xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl"
