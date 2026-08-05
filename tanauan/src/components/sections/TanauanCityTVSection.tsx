@@ -7,66 +7,66 @@ function TanauanCityTVSection() {
   const playlistItems = [
     {
       id: 1,
-      title: "Tanauan City Video 1",
-      duration: "0:00",
+      title: "SINSAY PASADA EP27 | KULAWO GOTONG BATANGAS",
+      duration: "11:25",
       videoId: "2mqRRGkbkc0",
-      description: "Tanauan City TV Video"
+      description: "SINSAY PASADA EP27 | KULAWO GOTONG BATANGAS"
     },
     {
       id: 2,
-      title: "Tanauan City Video 2",
-      duration: "0:00",
+      title: "GAME: Tanauan City vs Zambales (Senior League Baseball) CHAMPIONSHIP GAME",
+      duration: "2:22:58",
       videoId: "Whv42_oz4bQ",
-      description: "Tanauan City TV Video"
+      description: "🔴LIVE ACTION | Philippines Series 2023 National Finals\nGAME: Tanauan City vs Zambales (Senior League Baseball) CHAMPIONSHIP GAME\n\n#TanauanCGTV\n#CityGovernmentOfTanauan\n#LittleLeaguePh"
     },
     {
       id: 3,
-      title: "Tanauan City Video 3",
-      duration: "0:00",
+      title: "🔴 Watch Live | Protect Our Nation's Youth | Philippines Vs. China (SEMIFINAL)",
+      duration: "54:40",
       videoId: "NOqAoiiyn2s",
-      description: "Tanauan City TV Video"
+      description: "🔴 Watch Live | Protect Our Nation's Youth\n2023 Asia Pacific (ASPAC) Zone Mustang Championships Tournament\nPhilippines Vs. China (SEMIFINAL)\n#CityGovernmentOfTanauan\n#TanauanBatangas\n#PONY"
     },
     {
       id: 4,
-      title: "Tanauan City Video 4",
-      duration: "0:00",
+      title: "GAME: Tanauan City vs Negros (Senior League Softball)",
+      duration: "1:30:50",
       videoId: "BjICDZ1qkbA",
-      description: "Tanauan City TV Video"
+      description: "🔴LIVE ACTION | Philippines Series 2023 National Finals\nGAME: Tanauan City vs Negros (Senior League Softball)\n\n#TanauanCGTV\n#CityGovernmentOfTanauan\n#LittleLeaguePh"
     },
     {
       id: 5,
-      title: "Tanauan City Video 5",
-      duration: "0:00",
+      title: "🔴 Watch Live | Protect Our Nation's Youth | Philippines Vs. Japan (Championship Game)",
+      duration: "2:26:33",
       videoId: "FQlLdRThpug",
-      description: "Tanauan City TV Video"
+      description: "🔴 Watch Live | Protect Our Nation's Youth\n2023 Asia Pacific (ASPAC) Zone Mustang Championships Tournament\nPhilippines Vs. Japan (Championship Game)\n\n#citygovernmentoftanauan\n#TanauanBatangas\n#PONY"
     },
     {
       id: 6,
-      title: "Tanauan City Video 6",
-      duration: "0:00",
+      title: "GAME: Tanauan City vs Northen Samar (Junior League Baseball)",
+      duration: "2:25:15",
       videoId: "YFL-qbitRN8",
-      description: "Tanauan City TV Video"
+      description: "🔴LIVE ACTION | Philippines Series 2023 National Finals\nGAME: Tanauan City vs Northen Samar (Junior League Baseball)\n\n#TanauanCGTV\n#CityGovernmentOfTanauan\n#LittleLeaguePh"
     },
     {
       id: 7,
-      title: "Tanauan City Video 7",
-      duration: "0:00",
+      title: "GAME: Tanauan City vs Davao City (Major League Softball)",
+      duration: "1:45:35",
       videoId: "yukQzNh0MnQ",
-      description: "Tanauan City TV Video"
+      description: "🔴LIVE ACTION | Philippines Series 2023 National Finals\nGAME: Tanauan City vs Davao City (Major League Softball)\n\n#TanauanCGTV\n#CityGovernmentOfTanauan\n#LittleLeaguePh"
     },
     {
       id: 8,
-      title: "Tanauan City Video 8",
-      duration: "0:00",
+      title: "🔴 Watch Live | Protect Our Nation's Youth (JAPAN Vs. CHINA )",
+      duration: "1:24:58",
       videoId: "ntrAtyccNyw",
-      description: "Tanauan City TV Video"
+      description: "🔴 Watch Live | Protect Our Nation's Youth\n2023 Asia Pacific (ASPAC) Zone Mustang Championships Tournament\nJapan Vs. China\n\n#CityGovernmentOfTanauan\n#TanauanBatangas\n#PONY"
     },
     {
       id: 9,
-      title: "Tanauan City Video 9",
-      duration: "0:00",
+      title: "GAME: Tanauan City vs Zambales (Junior League Baseball)",
+      duration: "2:36:16",
       videoId: "1HnXZl73u3M",
-      description: "Tanauan City TV Video"
+      description: "🔴LIVE ACTION | Philippines Series 2023 National Finals\nGAME: Tanauan City vs Zambales (Junior League Baseball)\n\n#TanauanCGTV\n#CityGovernmentOfTanauan\n#LittleLeaguePh"
     }
   ];
 
