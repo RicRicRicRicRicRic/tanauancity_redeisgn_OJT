@@ -119,6 +119,9 @@ export function PeoplesCornerSection() {
   const [brgySearch, setBrgySearch] = useState('');
   const brgyDropdownRef = useRef<HTMLDivElement>(null);
 
+  // FAQ Interactive State
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
   // --- REACT VERTICAL CENTERING SCROLL MECHANICS ---
   const [pinStyle, setPinStyle] = useState<React.CSSProperties>({});
   const gridContainerRef = useRef<HTMLDivElement>(null);
@@ -193,6 +196,29 @@ export function PeoplesCornerSection() {
     brgy.toLowerCase().includes(brgySearch.toLowerCase())
   );
 
+  const faqs = [
+    {
+      category: "Response Time",
+      question: "How soon will my concern be addressed?",
+      answer: "We aim to review and route all submissions within 24 hours. Most concerns receive an official update or resolution within 3 to 5 business days, depending on department review."
+    },
+    {
+      category: "Privacy",
+      question: "Can I submit a concern anonymously?",
+      answer: "Yes, you can leave personal details minimal if you wish. However, providing your email or phone number allows our team to contact you directly if we need clarification or want to send status updates."
+    },
+    {
+      category: "Process",
+      question: "What happens after I submit the form?",
+      answer: "Your report is logged into our central administrative system and routed directly to the designated department (e.g., CPDO, Public Works, or Health Office) for immediate action."
+    },
+    {
+      category: "Attachments",
+      question: "Can I attach photos or supporting documents?",
+      answer: "Our web form currently accepts text descriptions. If you have photo or video evidence, you can reply directly to the email confirmation you receive after submitting, or send them to city_hall@tanauancity.gov.ph."
+    }
+  ];
+
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
     if (text.length <= 1000) {
@@ -220,13 +246,13 @@ export function PeoplesCornerSection() {
       <div className="absolute bottom-1/3 left-10 w-80 h-80 bg-rose-500/10 rounded-full blur-2xl pointer-events-none" />
 
       {/* Main Container */}
-      <div className="max-w-6xl mx-auto w-full space-y-16 relative z-10">
+      <div className="max-w-6xl mx-auto w-full space-y-12 relative z-10">
         
         {/* ================= SECTION 1: HEADER & FORM ================= */}
         <div className="space-y-8">
           {/* Header Section */}
           <div className="text-center space-y-2 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-bold uppercase tracking-wider shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-200 text-red-600 text-xs font-bold uppercase tracking-wider shadow-xs">
               <HeartIcon className="w-3.5 h-3.5 text-red-500" />
               <span>Official Feedback Portal</span>
             </div>
@@ -248,7 +274,7 @@ export function PeoplesCornerSection() {
               <div ref={sidebarCardsRef} style={pinStyle} className="space-y-5">
                 
                 {/* How It Works Card */}
-                <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm relative overflow-hidden hover:shadow-md transition-all duration-300">
+                <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs relative overflow-hidden hover:shadow-md transition-all duration-300">
                   <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-red-600 to-rose-500" />
 
                   <div className="text-center mb-1">
@@ -405,7 +431,7 @@ export function PeoplesCornerSection() {
                           placeholder="Juan Dela Cruz"
                           value={formData.fullName}
                           onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                          className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-inner"
+                          className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-xs"
                         />
                       </div>
 
@@ -419,7 +445,7 @@ export function PeoplesCornerSection() {
                           placeholder="juandelacruz@example.com"
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-inner"
+                          className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-xs"
                         />
                       </div>
                     </div>
@@ -437,7 +463,7 @@ export function PeoplesCornerSection() {
                           placeholder="09XXXXXXXXX"
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/[^0-9]/g, '')})}
-                          className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-inner"
+                          className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-xs"
                         />
                       </div>
 
@@ -450,7 +476,7 @@ export function PeoplesCornerSection() {
                         <button
                           type="button"
                           onClick={() => setIsBrgyOpen(!isBrgyOpen)}
-                          className={`w-full text-xs px-3.5 py-3 rounded-xl border text-left flex items-center justify-between transition-all shadow-inner ${
+                          className={`w-full text-xs px-3.5 py-3 rounded-xl border text-left flex items-center justify-between transition-all shadow-xs ${
                             formData.barangay 
                               ? 'bg-white border-slate-300 text-slate-800 font-medium' 
                               : 'bg-slate-50/70 border-slate-200/90 text-slate-400'
@@ -533,7 +559,7 @@ export function PeoplesCornerSection() {
                         placeholder="Brief overview of your issue..."
                         value={formData.subject}
                         onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                        className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-inner"
+                        className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-xs"
                       />
                     </div>
 
@@ -553,7 +579,7 @@ export function PeoplesCornerSection() {
                         placeholder="Please share specific details, dates, or locations related to your concern..."
                         value={formData.message}
                         onChange={handleMessageChange}
-                        className="w-full text-xs p-3.5 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all resize-none shadow-inner"
+                        className="w-full text-xs p-3.5 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all resize-none shadow-xs"
                       />
                     </div>
                   </div>
@@ -583,114 +609,104 @@ export function PeoplesCornerSection() {
           </div>
         </div>
 
-        {/* ================= SECTION 2: FAQ DESIGN ================= */}
-        <div className="space-y-8 pt-6 border-t border-slate-200/60">
+        {/* ================= SECTION 2: INTERACTIVE ACCORDION FAQ ================= */}
+        <div className="space-y-6 pt-8 border-t border-slate-200/80">
           
-          <div className="text-center space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/60 text-slate-700 text-[11px] font-bold uppercase tracking-wider">
-              <HelpCircleIcon className="w-3.5 h-3.5 text-slate-500" />
-              <span>Got Questions?</span>
+          {/* Header */}
+          <div className="text-center space-y-2 max-w-xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 border border-red-100 text-red-600 text-xs font-bold uppercase tracking-wider shadow-xs">
+              <HelpCircleIcon className="w-3.5 h-3.5 text-red-500" />
+              <span>Help & Support</span>
             </div>
-            <h3 className="text-2xl font-black text-slate-900 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
               Frequently Asked Questions
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-              Find quick answers to common questions about submitting concerns and feedback.
+            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed font-medium">
+              Quick answers to common questions about our citizen submission portal.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            
-            {/* FAQ Card 1 */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-1 h-full bg-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
-                  ?
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors">
-                    How soon will my concern be addressed?
-                  </h4>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    We aim to respond to all concerns within <strong className="text-slate-700">3-5 business days</strong>, depending on the complexity of the issue and department review.
-                  </p>
-                </div>
-              </div>
-            </div>
+          {/* Accordion Cards */}
+          <div className="max-w-3xl mx-auto space-y-3">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaqIndex === idx;
+              return (
+                <div 
+                  key={idx}
+                  className={`bg-white border rounded-2xl overflow-hidden transition-all duration-300 ${
+                    isOpen 
+                      ? 'border-red-200 shadow-md ring-1 ring-red-500/10' 
+                      : 'border-slate-200/80 hover:border-slate-300 shadow-xs'
+                  }`}
+                >
+                  {/* Trigger */}
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                    className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 cursor-pointer select-none"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md shrink-0 ${
+                        isOpen ? 'bg-red-50 text-red-600' : 'bg-slate-100 text-slate-500'
+                      }`}>
+                        {faq.category}
+                      </span>
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
+                        {faq.question}
+                      </h4>
+                    </div>
 
-            {/* FAQ Card 2 */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-1 h-full bg-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
-                  ?
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors">
-                    Can I submit anonymously?
-                  </h4>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    While we prefer complete contact details to properly resolve issues, you may provide minimal details if you wish to stay private.
-                  </p>
-                </div>
-              </div>
-            </div>
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isOpen ? 'bg-red-500 text-white rotate-180' : 'bg-slate-100 text-slate-500'
+                    }`}>
+                      <ChevronDownIcon className="w-4 h-4" />
+                    </div>
+                  </button>
 
-            {/* FAQ Card 3 */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-1 h-full bg-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
-                  ?
+                  {/* Expandable Body */}
+                  {isOpen && (
+                    <div className="px-4 pb-5 sm:px-5 sm:pb-5 text-xs text-slate-600 leading-relaxed border-t border-slate-100/80 pt-3 animate-in fade-in slide-in-from-top-1 duration-200">
+                      {faq.answer}
+                    </div>
+                  )}
                 </div>
-                <div className="space-y-1">
-                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors">
-                    What happens after I submit?
-                  </h4>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    Your submission is routed to our central administrative team and then dispatched directly to the appropriate city department.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* FAQ Card 4 */}
-            <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-1 h-full bg-red-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="flex items-start gap-3">
-                <div className="w-7 h-7 rounded-lg bg-red-50 text-red-600 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
-                  ?
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-red-600 transition-colors">
-                    Can I attach files or photos?
-                  </h4>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    Currently, our web form doesn't take attachments. Please describe details in full, or send photos directly to our official email.
-                  </p>
-                </div>
-              </div>
-            </div>
-
+              );
+            })}
           </div>
+
+          {/* Unanswered Questions CTA Banner */}
+          <div className="max-w-3xl mx-auto bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-6 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+            <div className="space-y-1 text-center sm:text-left">
+              <h4 className="text-sm font-bold">Still have unanswered questions?</h4>
+              <p className="text-xs text-slate-400">Reach out directly to our support desk or visit City Hall.</p>
+            </div>
+            <a 
+              href="mailto:city_hall@tanauancity.gov.ph"
+              className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-bold transition-all shrink-0 hover:scale-[1.03] active:scale-[0.98]"
+            >
+              Contact Support
+            </a>
+          </div>
+
         </div>
 
-        {/* ================= FOOTER COMMITMENT NOTE ================= */}
-        <div className="text-center max-w-2xl mx-auto space-y-3 pt-4 pb-6">
-          <p className="text-xs text-slate-500 leading-relaxed">
+        {/* ================= FOOTER COMMITMENT NOTE (PULLED UP SLIGHTLY & SPACED BUTTON) ================= */}
+        <div className="text-center max-w-2xl mx-auto space-y-4 -mt-2 pb-2">
+          <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-xl mx-auto font-medium">
             The City Government of Tanauan is committed to listening to our citizens and addressing your concerns. Your feedback helps us improve our services and build a better community for everyone.
           </p>
 
-          <a 
-            href="https://facebook.com/cityoftanauan" 
-            target="_blank" 
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs text-red-600 hover:text-red-700 font-bold transition-colors bg-red-50 px-4 py-2 rounded-full border border-red-100"
-          >
-            <FacebookIcon className="w-3.5 h-3.5 fill-current" />
-            <span>Follow us on Facebook</span>
-          </a>
+          <div className="mt-3">
+            <a 
+              href="https://facebook.com/cityoftanauan" 
+              target="_blank" 
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-xs text-red-600 hover:text-red-700 font-bold transition-all bg-red-50 hover:bg-red-100 px-5 py-2.5 rounded-full border border-red-200/80 hover:shadow-xs active:scale-95"
+            >
+              <FacebookIcon className="w-4 h-4 fill-current text-red-600" />
+              <span>Follow us on Facebook</span>
+            </a>
+          </div>
         </div>
 
       </div>
