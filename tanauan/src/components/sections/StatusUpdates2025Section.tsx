@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function StatusUpdates2025Section() {
   const [activeMetric, setActiveMetric] = useState(1);
