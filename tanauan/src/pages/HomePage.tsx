@@ -48,11 +48,11 @@ function HomePage() {
       {/* Mayor Section */}
       <MayorSection />
 
-      {/* In the Service of Our People */}
-      <ServiceOfOurPeopleSection />
-
       {/* New on Ulat Tanauan */}
       <UlatTanauanSection />
+
+      {/* In the Service of Our People */}
+      <ServiceOfOurPeopleSection />
 
       {/* Other Government Website Links */}
       <GovernmentLinksSection />

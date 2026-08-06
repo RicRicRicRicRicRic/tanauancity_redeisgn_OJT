@@ -1,116 +1,205 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import FloatBlobs from '../common/float-blobs'
 
-interface NewsItem {
+interface PageItem {
   id: number
-  title: string
-  description: string
-  date: string
-  icon: string
-  color: string
+  image: string
 }
 
-const newsItems: NewsItem[] = [
-  {
-    id: 1,
-    title: 'City Council Session - March 2026',
-    description: 'Watch the latest proceedings and deliberations',
-    date: 'Posted: March 14, 2026',
-    icon: '📺',
-    color: 'bg-red-600'
-  },
-  {
-    id: 2,
-    title: "Mayor's Weekly Address",
-    description: 'Updates on city projects and initiatives',
-    date: 'Posted: March 12, 2026',
-    icon: '🎬',
-    color: 'bg-blue-600'
-  },
-  {
-    id: 3,
-    title: 'Community Feature Story',
-    description: 'Highlighting local success stories and achievements',
-    date: 'Posted: March 10, 2026',
-    icon: '📰',
-    color: 'bg-green-600'
-  },
-  {
-    id: 4,
-    title: 'Infrastructure Development Update',
-    description: 'New road projects and public facilities coming soon',
-    date: 'Posted: March 8, 2026',
-    icon: '🏗️',
-    color: 'bg-orange-600'
-  },
-  {
-    id: 5,
-    title: 'Health and Wellness Program',
-    description: 'Free medical services for senior citizens',
-    date: 'Posted: March 5, 2026',
-    icon: '🏥',
-    color: 'bg-teal-600'
-  },
-  {
-    id: 6,
-    title: 'Youth Sports Festival',
-    description: 'Annual athletic competition for young athletes',
-    date: 'Posted: March 1, 2026',
-    icon: '⚽',
-    color: 'bg-purple-600'
-  }
+const pageItems: PageItem[] = [
+  { id: 1, image: '/src/assets/sections/UlatTanauanSection/1.webp' },
+  { id: 2, image: '/src/assets/sections/UlatTanauanSection/2.webp' },
+  { id: 3, image: '/src/assets/sections/UlatTanauanSection/3.webp' },
+  { id: 4, image: '/src/assets/sections/UlatTanauanSection/4.webp' },
+  { id: 5, image: '/src/assets/sections/UlatTanauanSection/5.webp' },
+  { id: 6, image: '/src/assets/sections/UlatTanauanSection/6.webp' },
+  { id: 7, image: '/src/assets/sections/UlatTanauanSection/7.webp' },
+  { id: 8, image: '/src/assets/sections/UlatTanauanSection/8.webp' },
+  { id: 9, image: '/src/assets/sections/UlatTanauanSection/9.webp' },
+  { id: 10, image: '/src/assets/sections/UlatTanauanSection/10.webp' },
+  { id: 11, image: '/src/assets/sections/UlatTanauanSection/11.webp' }
 ]
 
 function UlatTanauanSection() {
   const [currentPage, setCurrentPage] = useState(0)
+  const [targetPage, setTargetPage] = useState(0)
   const [isFlipping, setIsFlipping] = useState(false)
   const [flipDirection, setFlipDirection] = useState<'next' | 'previous' | null>(null)
+  
+  // Drag interaction state
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragStartX, setDragStartX] = useState(0)
+  const [dragRotation, setDragRotation] = useState(0)
+  const [animationStartRotation, setAnimationStartRotation] = useState(0)
+  const [shouldAnimate, setShouldAnimate] = useState(false)
+
+  // Trigger animation after flip element renders at start position
+  useEffect(() => {
+    if (isFlipping && !shouldAnimate) {
+      const timer = setTimeout(() => {
+        setShouldAnimate(true)
+      }, 50)
+      return () => clearTimeout(timer)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFlipping])
 
   const itemsPerPage = 2
-  const totalPages = Math.ceil(newsItems.length / itemsPerPage)
-  const currentItems = newsItems.slice(
-    currentPage * itemsPerPage,
-    currentPage * itemsPerPage + itemsPerPage
-  )
+  const totalPages = Math.ceil(pageItems.length / itemsPerPage)
 
-  const goToNextPage = () => {
+  const getPageItems = (pageIndex: number) => {
+    return pageItems.slice(
+      pageIndex * itemsPerPage,
+      pageIndex * itemsPerPage + itemsPerPage
+    )
+  }
+
+  const goToNextPage = (startRotation = 0) => {
     if (currentPage < totalPages - 1 && !isFlipping) {
+      const nextPg = currentPage + 1
+      setTargetPage(nextPg)
+      setAnimationStartRotation(startRotation)
       setIsFlipping(true)
       setFlipDirection('next')
+      setShouldAnimate(false)
+
       setTimeout(() => {
-        setCurrentPage(currentPage + 1)
-        setTimeout(() => {
-          setIsFlipping(false)
-          setFlipDirection(null)
-        }, 600)
+        setCurrentPage(nextPg)
+        setIsFlipping(false)
+        setFlipDirection(null)
+        setShouldAnimate(false)
+        setDragRotation(0)
       }, 600)
     }
   }
 
-  const goToPreviousPage = () => {
+  const goToPreviousPage = (startRotation = 0) => {
     if (currentPage > 0 && !isFlipping) {
+      const prevPg = currentPage - 1
+      setTargetPage(prevPg)
+      setAnimationStartRotation(startRotation)
       setIsFlipping(true)
       setFlipDirection('previous')
+      setShouldAnimate(false)
+
       setTimeout(() => {
-        setCurrentPage(currentPage - 1)
-        setTimeout(() => {
-          setIsFlipping(false)
-          setFlipDirection(null)
-        }, 600)
+        setCurrentPage(prevPg)
+        setIsFlipping(false)
+        setFlipDirection(null)
+        setShouldAnimate(false)
+        setDragRotation(0)
       }, 600)
     }
+  }
+
+  // Drag handlers for grab-and-flip interaction
+  const handleDragStart = (clientX: number) => {
+    if (isFlipping) return
+    setIsDragging(true)
+    setDragStartX(clientX)
+    setDragRotation(0)
+  }
+
+  const handleDragMove = (clientX: number) => {
+    if (!isDragging || isFlipping) return
+    
+    const deltaX = clientX - dragStartX
+    
+    // Calculate rotation based on drag distance (max 180 degrees)
+    const maxDragDistance = 300
+    const rotation = Math.max(-180, Math.min(180, (deltaX / maxDragDistance) * 180))
+    setDragRotation(rotation)
+  }
+
+  const handleDragEnd = () => {
+    if (!isDragging || isFlipping) return
+    
+    setIsDragging(false)
+    
+    // Store the current rotation as the animation start point
+    const startRotation = dragRotation
+    
+    // If dragged more than 45 degrees, trigger page flip
+    if (Math.abs(dragRotation) > 45) {
+      if (dragRotation < 0 && currentPage < totalPages - 1) {
+        // Dragged left - flip to next page
+        goToNextPage(startRotation)
+      } else if (dragRotation > 0 && currentPage > 0) {
+        // Dragged right - flip to previous page
+        goToPreviousPage(startRotation)
+      } else {
+        // Reset rotation if can't flip
+        setDragRotation(0)
+      }
+    } else {
+      // Not enough drag - reset rotation
+      setDragRotation(0)
+    }
+  }
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault()
+    handleDragStart(e.clientX)
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    handleDragMove(e.clientX)
+  }
+
+  const handleMouseUp = () => {
+    handleDragEnd()
+  }
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      handleDragEnd()
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    handleDragStart(e.touches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    handleDragMove(e.touches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    handleDragEnd()
+  }
+
+  const currentItems = getPageItems(currentPage)
+  const targetItems = getPageItems(targetPage)
+
+  const renderPage = (item?: PageItem) => {
+    if (!item) return null
+    return (
+      <div className="w-full h-full bg-white flex items-center justify-center">
+        <img 
+          src={item.image} 
+          alt={`Page ${item.id}`}
+          className="w-full h-full object-contain"
+        />
+      </div>
+    )
   }
 
   return (
-    <section id="ulat-tanauan" className="h-[768px] min-h-[768px] flex items-center justify-center bg-gray-50 overflow-hidden relative">
-      <div className="w-full px-6 md:px-12 lg:px-16">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">New on Ulat Tanauan</h2>
+    <section id="ulat-tanauan" className="h-[768px] min-h-[768px] flex items-center justify-center bg-[#1a0203] overflow-hidden relative">
+      {/* Floating Blobs Background */}
+      <FloatBlobs />
+      
+      <div className="w-full px-6 md:px-12 lg:px-16 relative z-10">
+        <h2 className="text-4xl font-bold text-center !mb-6 text-white">
+          New on <span className="bg-gradient-to-r from-[#FFE485] to-[#e38d92] bg-clip-text text-transparent">Ulat Tanauan</span>
+        </h2>
         
         {/* 3D Book Container */}
         <div className="relative max-w-5xl mx-auto" style={{ perspective: '1500px' }}>
           
           {/* Navigation Buttons */}
           <button
-            onClick={goToPreviousPage}
+            onClick={() => goToPreviousPage(0)}
             disabled={currentPage === 0 || isFlipping}
             className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="Previous page"
@@ -121,7 +210,7 @@ function UlatTanauanSection() {
           </button>
 
           <button
-            onClick={goToNextPage}
+            onClick={() => goToNextPage(0)}
             disabled={currentPage === totalPages - 1 || isFlipping}
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="Next page"
@@ -133,161 +222,143 @@ function UlatTanauanSection() {
 
           {/* Book Spread Container */}
           <div 
-            className="relative flex justify-center items-center"
+            className="relative flex justify-center items-center shadow-2xl rounded-lg overflow-hidden bg-white mx-auto cursor-grab active:cursor-grabbing"
             style={{ 
               transformStyle: 'preserve-3d',
-              perspective: '1500px'
+              width: '748px',
+              height: '505px'
             }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            role="button"
+            tabIndex={0}
+            aria-label="Grab and drag to flip pages"
           >
-            {/* Left Page (Static) */}
+            {/* Left Static Base Page */}
             <div 
-              className="relative bg-white rounded-l-lg shadow-2xl overflow-hidden"
+              className="relative bg-white rounded-l-lg overflow-hidden"
               style={{
-                width: '49%',
-                minHeight: '420px',
-                transformStyle: 'preserve-3d',
-                boxShadow: 'inset -15px 0 20px -10px rgba(0,0,0,0.2), -3px 0 10px rgba(0,0,0,0.1)'
+                width: '374px',
+                height: '505px',
+                boxShadow: 'inset -12px 0 15px -10px rgba(0,0,0,0.15)'
               }}
             >
-              {currentItems[0] && (
-                <div className="p-8 h-full flex flex-col">
-                  <div className={`${currentItems[0].color} h-40 rounded-lg flex items-center justify-center mb-6`}>
-                    <span className="text-white text-6xl">{currentItems[0].icon}</span>
-                  </div>
-                  <h3 className="font-bold text-xl mb-3 text-gray-800">{currentItems[0].title}</h3>
-                  <p className="text-sm text-gray-600 mb-4 flex-grow">{currentItems[0].description}</p>
-                  <span className="text-xs text-gray-500">{currentItems[0].date}</span>
-                </div>
+              {renderPage(
+                isFlipping && flipDirection === 'previous'
+                  ? targetItems[0]
+                  : currentItems[0]
               )}
             </div>
 
-            {/* Centered Thin Crease / Spine */}
+            {/* Right Static Base Page */}
             <div 
-              className="relative bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900"
+              className="relative bg-white rounded-r-lg overflow-hidden"
               style={{
-                width: '2%',
-                minHeight: '420px',
-                boxShadow: '0 0 15px rgba(0,0,0,0.4), inset 0 0 8px rgba(0,0,0,0.6)'
+                width: '374px',
+                height: '505px',
+                boxShadow: 'inset 12px 0 15px -10px rgba(0,0,0,0.15)'
               }}
             >
-              {/* Spine texture lines */}
-              <div className="absolute inset-0 flex flex-col justify-around items-center opacity-20">
-                {[...Array(12)].map((_, i) => (
-                  <div key={i} className="w-full h-px bg-gray-300"></div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right Page (Static or Flipping) */}
-            <div 
-              className="relative bg-white rounded-r-lg shadow-2xl overflow-hidden"
-              style={{
-                width: '49%',
-                minHeight: '420px',
-                transformStyle: 'preserve-3d',
-                transformOrigin: 'left center',
-                transform: isFlipping && flipDirection === 'next' 
-                  ? 'rotateY(-180deg)' 
-                  : flipDirection === 'previous'
-                  ? 'rotateY(180deg)'
-                  : 'rotateY(0deg)',
-                transition: 'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)',
-                boxShadow: 'inset 15px 0 20px -10px rgba(0,0,0,0.2), 3px 0 10px rgba(0,0,0,0.1)'
-              }}
-            >
-              {/* Front side of right page */}
-              {currentItems[1] && !isFlipping && (
-                <div className="p-8 h-full flex flex-col" style={{ backfaceVisibility: 'hidden' }}>
-                  <div className={`${currentItems[1].color} h-40 rounded-lg flex items-center justify-center mb-6`}>
-                    <span className="text-white text-6xl">{currentItems[1].icon}</span>
-                  </div>
-                  <h3 className="font-bold text-xl mb-3 text-gray-800">{currentItems[1].title}</h3>
-                  <p className="text-sm text-gray-600 mb-4 flex-grow">{currentItems[1].description}</p>
-                  <span className="text-xs text-gray-500">{currentItems[1].date}</span>
-                </div>
-              )}
-
-              {/* Back side of right page (shows previous left page content when flipping) */}
-              {isFlipping && flipDirection === 'next' && currentItems[0] && (
-                <div 
-                  className="p-8 h-full flex flex-col absolute inset-0"
-                  style={{ 
-                    backfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)'
-                  }}
-                >
-                  <div className={`${currentItems[0].color} h-40 rounded-lg flex items-center justify-center mb-6`}>
-                    <span className="text-white text-6xl">{currentItems[0].icon}</span>
-                  </div>
-                  <h3 className="font-bold text-xl mb-3 text-gray-800">{currentItems[0].title}</h3>
-                  <p className="text-sm text-gray-600 mb-4 flex-grow">{currentItems[0].description}</p>
-                  <span className="text-xs text-gray-500">{currentItems[0].date}</span>
-                </div>
-              )}
-
-              {/* Back side for previous flip */}
-              {isFlipping && flipDirection === 'previous' && newsItems[(currentPage + 1) * itemsPerPage] && (
-                <div 
-                  className="p-8 h-full flex flex-col absolute inset-0"
-                  style={{ 
-                    backfaceVisibility: 'hidden',
-                    transform: 'rotateY(180deg)'
-                  }}
-                >
-                  <div className={`${newsItems[(currentPage + 1) * itemsPerPage].color} h-40 rounded-lg flex items-center justify-center mb-6`}>
-                    <span className="text-white text-6xl">{newsItems[(currentPage + 1) * itemsPerPage].icon}</span>
-                  </div>
-                  <h3 className="font-bold text-xl mb-3 text-gray-800">{newsItems[(currentPage + 1) * itemsPerPage].title}</h3>
-                  <p className="text-sm text-gray-600 mb-4 flex-grow">{newsItems[(currentPage + 1) * itemsPerPage].description}</p>
-                  <span className="text-xs text-gray-500">{newsItems[(currentPage + 1) * itemsPerPage].date}</span>
-                </div>
+              {renderPage(
+                isFlipping && flipDirection === 'next'
+                  ? targetItems[1]
+                  : currentItems[1]
               )}
             </div>
 
-            {/* Flipping Left Page (for previous navigation) */}
-            {isFlipping && flipDirection === 'previous' && (
-              <div 
-                className="absolute bg-white rounded-l-lg shadow-2xl overflow-hidden"
+            {/* Unified Flipping Flap - Next Direction */}
+            {(isFlipping && flipDirection === 'next') || (isDragging && dragRotation < 0 && currentPage < totalPages - 1) ? (
+              <div
+                className="absolute right-0 top-0"
                 style={{
-                  width: '49%',
-                  minHeight: '420px',
+                  width: '374px',
+                  height: '505px',
                   transformStyle: 'preserve-3d',
-                  transformOrigin: 'right center',
-                  transform: 'rotateY(0deg)',
-                  transition: 'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)',
-                  right: '2%',
-                  boxShadow: 'inset -15px 0 20px -10px rgba(0,0,0,0.2), -3px 0 10px rgba(0,0,0,0.1)'
+                  transformOrigin: 'left center',
+                  transform: isFlipping 
+                    ? (shouldAnimate ? 'rotateY(-180deg)' : `rotateY(${animationStartRotation}deg)`)
+                    : `rotateY(${dragRotation}deg)`,
+                  transition: isFlipping && shouldAnimate ? 'transform 0.6s ease-in-out' : 'none',
+                  zIndex: 30
                 }}
               >
-                <div className="p-8 h-full flex flex-col">
-                  <div className={`${currentItems[0]?.color || 'bg-gray-600'} h-40 rounded-lg flex items-center justify-center mb-6`}>
-                    <span className="text-white text-6xl">{currentItems[0]?.icon || '📄'}</span>
-                  </div>
-                  <h3 className="font-bold text-xl mb-3 text-gray-800">{currentItems[0]?.title}</h3>
-                  <p className="text-sm text-gray-600 mb-4 flex-grow">{currentItems[0]?.description}</p>
-                  <span className="text-xs text-gray-500">{currentItems[0]?.date}</span>
+                {/* Front Side: Current Right Page */}
+                <div 
+                  className="w-full h-full absolute inset-0 bg-white rounded-r-lg overflow-hidden"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    boxShadow: 'inset 12px 0 15px -10px rgba(0,0,0,0.15)'
+                  }}
+                >
+                  {renderPage(currentItems[1])}
+                </div>
+
+                {/* Back Side: Target Left Page */}
+                <div 
+                  className="w-full h-full absolute inset-0 bg-white rounded-l-lg overflow-hidden"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)',
+                    boxShadow: 'inset -12px 0 15px -10px rgba(0,0,0,0.15)'
+                  }}
+                >
+                  {renderPage(isFlipping ? targetItems[0] : getPageItems(currentPage + 1)[0])}
                 </div>
               </div>
-            )}
-          </div>
+            ) : null}
 
-          {/* Page Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {[...Array(totalPages)].map((_, index) => (
-              <button
-                key={index}
-                onClick={() => !isFlipping && setCurrentPage(index)}
-                disabled={isFlipping}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentPage 
-                    ? 'bg-gray-800 w-8' 
-                    : 'bg-gray-400 hover:bg-gray-600'
-                } disabled:cursor-not-allowed`}
-                aria-label={`Go to page ${index + 1}`}
-              />
-            ))}
+            {/* Unified Flipping Flap - Previous Direction */}
+            {(isFlipping && flipDirection === 'previous') || (isDragging && dragRotation > 0 && currentPage > 0) ? (
+              <div
+                className="absolute left-0 top-0"
+                style={{
+                  width: '374px',
+                  height: '505px',
+                  transformStyle: 'preserve-3d',
+                  transformOrigin: 'right center',
+                  transform: isFlipping 
+                    ? (shouldAnimate ? 'rotateY(180deg)' : `rotateY(${animationStartRotation}deg)`)
+                    : `rotateY(${dragRotation}deg)`,
+                  transition: isFlipping && shouldAnimate ? 'transform 0.6s ease-in-out' : 'none',
+                  zIndex: 30
+                }}
+              >
+                {/* Front Side: Current Left Page */}
+                <div 
+                  className="w-full h-full absolute inset-0 bg-white rounded-l-lg overflow-hidden"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    boxShadow: 'inset -12px 0 15px -10px rgba(0,0,0,0.15)'
+                  }}
+                >
+                  {renderPage(currentItems[0])}
+                </div>
+
+                {/* Back Side: Target Right Page */}
+                <div 
+                  className="w-full h-full absolute inset-0 bg-white rounded-r-lg overflow-hidden"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    transform: 'rotateY(-180deg)',
+                    boxShadow: 'inset 12px 0 15px -10px rgba(0,0,0,0.15)'
+                  }}
+                >
+                  {renderPage(isFlipping ? targetItems[1] : getPageItems(currentPage - 1)[1])}
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
+
+        {/* Drag instruction hint */}
+        <p className="text-center text-gray-400 text-sm mt-4">
+          Grab and drag the book to flip pages
+        </p>
       </div>
     </section>
   )
