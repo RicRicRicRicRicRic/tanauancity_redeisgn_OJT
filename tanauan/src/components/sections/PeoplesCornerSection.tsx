@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // --- Zero-Dependency Inline SVG Icons ---
 export const HeartIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
@@ -87,6 +87,69 @@ export function PeoplesCornerSection() {
 
   const [charCount, setCharCount] = useState(0);
 
+  // --- REACT VERTICAL CENTERING SCROLL MECHANICS ---
+  const [pinStyle, setPinStyle] = useState<React.CSSProperties>({});
+  const gridContainerRef = useRef<HTMLDivElement>(null);
+  const columnRef = useRef<HTMLDivElement>(null);
+  const sidebarCardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!gridContainerRef.current || !sidebarCardsRef.current || !columnRef.current) return;
+
+      // Only calculate on desktop viewports (lg: breakpoint and up)
+      if (window.innerWidth < 1024) {
+        setPinStyle({});
+        return;
+      }
+
+      const gridRect = gridContainerRef.current.getBoundingClientRect();
+      const columnWidth = columnRef.current.offsetWidth;
+      const cardsHeight = sidebarCardsRef.current.offsetHeight;
+      const windowHeight = window.innerHeight;
+
+      // Target top position to keep cards centered vertically on user's screen
+      const centeredTop = (windowHeight - cardsHeight) / 2;
+
+      // Boundary Checks
+      const isPastInitialTop = gridRect.top <= centeredTop;
+      const isBeforeFaqBorder = gridRect.bottom >= centeredTop + cardsHeight;
+
+      if (isPastInitialTop && isBeforeFaqBorder) {
+        // STATE 1: Pinned and vertically centered on current viewport
+        setPinStyle({
+          position: 'fixed',
+          top: `${centeredTop}px`,
+          width: `${columnWidth}px`,
+          zIndex: 20,
+        });
+      } else if (!isBeforeFaqBorder) {
+        // STATE 2: Reached FAQ barrier — stop cleanly at bottom of grid
+        setPinStyle({
+          position: 'absolute',
+          bottom: '0px',
+          width: '100%',
+          zIndex: 20,
+        });
+      } else {
+        // STATE 3: Default layout top state before scroll starts
+        setPinStyle({
+          position: 'relative',
+          width: '100%',
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
   const concernOptions = ['Complaint', 'Inquiry', 'Suggestion', 'Commendation'];
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -105,7 +168,7 @@ export function PeoplesCornerSection() {
   return (
     <section 
       id="peoples-corner" 
-      className="min-h-screen w-full bg-slate-50 text-slate-800 py-12 px-4 md:px-8 lg:px-12 relative overflow-hidden font-sans selection:bg-red-500 selection:text-white"
+      className="min-h-screen w-full bg-slate-50 text-slate-800 py-12 px-4 md:px-8 lg:px-12 relative font-sans selection:bg-red-500 selection:text-white"
     >
       {/* Background Glow Accents */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -133,11 +196,11 @@ export function PeoplesCornerSection() {
           </div>
 
           {/* Grid Content Container */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
+          <div ref={gridContainerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
             
-            {/* Left Column (4 Cols): VERTICALLY CENTERED CARDS */}
-            <div className="lg:col-span-4 h-full relative">
-              <div className="lg:flex lg:flex-col lg:justify-center lg:gap-5 lg:h-full z-20">
+            {/* Left Column (4 Cols): VERTICALLY CENTERED ON SCROLL */}
+            <div ref={columnRef} className="lg:col-span-4 h-full relative">
+              <div ref={sidebarCardsRef} style={pinStyle} className="space-y-5">
                 
                 {/* How It Works Card */}
                 <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm relative overflow-hidden hover:shadow-md transition-all duration-300">
@@ -361,7 +424,7 @@ export function PeoplesCornerSection() {
                     </div>
                     <textarea 
                       required
-                      rows={4}
+                      rows={6}
                       placeholder="Please provide details about your concern..."
                       value={formData.message}
                       onChange={handleMessageChange}
@@ -509,4 +572,4 @@ export function PeoplesCornerSection() {
   );
 }
 
-export default PeoplesCornerSection
+export default PeoplesCornerSection;
