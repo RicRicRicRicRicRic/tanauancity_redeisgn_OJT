@@ -1,45 +1,64 @@
-function GovernmentLinksSection() {
+import React from 'react'
+
+import City_Library from "../../assets/sections/GovernmentLinksLogos/CityLibrary.png";
+import City_Ordinances from "../../assets/sections/GovernmentLinksLogos/CityOrdinances.png";
+import Gender_And_Development from "../../assets/sections/GovernmentLinksLogos/GenderAndDevelopment.png";
+import LGBT_Programs from "../../assets/sections/GovernmentLinksLogos/LGBTQIAPrograms.png";
+import Public_Employment from "../../assets/sections/GovernmentLinksLogos/PublicEmploymentServiceOffice.png";
+import Public_Safety from "../../assets/sections/GovernmentLinksLogos/PublicSafety.png";
+import Tanauan_City from "../../assets/sections/GovernmentLinksLogos/TanauanCity.png";
+import Traffic_Management from "../../assets/sections/GovernmentLinksLogos/TrafficManagement.png";
+
+function UlatTanauanSection() {
+  const links = [
+    { id: 1, name: "Gender and Development", logo: Gender_And_Development },
+    { id: 2, name: "LGBTQIA+ Programs", logo: LGBT_Programs },
+    { id: 3, name: "Tanauan City", logo: Tanauan_City },
+    { id: 4, name: "Traffic Management", logo: Traffic_Management },
+    { id: 5, name: "City Library", logo: City_Library },
+    { id: 6, name: "Public Safety", logo: Public_Safety },
+    { id: 7, name: "Public Employment Service Office", logo: Public_Employment },
+    { id: 8, name: "City Ordinances", logo: City_Ordinances },
+  ];
+
   return (
-    <section id="government-links" className="h-[768px] min-h-[768px] flex items-center justify-center bg-white overflow-hidden">
-      <div className="w-full px-6 md:px-12 lg:px-16">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Other Government Website Links</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          <a href="#" className="bg-blue-50 p-6 rounded-lg text-center hover:bg-blue-100 transition-colors">
-            <div className="text-3xl mb-3">🏛️</div>
-            <h3 className="font-semibold text-sm">National Government</h3>
-          </a>
-          <a href="#" className="bg-green-50 p-6 rounded-lg text-center hover:bg-green-100 transition-colors">
-            <div className="text-3xl mb-3">🏢</div>
-            <h3 className="font-semibold text-sm">Provincial Government</h3>
-          </a>
-          <a href="#" className="bg-purple-50 p-6 rounded-lg text-center hover:bg-purple-100 transition-colors">
-            <div className="text-3xl mb-3">🏘️</div>
-            <h3 className="font-semibold text-sm">Regional Offices</h3>
-          </a>
-          <a href="#" className="bg-orange-50 p-6 rounded-lg text-center hover:bg-orange-100 transition-colors">
-            <div className="text-3xl mb-3">🌐</div>
-            <h3 className="font-semibold text-sm">Partner Agencies</h3>
-          </a>
-          <a href="#" className="bg-red-50 p-6 rounded-lg text-center hover:bg-red-100 transition-colors">
-            <div className="text-3xl mb-3">⚖️</div>
-            <h3 className="font-semibold text-sm"> Judiciary</h3>
-          </a>
-          <a href="#" className="bg-yellow-50 p-6 rounded-lg text-center hover:bg-yellow-100 transition-colors">
-            <div className="text-3xl mb-3">📚</div>
-            <h3 className="font-semibold text-sm">Education</h3>
-          </a>
-          <a href="#" className="bg-indigo-50 p-6 rounded-lg text-center hover:bg-indigo-100 transition-colors">
-            <div className="text-3xl mb-3">🏥</div>
-            <h3 className="font-semibold text-sm">Health Department</h3>
-          </a>
-          <a href="#" className="bg-pink-50 p-6 rounded-lg text-center hover:bg-pink-100 transition-colors">
-            <div className="text-3xl mb-3">🚗</div>
-            <h3 className="font-semibold text-sm">Transportation</h3>
-          </a>
+    <section id="ulat-tanauan" className="min-h-[768px] py-16 flex items-center justify-center bg-gray-50/50 overflow-hidden">
+      <div className="w-full px-6 md:px-12 lg:px-16 max-w-4xl mx-auto">
+        
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Government Links</h2>
+          <p className="text-gray-500 mt-2 text-sm md:text-base">Quick access to official portals and local departments.</p>
         </div>
+
+        {/* Borderless Grid Layout with balanced inner gap */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 md:gap-x-10 md:gap-y-12 justify-items-center">
+          {links.map((item) => (
+            <a
+              key={item.id}
+              href="#"
+              className="group flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1.5 focus:outline-none"
+            >
+              {/* Logo Container */}
+              <div className="w-20 h-20 md:w-24 md:h-24 mb-1.5 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
+                <img 
+                  src={item.logo} 
+                  alt={item.name}
+                  className="w-full h-full object-contain scale-[0.7] md:scale-[0.7]"
+                />
+              </div>
+
+              {/* Title */}
+              <span className="text-xs md:text-sm font-medium text-gray-600 group-hover:text-blue-600 transition-colors max-w-[150px] line-clamp-2">
+                {item.name}
+              </span>
+            </a>
+          ))}
+        </div>
+
       </div>
     </section>
-  )
+  );
 }
 
-export default GovernmentLinksSection
+export default UlatTanauanSection;
