@@ -690,7 +690,7 @@ export function PeoplesCornerSection() {
 
         </div>
 
-        {/* ================= FOOTER COMMITMENT NOTE (PULLED UP SLIGHTLY & SPACED BUTTON) ================= */}
+        {/* ================= FOOTER COMMITMENT NOTE ================= */}
         <div className="text-center max-w-2xl mx-auto space-y-4 -mt-2 pb-2">
           <p className="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-xl mx-auto font-medium">
             The City Government of Tanauan is committed to listening to our citizens and addressing your concerns. Your feedback helps us improve our services and build a better community for everyone.
@@ -698,7 +698,7 @@ export function PeoplesCornerSection() {
 
           <div className="mt-3">
             <a 
-              href="https://facebook.com/cityoftanauan" 
+              href="https://www.facebook.com/cityoftanauan" 
               target="_blank" 
               rel="noreferrer"
               className="inline-flex items-center gap-2 text-xs text-red-600 hover:text-red-700 font-bold transition-all bg-red-50 hover:bg-red-100 px-5 py-2.5 rounded-full border border-red-200/80 hover:shadow-xs active:scale-95"
