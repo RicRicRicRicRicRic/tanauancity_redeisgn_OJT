@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import FloatBlobs from '../common/float-blobs'
 
 interface PageItem {
@@ -32,6 +32,7 @@ function UlatTanauanSection() {
   const [dragRotation, setDragRotation] = useState(0)
   const [animationStartRotation, setAnimationStartRotation] = useState(0)
   const [shouldAnimate, setShouldAnimate] = useState(false)
+  const [isResetting, setIsResetting] = useState(false)
 
   // Trigger animation after flip element renders at start position
   useEffect(() => {
@@ -43,6 +44,17 @@ function UlatTanauanSection() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFlipping])
+
+  // Handle reset animation when drag is released without flipping
+  useEffect(() => {
+    if (isResetting && !isDragging) {
+      const timer = setTimeout(() => {
+        setIsResetting(false)
+        setDragRotation(0)
+      }, 300)
+      return () => clearTimeout(timer)
+    }
+  }, [isResetting, isDragging])
 
   const itemsPerPage = 2
   const totalPages = Math.ceil(pageItems.length / itemsPerPage)
@@ -129,11 +141,11 @@ function UlatTanauanSection() {
         goToPreviousPage(startRotation)
       } else {
         // Reset rotation if can't flip
-        setDragRotation(0)
+        setIsResetting(true)
       }
     } else {
-      // Not enough drag - reset rotation
-      setDragRotation(0)
+      // Not enough drag - trigger reset animation
+      setIsResetting(true)
     }
   }
 
@@ -171,8 +183,23 @@ function UlatTanauanSection() {
   const currentItems = getPageItems(currentPage)
   const targetItems = getPageItems(targetPage)
 
+  // Which page index is currently being shown on the static RIGHT side
+  // (this is what must drive transparency so the missing 12th page is invisible at all times)
+  const staticRightPageIndex =
+    isFlipping && flipDirection === 'next'
+      ? targetPage
+      : (isDragging || isResetting) && dragRotation < 0 && currentPage < totalPages - 1
+      ? currentPage + 1
+      : currentPage
+
+  const staticRightItems = getPageItems(staticRightPageIndex)
+  const isRightEmpty = !staticRightItems[1]   // true whenever the 12th (non-existent) page would be shown
+
   const renderPage = (item?: PageItem) => {
-    if (!item) return null
+    // Non-existent page → fully transparent / invisible
+    if (!item) {
+      return <div className="w-full h-full bg-transparent" />
+    }
     return (
       <div className="w-full h-full bg-white flex items-center justify-center">
         <img 
@@ -197,32 +224,11 @@ function UlatTanauanSection() {
         {/* 3D Book Container */}
         <div className="relative max-w-5xl mx-auto" style={{ perspective: '1500px' }}>
           
-          {/* Navigation Buttons */}
-          <button
-            onClick={() => goToPreviousPage(0)}
-            disabled={currentPage === 0 || isFlipping}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            aria-label="Previous page"
-          >
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          <button
-            onClick={() => goToNextPage(0)}
-            disabled={currentPage === totalPages - 1 || isFlipping}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-20 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            aria-label="Next page"
-          >
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-          {/* Book Spread Container */}
+          {/* Book Spread Container – transparent as soon as the right page is the missing 12th */}
           <div 
-            className="relative flex justify-center items-center shadow-2xl rounded-lg overflow-hidden bg-white mx-auto cursor-grab active:cursor-grabbing"
+            className={`relative flex justify-center items-center rounded-lg overflow-hidden mx-auto cursor-grab active:cursor-grabbing mb-4 ${
+              isRightEmpty ? 'bg-transparent shadow-none' : 'bg-white shadow-2xl'
+            }`}
             style={{ 
               transformStyle: 'preserve-3d',
               width: '748px',
@@ -245,34 +251,40 @@ function UlatTanauanSection() {
               style={{
                 width: '374px',
                 height: '505px',
-                boxShadow: 'inset -12px 0 15px -10px rgba(0,0,0,0.15)'
+                boxShadow: isRightEmpty ? 'none' : 'inset -12px 0 15px -10px rgba(0,0,0,0.15)'
               }}
             >
               {renderPage(
                 isFlipping && flipDirection === 'previous'
                   ? targetItems[0]
+                  : (isDragging || isResetting) && dragRotation > 0 && currentPage > 0
+                  ? getPageItems(currentPage - 1)[0]
                   : currentItems[0]
               )}
             </div>
 
-            {/* Right Static Base Page */}
+            {/* Right Static Base Page – transparent whenever it would show the non-existent 12th page */}
             <div 
-              className="relative bg-white rounded-r-lg overflow-hidden"
+              className={`relative rounded-r-lg overflow-hidden ${
+                isRightEmpty ? 'bg-transparent' : 'bg-white'
+              }`}
               style={{
                 width: '374px',
                 height: '505px',
-                boxShadow: 'inset 12px 0 15px -10px rgba(0,0,0,0.15)'
+                boxShadow: isRightEmpty ? 'none' : 'inset 12px 0 15px -10px rgba(0,0,0,0.15)'
               }}
             >
               {renderPage(
                 isFlipping && flipDirection === 'next'
                   ? targetItems[1]
+                  : (isDragging || isResetting) && dragRotation < 0 && currentPage < totalPages - 1
+                  ? getPageItems(currentPage + 1)[1]
                   : currentItems[1]
               )}
             </div>
 
             {/* Unified Flipping Flap - Next Direction */}
-            {(isFlipping && flipDirection === 'next') || (isDragging && dragRotation < 0 && currentPage < totalPages - 1) ? (
+            {(isFlipping && flipDirection === 'next') || (isDragging && dragRotation < 0 && currentPage < totalPages - 1) || (isResetting && dragRotation < 0) ? (
               <div
                 className="absolute right-0 top-0"
                 style={{
@@ -282,17 +294,19 @@ function UlatTanauanSection() {
                   transformOrigin: 'left center',
                   transform: isFlipping 
                     ? (shouldAnimate ? 'rotateY(-180deg)' : `rotateY(${animationStartRotation}deg)`)
-                    : `rotateY(${dragRotation}deg)`,
-                  transition: isFlipping && shouldAnimate ? 'transform 0.6s ease-in-out' : 'none',
+                    : `rotateY(${isResetting ? 0 : dragRotation}deg)`,
+                  transition: isResetting ? 'transform 0.3s ease-out' : (isFlipping && shouldAnimate ? 'transform 0.6s ease-in-out' : 'none'),
                   zIndex: 30
                 }}
               >
                 {/* Front Side: Current Right Page */}
                 <div 
-                  className="w-full h-full absolute inset-0 bg-white rounded-r-lg overflow-hidden"
+                  className={`w-full h-full absolute inset-0 rounded-r-lg overflow-hidden ${
+                    currentItems[1] ? 'bg-white' : 'bg-transparent'
+                  }`}
                   style={{ 
                     backfaceVisibility: 'hidden',
-                    boxShadow: 'inset 12px 0 15px -10px rgba(0,0,0,0.15)'
+                    boxShadow: currentItems[1] ? 'inset 12px 0 15px -10px rgba(0,0,0,0.15)' : 'none'
                   }}
                 >
                   {renderPage(currentItems[1])}
@@ -313,7 +327,7 @@ function UlatTanauanSection() {
             ) : null}
 
             {/* Unified Flipping Flap - Previous Direction */}
-            {(isFlipping && flipDirection === 'previous') || (isDragging && dragRotation > 0 && currentPage > 0) ? (
+            {(isFlipping && flipDirection === 'previous') || (isDragging && dragRotation > 0 && currentPage > 0) || (isResetting && dragRotation > 0) ? (
               <div
                 className="absolute left-0 top-0"
                 style={{
@@ -323,8 +337,8 @@ function UlatTanauanSection() {
                   transformOrigin: 'right center',
                   transform: isFlipping 
                     ? (shouldAnimate ? 'rotateY(180deg)' : `rotateY(${animationStartRotation}deg)`)
-                    : `rotateY(${dragRotation}deg)`,
-                  transition: isFlipping && shouldAnimate ? 'transform 0.6s ease-in-out' : 'none',
+                    : `rotateY(${isResetting ? 0 : dragRotation}deg)`,
+                  transition: isResetting ? 'transform 0.3s ease-out' : (isFlipping && shouldAnimate ? 'transform 0.6s ease-in-out' : 'none'),
                   zIndex: 30
                 }}
               >
@@ -341,11 +355,17 @@ function UlatTanauanSection() {
 
                 {/* Back Side: Target Right Page */}
                 <div 
-                  className="w-full h-full absolute inset-0 bg-white rounded-r-lg overflow-hidden"
+                  className={`w-full h-full absolute inset-0 rounded-r-lg overflow-hidden ${
+                    (isFlipping ? targetItems[1] : getPageItems(currentPage - 1)[1])
+                      ? 'bg-white'
+                      : 'bg-transparent'
+                  }`}
                   style={{ 
                     backfaceVisibility: 'hidden',
                     transform: 'rotateY(-180deg)',
-                    boxShadow: 'inset 12px 0 15px -10px rgba(0,0,0,0.15)'
+                    boxShadow: (isFlipping ? targetItems[1] : getPageItems(currentPage - 1)[1])
+                      ? 'inset 12px 0 15px -10px rgba(0,0,0,0.15)'
+                      : 'none'
                   }}
                 >
                   {renderPage(isFlipping ? targetItems[1] : getPageItems(currentPage - 1)[1])}
