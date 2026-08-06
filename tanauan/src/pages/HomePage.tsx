@@ -50,6 +50,9 @@ function HomePage() {
       {/* New on Ulat Tanauan */}
       <UlatTanauanSection />
 
+      {/* In the Service of Our People */}
+      <ServiceOfOurPeopleSection />
+
       {/* Other Government Website Links */}
       <GovernmentLinksSection />
 
