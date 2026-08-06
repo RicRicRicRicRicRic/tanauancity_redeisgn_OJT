@@ -1,4 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+// Official 48 Barangays of Tanauan City, Batangas
+const TANAUAN_BARANGAYS = [
+  "Altura Bata", "Altura Lawa", "Altura Matanda font", "Bagbag", "Bagumbayan",
+  "Balele", "Banjo East", "Banjo Laurel (Banjo West)", "Bilog-Bilog", "Boot",
+  "Cale", "Darasa", "Gonzales", "Hidalgo", "Janopol Hill",
+  "Janopol Oriental", "Laurel", "Luyos", "Mabini", "Malaking Pulo",
+  "Maria Paz", "Maugat", "Montaña (Ik-ik)", "Natatas", "Pagaspas",
+  "Pantay Bata", "Pantay Matanda", "Poblacion Barangay 1", "Poblacion Barangay 2", "Poblacion Barangay 3",
+  "Poblacion Barangay 4", "Poblacion Barangay 5", "Poblacion Barangay 6", "Poblacion Barangay 7", "Saimsim",
+  "Sala", "Sambat", "San Jose", "Santor", "Sico",
+  "Suplang", "Talaga", "Tinurik", "Trapiche", "Ulango",
+  "Wawa", "Suplang East", "Zapote"
+].sort();
 
 // --- Zero-Dependency Inline SVG Icons ---
 export const HeartIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
@@ -74,6 +88,19 @@ export const HelpCircleIcon = ({ className = "w-4 h-4" }: { className?: string }
   </svg>
 );
 
+export const ChevronDownIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="m6 9 6 6 6-6"/>
+  </svg>
+);
+
+export const SearchIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="11" cy="11" r="8" />
+    <path d="m21 21-4.3-4.3" />
+  </svg>
+);
+
 export function PeoplesCornerSection() {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -87,7 +114,84 @@ export function PeoplesCornerSection() {
 
   const [charCount, setCharCount] = useState(0);
 
+  // Barangay Dropdown State & Refs
+  const [isBrgyOpen, setIsBrgyOpen] = useState(false);
+  const [brgySearch, setBrgySearch] = useState('');
+  const brgyDropdownRef = useRef<HTMLDivElement>(null);
+
+  // --- REACT VERTICAL CENTERING SCROLL MECHANICS ---
+  const [pinStyle, setPinStyle] = useState<React.CSSProperties>({});
+  const gridContainerRef = useRef<HTMLDivElement>(null);
+  const columnRef = useRef<HTMLDivElement>(null);
+  const sidebarCardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!gridContainerRef.current || !sidebarCardsRef.current || !columnRef.current) return;
+
+      if (window.innerWidth < 1024) {
+        setPinStyle({});
+        return;
+      }
+
+      const gridRect = gridContainerRef.current.getBoundingClientRect();
+      const columnWidth = columnRef.current.offsetWidth;
+      const cardsHeight = sidebarCardsRef.current.offsetHeight;
+      const windowHeight = window.innerHeight;
+
+      const centeredTop = (windowHeight - cardsHeight) / 2;
+
+      const isPastInitialTop = gridRect.top <= centeredTop;
+      const isBeforeFaqBorder = gridRect.bottom >= centeredTop + cardsHeight;
+
+      if (isPastInitialTop && isBeforeFaqBorder) {
+        setPinStyle({
+          position: 'fixed',
+          top: `${centeredTop}px`,
+          width: `${columnWidth}px`,
+          zIndex: 20,
+        });
+      } else if (!isBeforeFaqBorder) {
+        setPinStyle({
+          position: 'absolute',
+          bottom: '0px',
+          width: '100%',
+          zIndex: 20,
+        });
+      } else {
+        setPinStyle({
+          position: 'relative',
+          width: '100%',
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, []);
+
+  // Close Barangay dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (brgyDropdownRef.current && !brgyDropdownRef.current.contains(event.target as Node)) {
+        setIsBrgyOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const concernOptions = ['Complaint', 'Inquiry', 'Suggestion', 'Commendation'];
+
+  const filteredBarangays = TANAUAN_BARANGAYS.filter(brgy => 
+    brgy.toLowerCase().includes(brgySearch.toLowerCase())
+  );
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const text = e.target.value;
@@ -99,13 +203,17 @@ export function PeoplesCornerSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you! Your concern has been submitted successfully.');
+    if (!formData.barangay) {
+      alert('Please select your Barangay.');
+      return;
+    }
+    alert(`Thank you, ${formData.fullName}! Your concern regarding ${formData.barangay} has been submitted.`);
   };
 
   return (
     <section 
       id="peoples-corner" 
-      className="min-h-screen w-full bg-slate-50 text-slate-800 py-12 px-4 md:px-8 lg:px-12 relative overflow-hidden font-sans selection:bg-red-500 selection:text-white"
+      className="min-h-screen w-full bg-slate-50 text-slate-800 py-12 px-4 md:px-8 lg:px-12 relative font-sans selection:bg-red-500 selection:text-white"
     >
       {/* Background Glow Accents */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -133,11 +241,11 @@ export function PeoplesCornerSection() {
           </div>
 
           {/* Grid Content Container */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
+          <div ref={gridContainerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative items-start">
             
-            {/* Left Column (4 Cols): VERTICALLY CENTERED CARDS */}
-            <div className="lg:col-span-4 h-full relative">
-              <div className="lg:flex lg:flex-col lg:justify-center lg:gap-5 lg:h-full z-20">
+            {/* Left Column (4 Cols): VERTICALLY CENTERED ON SCROLL */}
+            <div ref={columnRef} className="lg:col-span-4 h-full relative">
+              <div ref={sidebarCardsRef} style={pinStyle} className="space-y-5">
                 
                 {/* How It Works Card */}
                 <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm relative overflow-hidden hover:shadow-md transition-all duration-300">
@@ -228,29 +336,35 @@ export function PeoplesCornerSection() {
               </div>
             </div>
 
-            {/* Right Column (8 Cols): Form */}
+            {/* Right Column (8 Cols): Upgraded Form with Barangay Selection */}
             <div className="lg:col-span-8">
               <form 
                 onSubmit={handleSubmit}
-                className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col"
+                className="bg-white border border-slate-200/80 rounded-2xl shadow-xl shadow-slate-200/50 overflow-hidden flex flex-col transition-all duration-300 hover:border-slate-300"
               >
-                {/* Red Header Bar */}
-                <div className="bg-gradient-to-r from-red-600 via-red-600 to-rose-600 p-4 sm:p-5 text-white">
-                  <h3 className="text-base font-bold tracking-tight">Submit Your Concern</h3>
-                  <p className="text-xs text-red-100 font-normal">
-                    All submissions will be reviewed by our team. We value your input!
-                  </p>
+                {/* Header Bar */}
+                <div className="bg-gradient-to-r from-red-600 via-red-600 to-rose-600 p-5 sm:p-6 text-white relative overflow-hidden">
+                  <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none" />
+                  <div className="relative z-10">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-white/20 text-[10px] font-extrabold uppercase tracking-widest text-white mb-2 backdrop-blur-sm">
+                      Quick Submission
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-black tracking-tight">Submit Your Concern</h3>
+                    <p className="text-xs text-red-100 font-medium mt-1">
+                      All submissions are securely reviewed by our team. Your input shapes our community.
+                    </p>
+                  </div>
                 </div>
 
                 {/* Form Content Body */}
-                <div className="p-5 sm:p-6 space-y-5">
+                <div className="p-6 sm:p-8 space-y-6">
                   
-                  {/* INTERACTIVE PILL SELECTOR FOR TYPE OF CONCERN */}
-                  <div>
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700 mb-2">
+                  {/* SECTION 1: Category Selector */}
+                  <div className="space-y-2">
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-700">
                       Type of Concern <span className="text-red-500">*</span>
                     </label>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2.5">
                       {concernOptions.map((type) => {
                         const isActive = formData.typeOfConcern === type;
                         return (
@@ -258,10 +372,10 @@ export function PeoplesCornerSection() {
                             key={type}
                             type="button"
                             onClick={() => setFormData({ ...formData, typeOfConcern: type })}
-                            className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                            className={`px-4 py-2 rounded-xl text-xs font-bold tracking-wide transition-all duration-200 cursor-pointer ${
                               isActive
-                                ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white border border-red-600 shadow-md shadow-red-500/20'
-                                : 'bg-slate-100 border border-slate-200 text-slate-600 hover:border-red-400 hover:text-slate-900'
+                                ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20 scale-[1.02]'
+                                : 'bg-slate-50 border border-slate-200/80 text-slate-600 hover:border-slate-300 hover:bg-slate-100'
                             }`}
                           >
                             {type}
@@ -271,119 +385,194 @@ export function PeoplesCornerSection() {
                     </div>
                   </div>
 
-                  {/* Row 1: Full Name & Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="border-t border-slate-100 my-2" />
+
+                  {/* SECTION 2: Personal Details */}
+                  <div className="space-y-4">
+                    <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
+                      Personal Information
+                    </p>
+
+                    {/* Row 1: Full Name & Email */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[11px] font-bold text-slate-700 mb-1.5">
+                          Full Name <span className="text-red-500">*</span>
+                        </label>
+                        <input 
+                          type="text"
+                          required
+                          placeholder="Juan Dela Cruz"
+                          value={formData.fullName}
+                          onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                          className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-inner"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] font-bold text-slate-700 mb-1.5">
+                          Email Address <span className="text-red-500">*</span>
+                        </label>
+                        <input 
+                          type="email"
+                          required
+                          placeholder="juandelacruz@example.com"
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-inner"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Row 2: Phone & Searchable Barangay Selection */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[11px] font-bold text-slate-700 mb-1.5">
+                          Phone Number
+                        </label>
+                        <input 
+                          type="tel"
+                          maxLength={11}
+                          inputMode="numeric"
+                          placeholder="09XXXXXXXXX"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/[^0-9]/g, '')})}
+                          className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-inner"
+                        />
+                      </div>
+
+                      {/* SEARCHABLE BARANGAY DROPDOWN */}
+                      <div className="relative" ref={brgyDropdownRef}>
+                        <label className="block text-[11px] font-bold text-slate-700 mb-1.5">
+                          Barangay <span className="text-red-500">*</span>
+                        </label>
+                        
+                        <button
+                          type="button"
+                          onClick={() => setIsBrgyOpen(!isBrgyOpen)}
+                          className={`w-full text-xs px-3.5 py-3 rounded-xl border text-left flex items-center justify-between transition-all shadow-inner ${
+                            formData.barangay 
+                              ? 'bg-white border-slate-300 text-slate-800 font-medium' 
+                              : 'bg-slate-50/70 border-slate-200/90 text-slate-400'
+                          } focus:outline-none focus:border-red-500 focus:ring-4 focus:ring-red-500/10`}
+                        >
+                          <span className="truncate">
+                            {formData.barangay || "Select Barangay"}
+                          </span>
+                          <ChevronDownIcon className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${isBrgyOpen ? 'rotate-180 text-red-500' : ''}`} />
+                        </button>
+
+                        {/* Dropdown Menu Overlay */}
+                        {isBrgyOpen && (
+                          <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden flex flex-col max-h-60 animate-in fade-in slide-in-from-top-1 duration-150">
+                            {/* Search Input Header */}
+                            <div className="p-2 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
+                              <SearchIcon className="w-3.5 h-3.5 text-slate-400 shrink-0 ml-1" />
+                              <input 
+                                type="text"
+                                autoFocus
+                                placeholder="Search barangay..."
+                                value={brgySearch}
+                                onChange={(e) => setBrgySearch(e.target.value)}
+                                className="w-full text-xs bg-transparent text-slate-800 placeholder-slate-400 focus:outline-none"
+                              />
+                            </div>
+
+                            {/* Barangays Scrollable List */}
+                            <div className="overflow-y-auto divide-y divide-slate-50 py-1">
+                              {filteredBarangays.length > 0 ? (
+                                filteredBarangays.map((brgy) => (
+                                  <button
+                                    key={brgy}
+                                    type="button"
+                                    onClick={() => {
+                                      setFormData({ ...formData, barangay: brgy });
+                                      setIsBrgyOpen(false);
+                                      setBrgySearch('');
+                                    }}
+                                    className={`w-full text-left px-3.5 py-2 text-xs transition-colors flex items-center justify-between ${
+                                      formData.barangay === brgy
+                                        ? 'bg-red-50 text-red-600 font-bold'
+                                        : 'text-slate-700 hover:bg-slate-50'
+                                    }`}
+                                  >
+                                    <span>{brgy}</span>
+                                    {formData.barangay === brgy && (
+                                      <CheckCircleIcon className="w-3.5 h-3.5 text-red-500" />
+                                    )}
+                                  </button>
+                                ))
+                              ) : (
+                                <div className="px-3.5 py-3 text-xs text-slate-400 text-center">
+                                  No barangay found
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-slate-100 my-2" />
+
+                  {/* SECTION 3: Message Content */}
+                  <div className="space-y-4">
+                    <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
+                      Concern Details
+                    </p>
+
+                    {/* Subject */}
                     <div>
-                      <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                        Full Name <span className="text-red-500">*</span>
+                      <label className="block text-[11px] font-bold text-slate-700 mb-1.5">
+                        Subject Summary <span className="text-red-500">*</span>
                       </label>
                       <input 
                         type="text"
                         required
-                        placeholder="Juan Dela Cruz"
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:border-red-500 focus:bg-white transition-all"
+                        placeholder="Brief overview of your issue..."
+                        value={formData.subject}
+                        onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                        className="w-full text-xs px-3.5 py-3 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all shadow-inner"
                       />
                     </div>
 
+                    {/* Message */}
                     <div>
-                      <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                        Email Address <span className="text-red-500">*</span>
-                      </label>
-                      <input 
-                        type="email"
+                      <div className="flex justify-between items-center mb-1.5">
+                        <label className="text-[11px] font-bold text-slate-700">
+                          Detailed Description <span className="text-red-500">*</span>
+                        </label>
+                        <span className="text-[10px] text-slate-400 font-semibold bg-slate-100 px-2 py-0.5 rounded-full">
+                          {charCount}/1000
+                        </span>
+                      </div>
+                      <textarea 
                         required
-                        placeholder="juandelacruz@example.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:border-red-500 focus:bg-white transition-all"
+                        rows={5}
+                        placeholder="Please share specific details, dates, or locations related to your concern..."
+                        value={formData.message}
+                        onChange={handleMessageChange}
+                        className="w-full text-xs p-3.5 rounded-xl bg-slate-50/70 border border-slate-200/90 text-slate-800 placeholder-slate-400 focus:outline-none focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10 transition-all resize-none shadow-inner"
                       />
                     </div>
-                  </div>
-
-                  {/* Row 2: Phone & Barangay */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                        Phone Number
-                      </label>
-                      <input 
-                        type="tel"
-                        maxLength={11}
-                        inputMode="numeric"
-                        placeholder="09XXXXXXXXX"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/[^0-9]/g, '')})}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:border-red-500 focus:bg-white transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                        Barangay <span className="text-red-500">*</span>
-                      </label>
-                      <input 
-                        type="text"
-                        required
-                        placeholder="Your barangay"
-                        value={formData.barangay}
-                        onChange={(e) => setFormData({...formData, barangay: e.target.value})}
-                        className="w-full text-xs px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:border-red-500 focus:bg-white transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Row 3: Subject */}
-                  <div>
-                    <label className="block text-[11px] font-bold text-slate-700 mb-1">
-                      Subject <span className="text-red-500">*</span>
-                    </label>
-                    <input 
-                      type="text"
-                      required
-                      placeholder="Brief description of your concern"
-                      value={formData.subject}
-                      onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                      className="w-full text-xs px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:border-red-500 focus:bg-white transition-all"
-                    />
-                  </div>
-
-                  {/* Row 4: Message */}
-                  <div>
-                    <div className="flex justify-between items-center mb-1">
-                      <label className="text-[11px] font-bold text-slate-700">
-                        Your Message <span className="text-red-500">*</span>
-                      </label>
-                      <span className="text-[10px] text-slate-400 font-medium">
-                        {charCount}/1000 characters
-                      </span>
-                    </div>
-                    <textarea 
-                      required
-                      rows={4}
-                      placeholder="Please provide details about your concern..."
-                      value={formData.message}
-                      onChange={handleMessageChange}
-                      className="w-full text-xs p-3.5 rounded-lg bg-slate-50 border border-slate-200 focus:outline-none focus:border-red-500 focus:bg-white transition-all resize-none"
-                    />
                   </div>
 
                   {/* Privacy Notice Box & Action Button */}
-                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
-                    <div className="flex items-start gap-2 bg-slate-50 p-3 rounded-lg border border-slate-200/80 max-w-lg">
+                  <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
+                    <div className="flex items-start gap-2.5 bg-slate-50 p-3.5 rounded-xl border border-slate-200/60 max-w-lg">
                       <LockIcon className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                      <p className="text-[10px] text-slate-500 leading-relaxed">
-                        <strong>Privacy Notice:</strong> The information you provide will be used solely for the purpose of addressing your concern. By submitting this form, you consent to the City Government of Tanauan processing your personal information.
+                      <p className="text-[10px] text-slate-500 leading-relaxed font-medium">
+                        <strong className="text-slate-700">Privacy Guarantee:</strong> Your information is encrypted and strictly used by the City Government of Tanauan to process your request.
                       </p>
                     </div>
 
                     <button 
                       type="submit"
-                      className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-bold text-xs shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shrink-0 cursor-pointer"
+                      className="w-full sm:w-auto px-7 py-3 rounded-xl bg-gradient-to-r from-red-600 via-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-bold text-xs shadow-lg shadow-red-500/25 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 shrink-0 cursor-pointer"
                     >
-                      <SendIcon className="w-3.5 h-3.5" />
-                      <span>Submit Concern</span>
+                      <SendIcon className="w-4 h-4" />
+                      <span>Submit Request</span>
                     </button>
                   </div>
 
@@ -509,4 +698,4 @@ export function PeoplesCornerSection() {
   );
 }
 
-export default PeoplesCornerSection
+export default PeoplesCornerSection;
