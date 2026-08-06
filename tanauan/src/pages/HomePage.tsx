@@ -7,7 +7,6 @@ import SonnyAllSection from '../components/sections/SonnyAllSection.tsx'
 import AnnouncementsEventsSection from '../components/sections/AnnouncementsEventsSection.tsx'
 import WeatherTrafficSection from '../components/sections/WeatherTrafficSection.tsx'
 import MayorSection from '../components/sections/Mayor.tsx'
-import ServiceOfOurPeopleSection from '../components/sections/ServiceOfOurPeopleSection.tsx'
 import UlatTanauanSection from '../components/sections/UlatTanauanSection.tsx'
 import GovernmentLinksSection from '../components/sections/GovernmentLinksSection.tsx'
 import EmergencyHotlinesSection from '../components/sections/EmergencyHotlinesSection.tsx'
@@ -47,9 +46,6 @@ function HomePage() {
 
       {/* Mayor Section */}
       <MayorSection />
-
-      {/* In the Service of Our People */}
-      <ServiceOfOurPeopleSection />
 
       {/* New on Ulat Tanauan */}
       <UlatTanauanSection />
