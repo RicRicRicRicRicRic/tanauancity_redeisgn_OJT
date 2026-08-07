@@ -147,14 +147,14 @@ function GovernmentLinksSection() {
               {/* Enhanced Editorial Headline */}
               <div className="space-y-4">
                 <h2 className="display-heading text-4xl md:text-5xl lg:text-5xl leading-[1.06] text-slate-900">
-                  Everything <p> </p>
+                  Discover the Services<p> </p>
 
                   <span className="font-semibold">
-                    at your fingertips.
+                    of &nbsp;
                   </span>
-                  <br/>
+                  
                   <span className="serif-highlight text-red-600 text-[1.08em]">
-                    Tanauan
+                    Tanauan.
                   </span>
                   <br/>
                 </h2>
