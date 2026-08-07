@@ -8,7 +8,6 @@ import AnnouncementsEventsSection from '../components/sections/AnnouncementsEven
 import WeatherTrafficSection from '../components/sections/WeatherTrafficSection.tsx'
 import MayorSection from '../components/sections/Mayor.tsx'
 import UlatTanauanSection from '../components/sections/UlatTanauanSection.tsx'
-import ServiceOfOurPeopleSection from '../components/sections/ServiceOfOurPeopleSection.tsx'
 import GovernmentLinksSection from '../components/sections/GovernmentLinksSection.tsx'
 import EmergencyHotlinesSection from '../components/sections/EmergencyHotlinesSection.tsx'
 import PlanningDocumentsSection from '../components/sections/PlanningDocumentsSection.tsx'
@@ -51,8 +50,6 @@ function HomePage() {
       {/* New on Ulat Tanauan */}
       <UlatTanauanSection />
 
-      {/* In the Service of Our People */}
-      <ServiceOfOurPeopleSection />
 
       {/* Other Government Website Links */}
       <GovernmentLinksSection />
