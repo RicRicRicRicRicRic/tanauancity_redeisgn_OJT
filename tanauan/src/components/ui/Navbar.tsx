@@ -31,22 +31,22 @@ function Navbar() {
           isAtTop ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}
         style={{
-          background: 'rgba(210, 36, 36, 0.65)',
+          background: '#ffffff11',
         }}
       >
         <div className="w-full px-4 py-1">
           <div className="flex items-center justify-between">
             {/* Left Side - Utility Buttons */}
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 bg-[#931818] hover:bg-[#7a1414] text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
+              <button className="flex items-center gap-2 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full !text-xs font-medium transition-colors">
                 <Monitor className="w-4 h-4" />
                 <span>E-services</span>
               </button>
-              <button className="flex items-center gap-2 bg-[#931818] hover:bg-[#7a1414] text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
+              <button className="flex items-center gap-2 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full !text-xs font-medium transition-colors">
                 <FileText className="w-4 h-4" />
                 <span>Transparency</span>
               </button>
-              <button className="flex items-center gap-2 bg-[#931818] hover:bg-[#7a1414] text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors">
+              <button className="flex items-center gap-2 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full !text-xs font-medium transition-colors">
                 <AlertCircle className="w-4 h-4" />
                 <span>Alerts</span>
               </button>
@@ -54,12 +54,12 @@ function Navbar() {
 
             {/* Right Side - Announcement Banner */}
             <div className="flex items-center">
-              <div className="flex items-center gap-3 bg-[#931818] hover:bg-[#7a1414] text-white px-4 py-1.5 rounded-full transition-colors cursor-pointer">
+              <div className="flex items-center gap-3 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full transition-colors cursor-pointer">
                 <Megaphone className="w-4 h-4" />
                 <span className="text-sm font-medium">
                   ANNOUNCEMENT | Tanauan City's Applicants Admission
                 </span>
-                <div className="flex items-center gap-1.5 bg-[#661414] hover:bg-[#551010] px-2.5 py-0.5 rounded-full">
+                <div className="flex items-center gap-1.5 bg-[#545454] hover:bg-[#383838] px-2.5 py-0.5 rounded-full">
                   <Calendar className="w-3.5 h-3.5" />
                   <span className="text-xs font-medium">June 6, 2025</span>
                 </div>
@@ -71,9 +71,7 @@ function Navbar() {
 
       {/* Main Red Navigation Bar */}
       <nav
-        className={`w-full transition-all duration-300 ease-in-out ${
-          isAtTop ? 'bg-red-700' : 'bg-red-700/80'
-        }`}
+        className="w-full bg-red-700"
         role="navigation"
         aria-label="Main navigation"
       >
@@ -87,10 +85,10 @@ function Navbar() {
                 className="h-14 w-auto object-contain"
               />
               <div className="flex flex-col">
-                <h1 className="text-white !text-xl !m-0 md:text-2xl font-bold leading-tight">
+                <h1 className="text-white !text-lg !m-0 md:text-2xl font-bold leading-tight">
                   City Government of Tanauan
                 </h1>
-                <p className="text-white/90 text-sm md:text-base">
+                <p className="text-white/90 !text-sm md:text-base">
                   Republic of the Philippines
                 </p>
               </div>
@@ -101,7 +99,7 @@ function Navbar() {
               {navItems.map((item) => (
                 <div key={item.name} className="relative">
                   <button
-                    className="flex items-center gap-1 text-white hover:bg-red-800 px-4 py-2 rounded-md text-base font-medium transition-colors"
+                    className="flex items-center gap-1 text-white hover:bg-red-800 px-4 py-2 rounded-md !text-sm font-medium transition-colors"
                     onClick={() => item.hasDropdown && setActiveDropdown(activeDropdown === item.name ? null : item.name)}
                     aria-expanded={activeDropdown === item.name}
                     aria-haspopup={item.hasDropdown ? 'true' : undefined}
