@@ -118,7 +118,7 @@ function WeatherTrafficSection() {
           </p>
           {weatherData?.lastUpdated && (
             <span className="hidden sm:inline-block text-xs font-mono font-bold whitespace-nowrap text-amber-800">
-              Updated {weatherData.lastUpdated}
+              Updated as of {weatherData.lastUpdated}
             </span>
           )}
         </div>
