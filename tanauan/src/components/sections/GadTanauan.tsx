@@ -16,7 +16,7 @@ import gadLogo from '../../assets/sections/gadlogo/gadtanauanlogo.webp';
 
 export default function GadTanauan() {
   return (
-    <div className="w-full h-[768px] min-h-[768px] bg-gradient-to-b from-slate-900 via-slate-800/95 to-slate-900 text-slate-100 relative overflow-hidden font-sans flex flex-col justify-between selection:bg-purple-600 selection:text-white">
+    <div className="w-full h-[768px] min-h-[768px]  bg-gradient-to-b from-slate-900 via-slate-800/95 to-slate-900 text-slate-100 relative overflow-hidden font-sans flex flex-col justify-between selection:bg-purple-600 selection:text-white">
       
       {/* Lightened Ambient Background Glows */}
       <div className="absolute top-1/4 right-10 w-[450px] h-[450px] bg-purple-600/25 rounded-full blur-[120px] pointer-events-none animate-pulse" />
@@ -34,7 +34,7 @@ export default function GadTanauan() {
           <span>Official Public Services Portal • City Government of Tanauan</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <div className=" mt-[15px] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
           {/* Left Hero Section: Headline & Description */}
           <div className="lg:col-span-7 flex flex-col justify-center">
@@ -46,11 +46,8 @@ export default function GadTanauan() {
                 Republic of the Philippines
               </p>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
-                <span className="text-slate-100">Gender & </span> <br />
-                <span className="text-white drop-shadow-[0_0_30px_rgba(168,85,247,0.4)] bg-gradient-to-r from-white via-slate-100 to-purple-200 bg-clip-text text-transparent">
-                  Development
-                </span>
+              <h1 className="!text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1]">
+                <span className="text-slate-100">Gender & Development</span> 
               </h1>
             </div>
 
@@ -102,12 +99,14 @@ export default function GadTanauan() {
             </div>
           </div>
 
-          {/* Right Hero Section: Centered Glassmorphism Cards */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center gap-5 w-full">
+          {/* Right Hero Section: Combined GAD Office & QR Code */}
+          <div className="lg:col-span-5 flex flex-col items-center justify-center -mt-8">
             
-            {/* Lightened GAD Office Badge */}
-            <div className="w-full max-w-sm rounded-2xl p-5 bg-slate-900/80 border border-slate-600/60 backdrop-blur-2xl shadow-xl relative group hover:border-purple-400/50 transition-all duration-300">
-              <div className="flex items-center gap-4">
+            {/* Combined GAD Office Badge & QR Code Card */}
+            <div className="max-w-sm rounded-2xl p-6 bg-slate-900/80 border border-slate-600/60 backdrop-blur-2xl shadow-xl relative group hover:border-purple-400/50 hover:shadow-[0_0_40px_rgba(168,85,247,0.4),0_0_60px_rgba(168,85,247,0.3)] transition-all duration-300 mx-auto">
+              
+              {/* GAD Office Badge Header */}
+              <div className="flex items-center gap-4 mb-5 pb-5 border-b border-slate-700/60">
                 <div className="w-14 h-14 rounded-xl bg-white p-1.5 shadow-md group-hover:scale-105 transition-transform duration-300 shrink-0 flex items-center justify-center">
                   <img 
                     src={gadLogo} 
@@ -129,43 +128,44 @@ export default function GadTanauan() {
                   </span>
                 </div>
               </div>
+
+              {/* QR Code Section */}
+              <a 
+                href="https://gad.tanauancity.gov.ph/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex flex-col items-center text-center relative group hover:scale-[1.02] transition-all duration-300 block text-slate-100"
+              >
+                <div className="flex items-center gap-2 text-purple-300 text-xs font-black tracking-wider uppercase w-full">
+                  <QrCode className="w-4 h-4 text-purple-400" />
+                  <span>Scan or Click QR Code</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-400 transition-colors ml-auto" />
+                </div>
+                
+                {/* QR Image Wrapper */}
+                <div className="p-4 bg-slate-800/60 rounded-xl border border-slate-600/40 shadow-inner group-hover:scale-105 transition-transform duration-300 mt-3 mb-2">
+                  <img 
+                    src={gadQrCode} 
+                    alt="GAD Portal QR Code" 
+                    className="w-32 h-32 object-contain"
+                  />
+                </div>
+
+                {/* Helper Text */}
+                <p className="text-xs text-slate-300 font-semibold group-hover:text-purple-300 transition-colors flex items-center justify-center gap-1.5">
+                  <span>Click to open direct GAD Portal</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                </p>
+              </a>
+
             </div>
-
-            {/* Glowing Interactive QR Code Card */}
-            <a 
-              href="https://gad.tanauancity.gov.ph/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full max-w-sm rounded-2xl p-5 bg-white/95 border border-white/20 shadow-2xl flex flex-col items-center text-center relative group hover:scale-[1.02] hover:shadow-purple-950/20 transition-all duration-300 block text-slate-900"
-            >
-              <div className="flex items-center gap-2 text-purple-900 text-xs font-black tracking-wider uppercase w-full">
-                <QrCode className="w-4 h-4 text-purple-700" />
-                <span>Scan or Click QR Code</span>
-                <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-700 transition-colors ml-auto" />
-              </div>
-              
-              {/* Custom QR Image Wrapper - Balanced Vertical Margins */}
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 shadow-inner group-hover:scale-105 transition-transform duration-300 mt-3 mb-2">
-                <img 
-                  src={gadQrCode} 
-                  alt="GAD Portal QR Code" 
-                  className="w-32 h-32 object-contain"
-                />
-              </div>
-
-              {/* Refined Footer Helper Text Spacing */}
-              <p className="text-xs text-slate-600 font-semibold mt-2 group-hover:text-purple-900 transition-colors flex items-center justify-center gap-1.5">
-                <span>Click to open direct GAD Portal</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-              </p>
-            </a>
 
           </div>
         </div>
       </main>
 
       {/* Footer Accent */}
-      <footer className="relative z-10 border-t border-slate-700/60 py-3 px-6 text-center text-xs text-slate-300 font-medium bg-slate-900/80 backdrop-blur-md">
+      <footer className="relative z-10 border-t border-slate-700/60 py-3 px-6 text-center text-xs text-slate-300 font-medium bg-slate-900/80 backdrop-blur-md -mt-12">
         <p>© {new Date().getFullYear()} City Government of Tanauan. All Rights Reserved.</p>
       </footer>
     </div>
