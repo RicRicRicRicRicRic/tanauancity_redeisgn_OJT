@@ -363,18 +363,8 @@ function DigitalCityServicesSection() {
     return (
       <>
         {/* Sub-tagline */}
-        <p className="text-base text-gray-700 leading-relaxed">
-          {currentSlideData.description.split('ONE-STOP GOVERNMENT TRANSACTION').map((part, index, array) => (
-            index === 0 && array.length > 1 ? (
-              <span key={index}>
-                {part}
-                <span className="font-bold">ONE-STOP GOVERNMENT TRANSACTION</span>
-                {array[1]}
-              </span>
-            ) : (
-              <span key={index}>{part}</span>
-            )
-          ))}
+        <p className="text-base text-gray-700 leading-relaxed !mb-4 !mt-2">
+          Gamitin na ang <span className="font-bold">ONE-STOP GOVERNMENT TRANSACTION</span> APP para ma-access ang online government services!
         </p>
 
         <p className="!mt-2 text-base text-gray-600 italic">
@@ -500,7 +490,7 @@ function DigitalCityServicesSection() {
             {renderSlideContent()}
 
             {/* Pagination Dots - Always visible */}
-            <div className="flex items-center justify-center gap-2 mt-2" role="tablist" aria-label="Service slides">
+            <div className="flex items-center justify-center gap-3 mt-2" role="tablist" aria-label="Service slides">
               {slides.map((_, index) => (
                 <button
                   key={index}
