@@ -167,6 +167,7 @@ export default function AnnouncementsEventsSection() {
   const featuredItem = filteredItems.find(i => i.id === featuredId) || filteredItems[0];
   const sideItems = filteredItems.filter(i => i.id !== featuredItem?.id);
 
+  // Smooth scroll specifically to this component's top container
   const scrollToSection = () => {
     const sectionElement = document.getElementById('announcements-events');
     if (sectionElement) {
@@ -208,19 +209,19 @@ export default function AnnouncementsEventsSection() {
               Back to News
             </button>
 
-            <div className="flex items-center gap-2 text-xs text-[#901c1c] font-medium">
-              <span className="text-slate-500">Home</span>
-              <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-              <span className="text-slate-500">News</span>
-              <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-              <span className="font-bold truncate max-w-[200px] md:max-w-xs">
+            <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+              <span>Home</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+              <span>News</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+              <span className="text-[#901c1c] font-bold truncate max-w-[200px] md:max-w-xs">
                 {activeArticle.category}
               </span>
             </div>
           </div>
 
           {/* Main Layout Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Article Content */}
             <article className="lg:col-span-8 bg-white p-6 md:p-10 rounded-3xl border border-slate-200/80 shadow-sm">
@@ -270,17 +271,15 @@ export default function AnnouncementsEventsSection() {
               </div>
             </article>
 
-            {/* Fixed Sticky Sidebar Layout */}
-            <aside className="lg:col-span-4 sticky top-6 h-[calc(100vh-3rem)] flex flex-col gap-4">
-              
-              {/* Top Card: Scrollable List */}
-              <div className="bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm flex flex-col flex-1 min-h-0">
-                <div className="bg-[#901c1c] text-white px-5 py-4 flex items-center gap-2 shrink-0">
+            {/* Sidebar */}
+            <aside className="lg:col-span-4 space-y-6">
+              <div className="bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm">
+                <div className="bg-[#901c1c] text-white px-5 py-4 flex items-center gap-2">
                   <Megaphone className="w-4 h-4" />
                   <h3 className="text-sm font-bold tracking-wide">Latest Updates</h3>
                 </div>
 
-                <div className="p-4 divide-y divide-slate-100 overflow-y-auto flex-1">
+                <div className="p-4 divide-y divide-slate-100">
                   {otherNews.slice(0, 5).map((news) => (
                     <div 
                       key={news.id}
@@ -305,11 +304,10 @@ export default function AnnouncementsEventsSection() {
                 </div>
               </div>
 
-              {/* Bottom Fixed Button */}
               <button 
                 type="button"
                 onClick={handleBackToHome}
-                className="w-full bg-slate-900 hover:bg-slate-800 text-white p-4 rounded-2xl flex items-center justify-between transition-colors shadow-sm group cursor-pointer shrink-0"
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white p-4 rounded-2xl flex items-center justify-between transition-colors shadow-sm group cursor-pointer"
               >
                 <div className="text-left">
                   <span className="block text-xs font-bold">Back to Homepage</span>
@@ -317,7 +315,6 @@ export default function AnnouncementsEventsSection() {
                 </div>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-
             </aside>
 
           </div>
@@ -409,7 +406,7 @@ export default function AnnouncementsEventsSection() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Featured Card */}
             {featuredItem && (
@@ -458,8 +455,8 @@ export default function AnnouncementsEventsSection() {
               </div>
             )}
 
-            {/* Scrollable Right Side List */}
-            <div className="lg:col-span-5 flex flex-col sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto">
+            {/* Scrollable Right List */}
+            <div className="lg:col-span-5 flex flex-col">
               <div className="flex items-center justify-between mb-3 px-1">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   More Updates ({sideItems.length})
@@ -467,7 +464,7 @@ export default function AnnouncementsEventsSection() {
                 <span className="text-[11px] text-slate-400">Click to preview</span>
               </div>
 
-              <div className="space-y-3 pr-1">
+              <div className="max-h-[480px] overflow-y-auto pr-2 space-y-3">
                 {sideItems.map((item) => (
                   <div
                     key={item.id}
