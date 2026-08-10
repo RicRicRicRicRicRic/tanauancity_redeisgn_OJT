@@ -184,7 +184,7 @@ export default function AnnouncementsEventsSection() {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-rose-100/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#901c1c]/10 text-[#901c1c] mb-3">
               <Sparkles className="w-3.5 h-3.5" />
@@ -194,7 +194,14 @@ export default function AnnouncementsEventsSection() {
               News & Announcements
             </h2>
           </div>
-          <p className="text-slate-600 max-w-md text-xs md:text-sm">
+          <button
+            type="button"
+            className="mt-8 inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#901c1c] text-white text-xs font-semibold hover:bg-red-800 transition-colors shadow-sm cursor-pointer"
+          >
+            View All Announcements
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+          <p className="!mt-8 text-slate-600 max-w-md text-xs md:text-sm">
             Stay informed with the latest updates, advisories, and official meetings from the City Government of Tanauan.
           </p>
         </div>
