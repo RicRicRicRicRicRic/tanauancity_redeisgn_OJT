@@ -27,7 +27,7 @@ const landmarks: Landmark[] = [
     category: 'Natural Wonder',
     barangay: 'Maria Paz',
     sectorNum: 48,
-    coordinates: { x: 26, y: 88 },
+    coordinates: { x: 26, y: 92 },
     year: 'Pre-Colonial',
     image: napayong_island,
     teaser: 'A volcanic islet in Taal Lake off the southwestern coast of Tanauan.',
@@ -40,7 +40,7 @@ const landmarks: Landmark[] = [
     category: 'Religious Sanctuary',
     barangay: 'Poblacion Sector 1',
     sectorNum: 28,
-    coordinates: { x: 88, y: 56 },
+    coordinates: { x: 90, y: 58 },
     year: 'Est. 1881',
     image: St_evangelist_parish,
     teaser: 'The spiritual heart of Tanauan showcasing classical Spanish-era architecture.',
@@ -53,7 +53,7 @@ const landmarks: Landmark[] = [
     category: 'Civic Heritage',
     barangay: 'Poblacion Sector 4',
     sectorNum: 34,
-    coordinates: { x: 88, y: 61 },
+    coordinates: { x: 92, y: 62 },
     year: 'Circa 1920s',
     image: old_muni_hall,
     teaser: "Tanauan's central civic anchor and historical archive repository.",
@@ -66,7 +66,7 @@ const landmarks: Landmark[] = [
     category: 'National Monument',
     barangay: 'Talaga',
     sectorNum: 20,
-    coordinates: { x: 42, y: 51 },
+    coordinates: { x: 38, y: 51 },
     year: 'Est. 1956',
     image: museo_ni_mabini,
     teaser: 'Dedicated shrine honoring the "Brain of the Revolution" in Brgy. Talaga.',
@@ -105,47 +105,114 @@ export function CulturalHeritageSection() {
         {/* LEFT COLUMN: Map Canvas */}
         <div className="map-card-poster">
           <div className="map-vector-wrapper">
-            <svg viewBox="0 0 500 650" className="tanauan-svg-map">
-              <path
-                d="M 60 60 
-                   L 145 35 L 205 40 L 290 45 L 370 70 L 320 110 L 370 115
-                   L 325 150 L 365 180 L 360 210 L 420 215 L 400 240 L 425 320
-                   L 405 380 L 485 385 L 480 435 L 500 480 L 490 540 L 460 545
-                   L 460 580 L 410 610 L 290 625 L 235 580 L 245 530 L 140 525
-                   L 80 620 L 155 425 L 115 400 L 135 345 L 45 320 L 80 270
-                   L 95 190 L 85 140 L 60 60 Z"
-                className="tanauan-map-border"
-              />
+            <svg
+              viewBox="0 0 608 810"
+              xmlns="http://www.w3.org/2000/svg"
+              className="tanauan-svg-map"
+              role="img"
+              aria-label="Tanauan City, Batangas barangay map"
+            >
+              <g className="barangay-sectors">
+                <path d="M 249 60 L 258 77 L 258 86 L 273 101 L 296 109 L 317 80 L 348 44 L 350 40 L 311 37 L 252 35 L 250 41 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="1" />
+                <path d="M 75 39 L 85 57 L 89 61 L 112 71 L 139 124 L 147 125 L 184 92 L 181 80 L 183 32 L 89 32 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="2" />
+                <path d="M 447 90 L 413 63 L 383 61 L 356 42 L 322 81 L 300 111 L 323 124 L 339 146 L 343 149 L 353 146 L 365 128 L 378 125 L 389 107 L 407 102 L 419 105 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="3" />
+                <path d="M 188 32 L 185 78 L 189 92 L 188 140 L 211 124 L 213 124 L 230 147 L 256 187 L 259 189 L 288 160 L 291 159 L 298 163 L 320 128 L 297 114 L 286 111 L 270 104 L 254 88 L 254 79 L 245 61 L 247 35 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="4" />
+                <path d="M 42 54 L 74 106 L 81 132 L 100 180 L 105 179 L 184 142 L 185 98 L 181 100 L 150 128 L 137 128 L 133 123 L 109 74 L 86 64 L 81 59 L 70 41 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="5" />
+                <path d="M 438 101 L 420 111 L 411 108 L 405 108 L 391 112 L 386 122 L 380 129 L 368 132 L 356 150 L 344 154 L 340 154 L 323 133 L 302 166 L 302 172 L 309 204 L 312 204 L 372 173 L 441 144 L 441 138 L 438 129 L 441 124 L 443 116 L 438 108 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="6" />
+                <path d="M 212 129 L 188 146 L 194 182 L 237 209 L 255 192 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="7" />
+                <path d="M 184 148 L 181 148 L 102 185 L 115 250 L 126 245 L 122 235 L 124 230 L 190 183 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="8" />
+                <path d="M 445 148 L 380 175 L 310 210 L 312 218 L 320 224 L 321 237 L 327 263 L 339 257 L 350 271 L 376 247 L 374 239 L 397 218 L 436 212 L 437 209 L 446 202 L 446 197 L 437 189 L 436 184 L 437 175 L 444 167 L 446 158 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="9" />
+                <path d="M 297 168 L 290 164 L 209 244 L 219 242 L 275 223 L 305 208 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="10" />
+                <path d="M 194 188 L 190 189 L 166 206 L 191 250 L 200 247 L 233 214 L 233 212 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="11" />
+                <path d="M 161 209 L 127 233 L 127 236 L 130 244 L 194 309 L 194 299 L 192 293 L 188 254 L 166 215 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="12" />
+                <path d="M 306 212 L 275 228 L 253 235 L 255 248 L 263 257 L 263 261 L 257 268 L 259 274 L 267 275 L 270 278 L 290 315 L 306 336 L 304 343 L 298 354 L 299 355 L 339 344 L 338 334 L 316 235 L 316 227 L 308 220 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="13" />
+                <path d="M 491 263 L 480 262 L 473 257 L 466 242 L 456 234 L 446 231 L 438 221 L 436 216 L 412 219 L 397 223 L 379 240 L 381 249 L 351 276 L 349 276 L 344 271 L 338 262 L 329 269 L 333 295 L 335 299 L 335 304 L 344 343 L 444 317 L 489 267 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="14" />
+                <path d="M 115 255 L 116 283 L 111 330 L 194 314 L 132 251 L 127 249 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="15" />
+                <path d="M 248 237 L 203 251 L 193 266 L 208 378 L 293 356 L 301 338 L 301 335 L 286 317 L 266 280 L 258 279 L 253 271 L 253 266 L 258 260 L 258 258 L 250 248 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="16" />
+                <path d="M 497 264 L 448 319 L 450 372 L 451 375 L 463 372 L 479 402 L 485 399 L 490 399 L 500 413 L 537 437 L 543 422 L 553 405 L 542 397 L 537 385 L 529 377 L 522 377 L 517 375 L 502 354 L 499 360 L 499 364 L 496 368 L 490 366 L 494 354 L 489 353 L 488 367 L 483 367 L 481 365 L 482 359 L 481 356 L 478 354 L 478 351 L 482 347 L 494 346 L 493 331 L 498 319 L 508 311 L 510 303 L 516 292 L 514 282 L 510 278 L 507 270 L 501 265 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="17" />
+                <path d="M 444 396 L 446 384 L 446 356 L 443 322 L 314 355 L 299 360 L 304 366 L 318 365 L 320 367 L 324 378 L 324 382 L 318 394 L 405 395 L 437 397 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="18" />
+                <path d="M 195 319 L 112 335 L 105 343 L 96 363 L 90 371 L 146 421 L 148 421 L 177 386 L 203 379 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="19" />
+                <path d="M 316 370 L 303 370 L 294 361 L 290 361 L 241 375 L 180 390 L 164 410 L 191 438 L 191 442 L 186 447 L 185 451 L 200 467 L 203 467 L 255 430 L 310 396 L 320 380 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="20" />
+                <path d="M 84 373 L 73 382 L 70 400 L 57 410 L 55 415 L 58 419 L 71 426 L 76 431 L 77 453 L 79 455 L 82 454 L 85 447 L 89 443 L 97 442 L 109 454 L 113 470 L 117 477 L 139 440 L 145 427 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="21" />
+                <path d="M 317 398 L 317 400 L 348 448 L 368 483 L 372 484 L 397 473 L 428 465 L 436 461 L 443 404 L 441 401 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="22" />
+                <path d="M 452 379 L 450 381 L 442 452 L 482 467 L 488 468 L 493 471 L 519 479 L 520 464 L 531 449 L 534 441 L 497 416 L 487 403 L 477 407 L 466 388 L 462 378 L 458 377 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="23" />
+                <path d="M 572 423 L 570 427 L 567 448 L 570 444 L 576 444 L 578 446 L 580 444 L 588 444 L 585 439 L 584 431 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="24" />
+                <path d="M 597 453 L 590 447 L 590 460 L 586 464 L 568 464 L 567 458 L 570 453 L 568 453 L 566 450 L 564 472 L 594 463 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="25" />
+                <path d="M 311 400 L 281 419 L 280 423 L 283 431 L 285 446 L 290 464 L 290 470 L 314 506 L 318 507 L 342 496 L 362 489 L 365 486 L 314 402 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="26" />
+                <path d="M 161 414 L 150 427 L 120 481 L 127 494 L 139 506 L 140 513 L 151 505 L 153 505 L 163 496 L 197 471 L 180 451 L 180 448 L 187 440 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="27" />
+                <path d="M 557 408 L 551 416 L 543 435 L 535 449 L 537 455 L 535 456 L 533 454 L 524 467 L 523 480 L 537 483 L 539 485 L 538 487 L 523 485 L 523 501 L 526 514 L 540 541 L 551 538 L 551 526 L 548 490 L 539 487 L 540 485 L 547 485 L 546 465 L 539 461 L 536 457 L 539 456 L 540 458 L 549 462 L 549 470 L 551 476 L 558 474 L 560 472 L 561 454 L 557 457 L 553 454 L 550 457 L 539 456 L 540 451 L 543 449 L 544 446 L 539 445 L 539 442 L 542 439 L 548 439 L 551 442 L 551 445 L 555 439 L 559 439 L 562 449 L 567 419 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="28" />
+                <path d="M 276 423 L 237 448 L 214 465 L 235 491 L 240 539 L 310 509 L 310 507 L 286 472 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="29" />
+                <path d="M 441 457 L 438 479 L 448 485 L 446 494 L 446 505 L 450 514 L 476 505 L 519 498 L 519 484 L 480 471 L 447 458 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="30" />
+                <path d="M 596 467 L 573 474 L 578 502 L 607 497 L 604 490 L 603 477 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="31" />
+                <path d="M 568 475 L 551 480 L 552 494 L 554 492 L 554 490 L 552 489 L 553 484 L 560 483 L 562 485 L 564 483 L 570 483 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="32" />
+                <path d="M 435 468 L 398 478 L 384 485 L 381 485 L 335 504 L 334 507 L 346 529 L 342 559 L 387 537 L 444 516 L 445 514 L 441 503 L 443 487 L 434 482 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="33" />
+                <path d="M 572 494 L 571 493 L 571 500 L 553 499 L 553 507 L 572 504 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="34" />
+                <path d="M 210 469 L 208 469 L 191 481 L 152 512 L 149 513 L 138 523 L 138 525 L 149 536 L 151 547 L 163 552 L 167 556 L 171 564 L 174 577 L 210 552 L 235 542 L 230 493 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="35" />
+                <path d="M 607 502 L 555 511 L 553 514 L 556 538 L 607 533 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="36" />
+                <path d="M 534 541 L 522 515 L 519 503 L 479 509 L 423 529 L 427 538 L 429 540 L 438 539 L 453 559 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="37" />
+                <path d="M 536 546 L 471 560 L 471 563 L 481 588 L 487 599 L 505 594 L 511 594 L 547 586 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="38" />
+                <path d="M 607 537 L 572 541 L 559 541 L 541 544 L 542 552 L 553 589 L 560 625 L 581 610 L 591 607 L 607 590 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="39" />
+                <path d="M 330 507 L 319 510 L 214 556 L 235 659 L 238 667 L 251 655 L 269 634 L 336 563 L 341 537 L 341 529 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="40" />
+                <path d="M 466 562 L 450 564 L 437 545 L 427 545 L 423 541 L 419 532 L 417 531 L 371 550 L 343 564 L 343 566 L 377 603 L 374 623 L 480 600 L 481 598 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="41" />
+                <path d="M 210 559 L 174 583 L 171 609 L 164 640 L 153 657 L 228 642 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="42" />
+                <path d="M 338 568 L 285 624 L 298 634 L 318 654 L 326 658 L 344 671 L 347 675 L 351 689 L 369 626 L 372 604 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="43" />
+                <path d="M 548 591 L 541 591 L 451 611 L 453 622 L 464 625 L 472 668 L 482 665 L 556 628 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="44" />
+                <path d="M 460 629 L 449 625 L 446 613 L 440 613 L 436 615 L 431 615 L 373 628 L 358 679 L 354 699 L 378 699 L 388 692 L 413 689 L 431 691 L 467 672 L 468 668 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="45" />
+                <path d="M 281 627 L 243 670 L 258 674 L 268 713 L 287 743 L 291 743 L 303 735 L 307 734 L 310 731 L 312 724 L 316 718 L 320 716 L 328 718 L 337 718 L 350 701 L 350 698 L 346 689 L 343 676 L 332 667 L 315 657 L 295 637 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="46" />
+                <path d="M 228 647 L 150 662 L 158 679 L 169 696 L 168 717 L 176 735 L 178 753 L 195 773 L 202 772 L 227 763 L 264 757 L 274 747 L 281 743 L 264 716 L 255 679 L 250 676 L 238 674 L 234 670 L 231 664 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="47" />
+                <path d="M 146 666 L 143 672 L 143 680 L 136 694 L 134 711 L 130 718 L 117 731 L 114 748 L 112 752 L 100 763 L 95 771 L 96 777 L 115 792 L 190 775 L 174 756 L 170 732 L 163 717 L 164 696 L 161 693 Z" fill="#e11d48" stroke="#000" strokeWidth="3" strokeLinejoin="round" data-barangay="48" />
+              </g>
 
-              <path
-                d="M 60 60 L 155 125 L 290 45 M 155 125 L 105 170 M 155 125 L 210 200
-                   M 370 70 L 255 150 M 255 150 L 365 180 M 210 200 L 270 300
-                   M 270 300 L 425 320 M 270 300 L 135 345 M 135 345 L 260 420
-                   M 260 420 L 405 380 M 260 420 L 180 500 M 180 500 L 280 570
-                   M 280 570 L 410 610 M 180 500 L 140 525"
-                className="barangay-sector-lines"
-              />
-
-              <text x="110" y="110" className="map-sector-num">5</text>
-              <text x="180" y="80" className="map-sector-num">2</text>
-              <text x="240" y="85" className="map-sector-num">4</text>
-              <text x="285" y="65" className="map-sector-num">1</text>
-              <text x="330" y="100" className="map-sector-num">3</text>
-              <text x="145" y="170" className="map-sector-num">8</text>
-              <text x="195" y="270" className="map-sector-num">16</text>
-              <text x="210" y="335" className="map-sector-num">20</text>
-              <text x="120" y="295" className="map-sector-num">19</text>
-              <text x="95" y="340" className="map-sector-num">21</text>
-              <text x="145" y="370" className="map-sector-num">27</text>
-              <text x="175" y="415" className="map-sector-num">35</text>
-              <text x="225" y="475" className="map-sector-num">40</text>
-              <text x="170" y="515" className="map-sector-num">42</text>
-              <text x="185" y="575" className="map-sector-num">47</text>
-              <text x="115" y="580" className="map-sector-num font-bold">48</text>
-              <text x="440" y="350" className="map-sector-num">17</text>
-              <text x="440" y="380" className="map-sector-num">28</text>
-              <text x="440" y="400" className="map-sector-num">34</text>
-              <text x="350" y="600" className="map-sector-num">45</text>
+              <g className="map-labels">
+                <text x="291.6" y="69.6" className="map-sector-num">1</text>
+                <text x="140.1" y="71.8" className="map-sector-num">2</text>
+                <text x="366.0" y="98.2" className="map-sector-num">3</text>
+                <text x="240.5" y="112.3" className="map-sector-num">4</text>
+                <text x="111.3" y="121.0" className="map-sector-num">5</text>
+                <text x="371.2" y="156.4" className="map-sector-num">6</text>
+                <text x="218.6" y="176.1" className="map-sector-num">7</text>
+                <text x="144.0" y="196.5" className="map-sector-num">8</text>
+                <text x="378.2" y="212.9" className="map-sector-num">9</text>
+                <text x="269.0" y="210.2" className="map-sector-num">10</text>
+                <text x="197.5" y="221.6" className="map-sector-num">11</text>
+                <text x="164.4" y="258.0" className="map-sector-num">12</text>
+                <text x="299.8" y="284.3" className="map-sector-num">13</text>
+                <text x="405.1" y="285.3" className="map-sector-num">14</text>
+                <text x="141.7" y="299.9" className="map-sector-num">15</text>
+                <text x="239.4" y="317.1" className="map-sector-num">16</text>
+                <text x="493.4" y="359.0" className="map-sector-num">17</text>
+                <text x="387.3" y="370.5" className="map-sector-num">18</text>
+                <text x="150.0" y="369.4" className="map-sector-num">19</text>
+                <text x="238.0" y="411.6" className="map-sector-num">20</text>
+                <text x="100.8" y="426.7" className="map-sector-num">21</text>
+                <text x="386.8" y="438.3" className="map-sector-num">22</text>
+                <text x="482.2" y="439.4" className="map-sector-num">23</text>
+                <text x="576.3" y="441.1" className="map-sector-num">24</text>
+                <text x="579.4" y="466.0" className="map-sector-num">25</text>
+                <text x="318.1" y="461.5" className="map-sector-num">26</text>
+                <text x="157.1" y="469.5" className="map-sector-num">27</text>
+                <text x="544.8" y="479.5" className="map-sector-num">28</text>
+                <text x="261.2" y="488.4" className="map-sector-num">29</text>
+                <text x="472.7" y="491.2" className="map-sector-num">30</text>
+                <text x="589.9" y="490.1" className="map-sector-num">31</text>
+                <text x="560.2" y="486.5" className="map-sector-num">32</text>
+                <text x="389.9" y="515.0" className="map-sector-num">33</text>
+                <text x="562.4" y="507.3" className="map-sector-num">34</text>
+                <text x="191.9" y="527.2" className="map-sector-num">35</text>
+                <text x="580.6" y="525.7" className="map-sector-num">36</text>
+                <text x="482.0" y="536.0" className="map-sector-num">37</text>
+                <text x="510.0" y="577.0" className="map-sector-num">38</text>
+                <text x="576.0" y="579.2" className="map-sector-num">39</text>
+                <text x="274.5" y="581.3" className="map-sector-num">40</text>
+                <text x="411.8" y="583.3" className="map-sector-num">41</text>
+                <text x="194.5" y="618.1" className="map-sector-num">42</text>
+                <text x="335.3" y="627.4" className="map-sector-num">43</text>
+                <text x="504.6" y="629.7" className="map-sector-num">44</text>
+                <text x="411.4" y="662.3" className="map-sector-num">45</text>
+                <text x="297.1" y="690.5" className="map-sector-num">46</text>
+                <text x="214.1" y="715.4" className="map-sector-num">47</text>
+                <text x="142.1" y="750.0" className="map-sector-num">48</text>
+              </g>
             </svg>
 
             {landmarks.map((item) => {
@@ -201,7 +268,6 @@ export function CulturalHeritageSection() {
 
       <style dangerouslySetInnerHTML={{
         __html: `
-        /* WHITE & LIGHT-RED THEME ROOT */
         .map-heritage-root {
           background-color: #fcf8f8;
           color: #1e293b;
@@ -283,36 +349,15 @@ export function CulturalHeritageSection() {
         .tanauan-svg-map {
           width: 100%;
           height: 100%;
-          max-height: 580px;
-        }
-
-        .tanauan-map-border {
-          fill: #fff1f2;
-          stroke: #e11d48;
-          stroke-width: 2.5;
-          stroke-linejoin: round;
-        }
-
-        .barangay-sector-lines {
-          fill: none;
-          stroke: rgba(225, 29, 72, 0.25);
-          stroke-width: 1.2;
-          stroke-dasharray: 3 2;
+          max-height: 700px;
         }
 
         .map-sector-num {
-          fill: #9f1239;
+          fill: #ffffff;
           font-size: 12px;
-          font-weight: 600;
+          font-weight: 700;
           text-anchor: middle;
           pointer-events: none;
-          opacity: 0.7;
-        }
-
-        .map-sector-num.font-bold {
-          fill: #be123c;
-          font-weight: 800;
-          opacity: 1;
         }
 
         .map-pin-btn {
@@ -332,13 +377,13 @@ export function CulturalHeritageSection() {
           width: 28px;
           height: 28px;
           border-radius: 50%;
-          background: #be123c;
+          background: #881337;
           border: 2px solid #ffffff;
           color: #ffffff;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 12px rgba(190, 18, 60, 0.35);
+          box-shadow: 0 4px 12px rgba(136, 19, 55, 0.35);
           transition: transform 0.3s, background 0.3s;
         }
 
@@ -347,7 +392,7 @@ export function CulturalHeritageSection() {
           left: 6px; top: 6px;
           width: 28px; height: 28px;
           border-radius: 50%;
-          border: 1.5px solid #e11d48;
+          border: 1.5px solid #881337;
           animation: map-ping 2s infinite;
           pointer-events: none;
         }
@@ -372,7 +417,7 @@ export function CulturalHeritageSection() {
         .map-pin-btn:hover .pin-icon-badge,
         .map-pin-btn.active .pin-icon-badge {
           transform: scale(1.3);
-          background: #e11d48;
+          background: #9f1239;
         }
 
         .landmark-inspector {
