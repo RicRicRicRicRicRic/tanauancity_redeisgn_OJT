@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import FloatBlobs from '../common/float-blobs'
 
 interface NewsItem {
   id: number;
@@ -88,7 +89,10 @@ function LatestNewsSection() {
   ];
 
   return (
-    <section id="latest-news" className="w-full h-[768px] min-h-[768px] bg-white py-10 px-4">
+    <section id="latest-news" className="w-full h-[768px] min-h-[768px] bg-white py-10 px-4 relative overflow-hidden">
+      {/* Floating Blobs Background */}
+      <FloatBlobs />
+      
       <div className="w-full h-full flex flex-col items-center justify-center px-6 md:px-12 lg:px-16 py-12 relative z-10 mt-[15px]">
         <div className="w-full max-w-7xl mx-auto">
           
