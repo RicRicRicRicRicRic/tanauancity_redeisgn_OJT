@@ -10,7 +10,7 @@ function CityServicesSection() {
         <div className="w-full max-w-[795px] max-h-[575px]">
           {/* Header Section */}
           <div className="text-center mb-8">
-            <h2 className="!text-4xl font-bold gradient-text mb-2">
+            <h2 className="!text-3xl font-bold gradient-text mb-2">
               City services
             </h2>
             <div className="w-24 h-1 bg-[#E91E8C] mx-auto mb-4"></div>

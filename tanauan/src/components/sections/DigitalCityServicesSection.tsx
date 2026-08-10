@@ -422,7 +422,7 @@ function DigitalCityServicesSection() {
       <div className="w-full h-full flex flex-col md:px-20  mt-[15px]">
         {/* Header */}
         <div className="text-center mt-25">
-          <h2 className="!text-4xl md:text-5xl font-bold">
+          <h2 className="!text-3xl md:text-5xl font-bold">
             <span className="text-[#E91E8C]">Digital</span>
             <span className="text-gray-800"> City Services</span>
           </h2>
