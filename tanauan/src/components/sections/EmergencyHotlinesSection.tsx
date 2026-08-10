@@ -63,7 +63,7 @@ export default function EmergencyHotlinesSection() {
     }
   ];
 
-  const services = [
+  const services = useMemo(() => [
     {
       id: 'bfp',
       title: 'Bureau of Fire Protection',
@@ -130,7 +130,7 @@ export default function EmergencyHotlinesSection() {
         { label: 'Helpline Number', num: '163' }
       ]
     }
-  ];
+  ], []);
 
   const filteredServices = useMemo(() => {
     if (!searchQuery) return services;
@@ -140,7 +140,7 @@ export default function EmergencyHotlinesSection() {
         s.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
         s.numbers.some((n) => n.num.includes(searchQuery) || n.label.toLowerCase().includes(searchQuery.toLowerCase()))
     );
-  }, [searchQuery]);
+  }, [searchQuery, services]);
 
   // VIEW 2: DEDICATED UPGRADED EMERGENCY ALERTS PAGE
   if (activeView === 'alerts') {
