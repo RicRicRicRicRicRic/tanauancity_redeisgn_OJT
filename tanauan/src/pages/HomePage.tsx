@@ -16,6 +16,7 @@ import CulturalHeritageSection from '../components/sections/CulturalHeritageSect
 import PeoplesCornerSection from '../components/sections/PeoplesCornerSection.tsx'
 import TanauanCityTVSection from '../components/sections/TanauanCityTVSection.tsx'
 import StatusUpdates2025Section from '../components/sections/StatusUpdates2025Section.tsx'
+import Footer from '../components/layout/Footer.tsx'
 
 function HomePage() {
   return (
@@ -23,8 +24,10 @@ function HomePage() {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* City Services */}
-      <CityServicesSection />
+      {/* Solid background wrapper to cover fixed video when scrolling */}
+      <div className="relative bg-white z-10">
+        {/* City Services */}
+        <CityServicesSection />
 
       {/* Digital City Services */}
       <DigitalCityServicesSection />
@@ -74,6 +77,10 @@ function HomePage() {
 
       {/* Status Updates as of 2025 */}
       <StatusUpdates2025Section />
+
+      {/* Footer */}
+      <Footer />
+      </div>
     </main>
   )
 }

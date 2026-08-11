@@ -1,19 +1,19 @@
 function HeroSection() {
   return (
     <section id="hero" className="relative w-full h-[768px] min-h-[768px] overflow-hidden -mt-30">
-      {/* Video Background */}
+      {/* Video Background - Fixed position so it stays in place while scrolling */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        className="fixed inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/src/assets/sections/hero/placeholder_video.mp4" type="video/mp4" />
+        <source src="/src/assets/sections/hero/AERIAL.mp4" type="video/mp4" />
       </video>
 
       {/* Dark Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
 
 
       {/* Content Container */}

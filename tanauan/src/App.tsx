@@ -1,5 +1,4 @@
 import Navbar from './components/ui/Navbar'
-import Footer from './components/layout/Footer'
 import HomePage from './pages/HomePage'
 
 function App() {
@@ -7,7 +6,6 @@ function App() {
     <>
       <Navbar />
       <HomePage />
-      <Footer />
     </>
   )
 }
