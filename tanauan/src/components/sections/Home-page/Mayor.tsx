@@ -1,5 +1,5 @@
 import React from 'react';
-import mayorImg from '../../assets/sections/Mayor/Mayor.webp';
+import mayorImg from '../../../assets/sections/Mayor/Mayor.webp';
 
 const Mayor: React.FC = () => {
   return (

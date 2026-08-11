@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import FloatBlobs from '../common/float-blobs'
+import FloatBlobs from '../../common/float-blobs'
 
 interface PageItem {
   id: number

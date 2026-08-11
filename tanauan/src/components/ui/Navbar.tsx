@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Megaphone, Calendar, ChevronDown, Monitor, FileText, AlertCircle } from 'lucide-react'
 
 function Navbar() {
@@ -15,7 +16,7 @@ function Navbar() {
   }, [])
 
   const navItems = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '/', hasDropdown: false },
     { name: 'The City', href: '#the-city', hasDropdown: true },
     { name: 'Government', href: '#government', hasDropdown: true },
     { name: 'Services', href: '#services', hasDropdown: true },
@@ -38,18 +39,27 @@ function Navbar() {
           <div className="flex items-center justify-between">
             {/* Left Side - Utility Buttons */}
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full !text-xs font-medium transition-colors">
+              <Link
+                to="/e-services"
+                className="flex items-center gap-2 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full !text-xs font-medium transition-colors"
+              >
                 <Monitor className="w-4 h-4" />
                 <span>E-services</span>
-              </button>
-              <button className="flex items-center gap-2 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full !text-xs font-medium transition-colors">
+              </Link>
+              <Link
+                to="/transparency"
+                className="flex items-center gap-2 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full !text-xs font-medium transition-colors"
+              >
                 <FileText className="w-4 h-4" />
                 <span>Transparency</span>
-              </button>
-              <button className="flex items-center gap-2 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full !text-xs font-medium transition-colors">
+              </Link>
+              <Link
+                to="/alerts"
+                className="flex items-center gap-2 bg-[#737373] hover:bg-[#545454] text-white px-4 py-1.5 rounded-full !text-xs font-medium transition-colors"
+              >
                 <AlertCircle className="w-4 h-4" />
                 <span>Alerts</span>
-              </button>
+              </Link>
             </div>
 
             {/* Right Side - Announcement Banner */}
@@ -98,15 +108,24 @@ function Navbar() {
             <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
                 <div key={item.name} className="relative">
-                  <button
-                    className="flex items-center gap-1 text-white hover:bg-red-800 px-4 py-2 rounded-md !text-sm font-medium transition-colors"
-                    onClick={() => item.hasDropdown && setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                    aria-expanded={activeDropdown === item.name}
-                    aria-haspopup={item.hasDropdown ? 'true' : undefined}
-                  >
-                    <span>{item.name}</span>
-                    {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
-                  </button>
+                  {item.name === 'Home' ? (
+                    <Link
+                      to={item.href}
+                      className="flex items-center gap-1 text-white hover:bg-red-800 px-4 py-2 rounded-md !text-sm font-medium transition-colors"
+                    >
+                      <span>{item.name}</span>
+                    </Link>
+                  ) : (
+                    <button
+                      className="flex items-center gap-1 text-white hover:bg-red-800 px-4 py-2 rounded-md !text-sm font-medium transition-colors"
+                      onClick={() => item.hasDropdown && setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                      aria-expanded={activeDropdown === item.name}
+                      aria-haspopup={item.hasDropdown ? 'true' : undefined}
+                    >
+                      <span>{item.name}</span>
+                      {item.hasDropdown && <ChevronDown className="w-4 h-4" />}
+                    </button>
+                  )}
                   {item.hasDropdown && activeDropdown === item.name && (
                     <div className="absolute top-full left-0 mt-1 bg-white rounded-md shadow-lg min-w-[200px] z-50">
                       <a href="#" className="block px-4  text-gray-700 hover:bg-gray-100 text-sm">

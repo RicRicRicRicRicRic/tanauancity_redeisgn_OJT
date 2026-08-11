@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import City_Library from "../../assets/sections/GovernmentLinksLogos/CityLibrary.png";
-import City_Ordinances from "../../assets/sections/GovernmentLinksLogos/CityOrdinance.png";
-import Gender_And_Development from "../../assets/sections/GovernmentLinksLogos/GenderAndDevelopment.png";
-import LGBT_Programs from "../../assets/sections/GovernmentLinksLogos/LGBTQIAPrograms.png";
-import Public_Employment from "../../assets/sections/GovernmentLinksLogos/PublicEmploymentServiceOffice.png";
-import Public_Safety from "../../assets/sections/GovernmentLinksLogos/PublicSafety.png";
-import Tanauan_City from "../../assets/sections/GovernmentLinksLogos/TanauanCity.png";
-import Traffic_Management from "../../assets/sections/GovernmentLinksLogos/TrafficManagement.png";
+import City_Library from "../../../assets/sections/GovernmentLinksLogos/CityLibrary.png";
+import City_Ordinances from "../../../assets/sections/GovernmentLinksLogos/CityOrdinance.png";
+import Gender_And_Development from "../../../assets/sections/GovernmentLinksLogos/GenderAndDevelopment.png";
+import LGBT_Programs from "../../../assets/sections/GovernmentLinksLogos/LGBTQIAPrograms.png";
+import Public_Employment from "../../../assets/sections/GovernmentLinksLogos/PublicEmploymentServiceOffice.png";
+import Public_Safety from "../../../assets/sections/GovernmentLinksLogos/PublicSafety.png";
+import Tanauan_City from "../../../assets/sections/GovernmentLinksLogos/TanauanCity.png";
+import Traffic_Management from "../../../assets/sections/GovernmentLinksLogos/TrafficManagement.png";
 
 function GovernmentLinksSection() {
   const links = [

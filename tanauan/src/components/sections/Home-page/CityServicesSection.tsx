@@ -1,4 +1,4 @@
-import FloatBlobs from '../common/float-blobs'
+import FloatBlobs from '../../common/float-blobs'
 
 function CityServicesSection() {
   return (

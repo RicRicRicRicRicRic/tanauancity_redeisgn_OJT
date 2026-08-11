@@ -11,8 +11,8 @@ import {
 } from 'lucide-react';
 
 // Imports relative to component path
-import gadQrCode from '../../assets/sections/gad-qr/gad-qr.png';
-import gadLogo from '../../assets/sections/gadlogo/gadtanauanlogo.webp';
+import gadQrCode from '../../../assets/sections/gad-qr/gad-qr.png';
+import gadLogo from '../../../assets/sections/gadlogo/gadtanauanlogo.webp';
 
 export default function GadTanauan() {
   return (
