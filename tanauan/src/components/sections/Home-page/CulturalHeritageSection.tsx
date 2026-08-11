@@ -317,13 +317,13 @@ export function CulturalHeritageSection() {
           display: grid;
           grid-template-columns: 1fr;
           gap: 32px;
-          align-items: start;
+          align-items: start; /* Changed from center to allow natural height stretching for sticky alignment */
         }
 
         @media (min-width: 1024px) {
           .map-stage {
             grid-template-columns: 1fr 1fr;
-            align-items: start;
+            align-items: start; /* Ensures grid items start at the same top edge */
           }
         }
 
@@ -444,11 +444,12 @@ export function CulturalHeritageSection() {
 
         .landmark-inspector {
           position: sticky;
-          top: 32px;
+          top: 24px;
+          /* Adjusted flex settings to center vertically relative to the viewport height or container while sticky */
           display: flex;
-          align-items: start;
+          align-items: center;
           justify-content: center;
-          max-height: calc(100vh - 64px);
+          max-height: calc(100vh - 48px);
           overflow-y: auto;
         }
 
@@ -459,13 +460,12 @@ export function CulturalHeritageSection() {
           overflow: hidden;
           box-shadow: 0 10px 30px rgba(225, 29, 72, 0.06);
           width: 100%;
-          max-width: 520px; /* Reduced max-width slightly to prevent vertical cropping on standard screens */
         }
 
         .card-media-wrapper {
           position: relative;
           width: 100%;
-          height: 180px; /* Reduced height from 230px to save vertical room */
+          height: 230px;
           background: #000;
           display: flex;
           align-items: center;
@@ -492,14 +492,14 @@ export function CulturalHeritageSection() {
         }
 
         .card-body {
-          padding: 18px 24px; /* Reduced vertical padding from 24px */
+          padding: 24px;
         }
 
         .card-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 6px;
+          margin-bottom: 8px;
         }
 
         .card-category {
@@ -516,31 +516,31 @@ export function CulturalHeritageSection() {
         }
 
         .card-title {
-          font-size: 1.35rem; /* Slightly compact title */
+          font-size: 1.5rem;
           font-weight: 800;
           color: #881337;
-          margin: 0 0 6px;
+          margin: 0 0 10px;
         }
 
         .card-teaser {
-          font-size: 13.5px;
+          font-size: 14px;
           color: #334155;
           font-weight: 600;
-          line-height: 1.4;
-          margin-bottom: 8px;
+          line-height: 1.5;
+          margin-bottom: 12px;
         }
 
         .card-description {
-          font-size: 13px;
+          font-size: 13.5px;
           color: #64748b;
-          line-height: 1.55;
-          margin-bottom: 14px;
+          line-height: 1.65;
+          margin-bottom: 20px;
         }
 
         .archival-box {
           background: #fff1f2;
           border-left: 3px solid #e11d48;
-          padding: 10px 14px;
+          padding: 12px 16px;
           border-radius: 0 8px 8px 0;
         }
 
@@ -549,11 +549,11 @@ export function CulturalHeritageSection() {
           font-weight: 800;
           color: #be123c;
           display: block;
-          margin-bottom: 2px;
+          margin-bottom: 4px;
         }
 
         .archival-text {
-          font-size: 11.5px;
+          font-size: 12px;
           color: #475569;
           margin: 0;
           font-style: italic;
