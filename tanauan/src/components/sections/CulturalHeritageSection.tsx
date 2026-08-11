@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import iluhan_ng_tubo from "../../assets/sections/CulturalHeritagePics/IluhanNgTubo.png";
 import museo_ni_mabini from "../../assets/sections/CulturalHeritagePics/MuseoNiMabini.png";
