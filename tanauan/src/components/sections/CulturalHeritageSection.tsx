@@ -317,22 +317,22 @@ export function CulturalHeritageSection() {
           display: grid;
           grid-template-columns: 1fr;
           gap: 32px;
-          align-items: start; /* Changed from center to allow natural height stretching for sticky alignment */
+          align-items: start;
         }
 
         @media (min-width: 1024px) {
           .map-stage {
             grid-template-columns: 1fr 1fr;
-            align-items: start; /* Ensures grid items start at the same top edge */
+            align-items: start;
           }
         }
 
         .map-card-poster {
-          background: #f8fafc;
-          border: 1px solid #fecdd3;
+          background: transparent;
+          border: none;
           border-radius: 16px;
           padding: 24px;
-          box-shadow: 0 10px 30px rgba(225, 29, 72, 0.06);
+          box-shadow: none;
           position: relative;
         }
 
@@ -425,13 +425,11 @@ export function CulturalHeritageSection() {
           display: block;
         }
 
-        /* Default pin styling (White logo background) */
         .pin-icon-badge {
           background: #ffffff !important;
           color: #881337 !important;
         }
 
-        /* Active/Selected pin styling (Red logo background with white icon) */
         .map-pin-btn.active .pin-icon-badge {
           transform: scale(1.3);
           background: #881337 !important;
@@ -445,7 +443,6 @@ export function CulturalHeritageSection() {
         .landmark-inspector {
           position: sticky;
           top: 24px;
-          /* Adjusted flex settings to center vertically relative to the viewport height or container while sticky */
           display: flex;
           align-items: center;
           justify-content: center;
