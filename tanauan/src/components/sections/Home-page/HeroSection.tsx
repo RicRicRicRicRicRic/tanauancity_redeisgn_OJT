@@ -9,7 +9,7 @@ function HeroSection() {
         playsInline
         className="fixed inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/src/assets/sections/hero/AERIAL.mp4" type="video/mp4" />
+        <source src="/src/assets/sections/Home/hero/AERIAL.mp4" type="video/mp4" />
       </video>
 
       {/* Dark Overlay for Text Readability */}
@@ -46,7 +46,7 @@ function HeroSection() {
       {/* Mayor Image - Right Side */}
       <div className="absolute right-0 bottom-0 z-20 pointer-events-none -mr-[37px] ">
         <img
-          src="/src/assets/sections/hero/mayor_tanauan.png"
+          src="/src/assets/sections/Home/hero/mayor_tanauan.png"
           alt="Mayor of Tanauan City"
           className="h-[489px] w-auto object-contain object-bottom "
         />

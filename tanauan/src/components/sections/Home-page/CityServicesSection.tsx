@@ -24,7 +24,7 @@ function CityServicesSection() {
           {/* Card 1: Online Services (Top-Left) */}
           <div className="relative h-[208px] rounded-lg overflow-hidden group cursor-pointer">
             <img 
-              src="/src/assets/sections/city-services/Online Services.png" 
+              src="/src/assets/sections/Home/city-services/Online Services.png" 
               alt="Online Services"
               className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:blur-md"
             />
@@ -47,7 +47,7 @@ function CityServicesSection() {
           {/* Card 2: Business Portal (Top-Right) */}
           <div className="relative h-[208px] rounded-lg overflow-hidden group cursor-pointer">
             <img 
-              src="/src/assets/sections/city-services/Business Portal.png" 
+              src="/src/assets/sections/Home/city-services/Business Portal.png" 
               alt="Business Portal"
               className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:blur-md"
             />
@@ -70,7 +70,7 @@ function CityServicesSection() {
           {/* Card 3: Citizen Support (Bottom-Left) */}
           <div className="relative h-[208px] rounded-lg overflow-hidden group cursor-pointer">
             <img 
-              src="/src/assets/sections/city-services/Citizen Support.png" 
+              src="/src/assets/sections/Home/city-services/Citizen Support.png" 
               alt="Citizen Support"
               className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:blur-md"
             />
@@ -93,7 +93,7 @@ function CityServicesSection() {
           {/* Card 4: City Departments (Bottom-Right) */}
           <div className="relative h-[208px] rounded-lg overflow-hidden group cursor-pointer">
             <img 
-              src="/src/assets/sections/city-services/City Departments.png" 
+              src="/src/assets/sections/Home/city-services/City Departments.png" 
               alt="City Departments"
               className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:blur-md"
             />

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import Kipp1 from "../../../assets/sections/SonnyAllS/Kipp1.jpg";
-import Kipp2 from "../../../assets/sections/SonnyAllS/Kipp2.jpg";
+import Kipp1 from "../../../assets/sections/Home/SonnyAllS/Kipp1.jpg";
+import Kipp2 from "../../../assets/sections/Home/SonnyAllS/Kipp2.jpg";
 import FloatBlobs from '../../common/float-blobs'
 
 interface CardData {

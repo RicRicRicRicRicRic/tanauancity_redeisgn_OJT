@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Megaphone, Calendar, ChevronDown, Monitor, FileText, AlertCircle } from 'lucide-react'
 
 function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [isAtTop, setIsAtTop] = useState(true)
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,8 @@ function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const shouldCollapseUtilityBar = location.pathname === '/e-services' || location.pathname === '/transparency' || location.pathname === '/alerts'
 
   const navItems = [
     { name: 'Home', href: '/', hasDropdown: false },
@@ -29,7 +32,7 @@ function Navbar() {
       {/* Top Utility Bar */}
       <div
         className={`w-full backdrop-blur-md transition-all duration-300 ease-in-out ${
-          isAtTop ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+          shouldCollapseUtilityBar || !isAtTop ? 'max-h-0 opacity-0 overflow-hidden' : 'max-h-20 opacity-100'
         }`}
         style={{
           background: '#ffffff11',
@@ -90,7 +93,7 @@ function Navbar() {
             {/* Left Brand Section */}
             <div className="flex items-center gap-4">
               <img
-                src="/src/assets/sections/navbar/tanauan logo.webp"
+                src="/src/assets/sections/Home/navbar/tanauan logo.webp"
                 alt="Tanauan City Logo"
                 className="h-14 w-auto object-contain"
               />

@@ -13,14 +13,14 @@ import {
 } from 'lucide-react';
 
 // Image imports
-import kip1Img from '../../../assets/sections/AnnouncementsES/Kip1.jpg';
-import kip2Img from '../../../assets/sections/AnnouncementsES/Kip2.jpg';
-import kip3Img from '../../../assets/sections/AnnouncementsES/Kip3.jpg';
-import kip4Img from '../../../assets/sections/AnnouncementsES/Kip4.jpg';
-import kip5Img from '../../../assets/sections/AnnouncementsES/Kip5.jpg';
-import kip6Img from '../../../assets/sections/AnnouncementsES/Kip6.jpg';
-import kip7Img from '../../../assets/sections/AnnouncementsES/Kip7.jpg';
-import kip8Img from '../../../assets/sections/AnnouncementsES/Kip8.jpg';
+import kip1Img from '../../../assets/sections/Home/AnnouncementsES/Kip1.jpg';
+import kip2Img from '../../../assets/sections/Home/AnnouncementsES/Kip2.jpg';
+import kip3Img from '../../../assets/sections/Home/AnnouncementsES/Kip3.jpg';
+import kip4Img from '../../../assets/sections/Home/AnnouncementsES/Kip4.jpg';
+import kip5Img from '../../../assets/sections/Home/AnnouncementsES/Kip5.jpg';
+import kip6Img from '../../../assets/sections/Home/AnnouncementsES/Kip6.jpg';
+import kip7Img from '../../../assets/sections/Home/AnnouncementsES/Kip7.jpg';
+import kip8Img from '../../../assets/sections/Home/AnnouncementsES/Kip8.jpg';
 
 interface Item {
   id: number;

@@ -457,7 +457,7 @@ function DigitalCityServicesSection() {
                 </svg>
               ) : (
                 <img 
-                  src="/src/assets/sections/digital-city-services/egov-logo.svg" 
+                  src="/src/assets/sections/Home/digital-city-services/egov-logo.svg" 
                   alt="eGovPH Logo" 
                   className="h-12 w-12"
                 />
@@ -516,7 +516,7 @@ function DigitalCityServicesSection() {
                 {/* QR Code Box */}
                 <div className=" border-gray-300 rounded-lg shadow-md">
                   <img 
-                    src="/src/assets/sections/digital-city-services/QR-code.webp" 
+                    src="/src/assets/sections/Home/digital-city-services/QR-code.webp" 
                     alt="QR Code for Download" 
                     className="size-[200px] object-contain rounded-2xl"
                   />
@@ -547,11 +547,11 @@ function DigitalCityServicesSection() {
                      className="w-[200px] h-[60px] bg-black border-3 border-white rounded-xl flex items-center gap-3 px-3 hover:bg-gray-900 transition-colors"
                      aria-label="Get it on Google Play"
                    >
-                     <img 
-                       src="/src/assets/sections/digital-city-services/googleplay.png" 
-                       alt="Google Play" 
-                       className="w-6 h-6 object-contain"
-                     />
+                      <img 
+                        src="/src/assets/sections/Home/digital-city-services/googleplay.png" 
+                        alt="Google Play" 
+                        className="w-6 h-6 object-contain"
+                      />
                      <div className="flex flex-col items-start leading-none">
                        <span className="text-sm text-white font-normal -mb-1">Get it on</span>
                        <span className="text-sm text-white font-bold">Google Play</span>
@@ -563,11 +563,11 @@ function DigitalCityServicesSection() {
                      className="w-[200px] h-[60px] bg-black border-3 border-white rounded-xl flex items-center gap-3 px-3 hover:bg-gray-900 transition-colors"
                      aria-label="Download on the App Store"
                    >
-                     <img 
-                       src="/src/assets/sections/digital-city-services/apple.png" 
-                       alt="Apple" 
-                       className="w-6 h-6 object-contain"
-                     />
+                      <img 
+                        src="/src/assets/sections/Home/digital-city-services/apple.png" 
+                        alt="Apple" 
+                        className="w-6 h-6 object-contain"
+                      />
                      <div className="flex flex-col items-start leading-none">
                        <span className="text-sm text-white font-normal -mb-1">Download on the</span>
                        <span className="text-sm text-white font-bold">App store</span>
@@ -580,7 +580,7 @@ function DigitalCityServicesSection() {
           {/* Banner Image - Overlapping Element */}
           <div className="absolute bottom-3 right-0 -translate-x-50 z-10 hidden lg:block">
               <img 
-                src="/src/assets/sections/digital-city-services/banner.webp" 
+                src="/src/assets/sections/Home/digital-city-services/banner.webp" 
                 alt="eGovPH App Illustration" 
                 className="w-[386px] h-[481px] max-w-md object-contain"
               />

@@ -1,7 +1,7 @@
-import tanauanSeal from '../../assets/sections/footer/tanauan_seal.png'
-import depoLogo from '../../assets/sections/footer/depo-xZWdLTcz.webp'
-import bagongPilipinasLogo from '../../assets/sections/footer/Bagong-Pilipinas-Logo-Cpl11dF7.svg'
-import safetySeal from '../../assets/sections/footer/safety_seal-DFSDBvoY.webp'
+import tanauanSeal from '../../assets/sections/Home/footer/tanauan_seal.png'
+import depoLogo from '../../assets/sections/Home/footer/depo-xZWdLTcz.webp'
+import bagongPilipinasLogo from '../../assets/sections/Home/footer/Bagong-Pilipinas-Logo-Cpl11dF7.svg'
+import safetySeal from '../../assets/sections/Home/footer/safety_seal-DFSDBvoY.webp'
 
 const FacebookIcon = ({ className }: { className?: string }) => (
   <svg

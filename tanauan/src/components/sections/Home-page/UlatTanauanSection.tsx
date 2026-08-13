@@ -7,17 +7,17 @@ interface PageItem {
 }
 
 const pageItems: PageItem[] = [
-  { id: 1, image: '/src/assets/sections/UlatTanauanSection/1.webp' },
-  { id: 2, image: '/src/assets/sections/UlatTanauanSection/2.webp' },
-  { id: 3, image: '/src/assets/sections/UlatTanauanSection/3.webp' },
-  { id: 4, image: '/src/assets/sections/UlatTanauanSection/4.webp' },
-  { id: 5, image: '/src/assets/sections/UlatTanauanSection/5.webp' },
-  { id: 6, image: '/src/assets/sections/UlatTanauanSection/6.webp' },
-  { id: 7, image: '/src/assets/sections/UlatTanauanSection/7.webp' },
-  { id: 8, image: '/src/assets/sections/UlatTanauanSection/8.webp' },
-  { id: 9, image: '/src/assets/sections/UlatTanauanSection/9.webp' },
-  { id: 10, image: '/src/assets/sections/UlatTanauanSection/10.webp' },
-  { id: 11, image: '/src/assets/sections/UlatTanauanSection/11.webp' }
+  { id: 1, image: '/src/assets/sections/Home/UlatTanauanSection/1.webp' },
+  { id: 2, image: '/src/assets/sections/Home/UlatTanauanSection/2.webp' },
+  { id: 3, image: '/src/assets/sections/Home/UlatTanauanSection/3.webp' },
+  { id: 4, image: '/src/assets/sections/Home/UlatTanauanSection/4.webp' },
+  { id: 5, image: '/src/assets/sections/Home/UlatTanauanSection/5.webp' },
+  { id: 6, image: '/src/assets/sections/Home/UlatTanauanSection/6.webp' },
+  { id: 7, image: '/src/assets/sections/Home/UlatTanauanSection/7.webp' },
+  { id: 8, image: '/src/assets/sections/Home/UlatTanauanSection/8.webp' },
+  { id: 9, image: '/src/assets/sections/Home/UlatTanauanSection/9.webp' },
+  { id: 10, image: '/src/assets/sections/Home/UlatTanauanSection/10.webp' },
+  { id: 11, image: '/src/assets/sections/Home/UlatTanauanSection/11.webp' }
 ]
 
 function UlatTanauanSection() {

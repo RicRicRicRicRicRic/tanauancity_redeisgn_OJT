@@ -94,7 +94,7 @@ function TanauanCityTVSection() {
               <div className="flex gap-2">
                 {/* Channel Profile Image - Very Small */}
                 <img
-                  src="/src/assets/sections/TanauanCityTVSection/tanauan-chennel-profile.jpg"
+                  src="/src/assets/sections/Home/TanauanCityTVSection/tanauan-chennel-profile.jpg"
                   alt="Tanauan City Channel"
                   className="w-10 h-10 rounded-full object-cover border-2 border-gray-600 flex-shrink-0"
                 />
@@ -126,7 +126,7 @@ function TanauanCityTVSection() {
                   >
                     <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center flex-shrink-0">
                       <img
-                        src="/src/assets/sections/TanauanCityTVSection/youtube-logo-transparent.webp"
+                        src="/src/assets/sections/Home/TanauanCityTVSection/youtube-logo-transparent.webp"
                         alt="YouTube"
                         className="w-2.5 h-2.5"
                       />
@@ -225,8 +225,8 @@ function TanauanCityTVSection() {
             {/* Channel Profile Image */}
             <div className="flex justify-center mb-4">
               <img
-                src="/src/assets/sections/TanauanCityTVSection/tanauan-chennel-profile.jpg"
-                alt="Tanauan City Channel"
+                  src="/src/assets/sections/Home/TanauanCityTVSection/tanauan-chennel-profile.jpg"
+                  alt="Tanauan City Channel"
                 className="w-20 h-20 rounded-full object-cover border-2 border-gray-600"
               />
             </div>
@@ -258,7 +258,7 @@ function TanauanCityTVSection() {
             >
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0">
                 <img
-                  src="/src/assets/sections/TanauanCityTVSection/youtube-logo-transparent.webp"
+                  src="/src/assets/sections/Home/TanauanCityTVSection/youtube-logo-transparent.webp"
                   alt="YouTube"
                   className="w-6 h-6"
                 />

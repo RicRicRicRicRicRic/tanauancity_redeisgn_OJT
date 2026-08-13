@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import iluhan_ng_tubo from "../../../assets/sections/CulturalHeritagePics/IluhanNgTubo.png";
-import museo_ni_mabini from "../../../assets/sections/CulturalHeritagePics/MuseoNiMabini.png";
-import napayong_island from "../../../assets/sections/CulturalHeritagePics/NapayongIsland.png";
-import old_muni_hall from "../../../assets/sections/CulturalHeritagePics/OldMuniHall.png";
-import St_evangelist_parish from "../../../assets/sections/CulturalHeritagePics/StEvangelistParish.jpg";
+import iluhan_ng_tubo from "../../../assets/sections/Home/CulturalHeritagePics/IluhanNgTubo.png";
+import museo_ni_mabini from "../../../assets/sections/Home/CulturalHeritagePics/MuseoNiMabini.png";
+import napayong_island from "../../../assets/sections/Home/CulturalHeritagePics/NapayongIsland.png";
+import old_muni_hall from "../../../assets/sections/Home/CulturalHeritagePics/OldMuniHall.png";
+import St_evangelist_parish from "../../../assets/sections/Home/CulturalHeritagePics/StEvangelistParish.jpg";
 
 interface Landmark {
   id: string;
