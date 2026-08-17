@@ -323,7 +323,7 @@ Kasabay nito ay taos pusong nagpasalamat din ang ating Punong Lungsod dahil sa k
             </h1>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             <div className="lg:col-span-2 space-y-6">
               {currentArticle.image ? (
                 <div className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden">
@@ -342,56 +342,6 @@ Kasabay nito ay taos pusong nagpasalamat din ang ating Punong Lungsod dahil sa k
                   <p className="text-xs text-gray-400 mt-1">Replace this block or pass your image asset here</p>
                 </div>
               )}
-
-              <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm space-y-6">
-                <p className="text-gray-700 leading-relaxed text-sm whitespace-pre-line">
-                  {currentArticle.content}
-                </p>
-
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {currentArticle.tags.map((tag: string, idx: number) => (
-                    <span key={idx} className="text-blue-600 text-sm font-medium hover:underline cursor-pointer">{tag}</span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Previous / Next Navigation */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div 
-                  onClick={() => setSelectedArticleId(currentArticle.prevArticle.id)}
-                  className="group bg-white rounded-2xl p-5 border border-gray-200/80 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200 cursor-pointer flex items-center space-x-4"
-                >
-                  <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-red-50 group-hover:text-red-600 transition-colors flex-shrink-0">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <span className="text-[11px] font-semibold tracking-wider text-gray-400 uppercase block mb-0.5">Previous Article</span>
-                    <h4 className="font-semibold text-gray-800 text-sm truncate group-hover:text-red-600 transition-colors">
-                      {currentArticle.prevArticle.title}
-                    </h4>
-                  </div>
-                </div>
-
-                <div 
-                  onClick={() => setSelectedArticleId(currentArticle.nextArticle.id)}
-                  className="group bg-white rounded-2xl p-5 border border-gray-200/80 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200 cursor-pointer flex items-center justify-between space-x-4 text-right"
-                >
-                  <div className="min-w-0 flex-1">
-                    <span className="text-[11px] font-semibold tracking-wider text-gray-400 uppercase block mb-0.5">Next Article</span>
-                    <h4 className="font-semibold text-gray-800 text-sm truncate group-hover:text-red-600 transition-colors">
-                      {currentArticle.nextArticle.title}
-                    </h4>
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-red-50 group-hover:text-red-600 transition-colors flex-shrink-0">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
             </div>
 
             <div className="space-y-6">
@@ -399,7 +349,7 @@ Kasabay nito ay taos pusong nagpasalamat din ang ating Punong Lungsod dahil sa k
                 <h3 className="font-bold text-lg flex items-center">
                   <span className="mr-2">📰</span> Latest Updates
                 </h3>
-                <div className="space-y-3 bg-white text-gray-900 rounded-xl p-4 max-h-[500px] overflow-y-auto">
+                <div className="space-y-3 bg-white text-gray-900 rounded-xl p-4 max-h-[500px] overflow-y-auto scrollbar-hide" style={{ overscrollBehavior: 'contain' }}>
                   <div 
                     onClick={() => setSelectedArticleId('tcc')}
                     className={`border-b border-gray-100 pb-3 cursor-pointer transition-colors p-2 rounded-lg ${selectedArticleId === 'tcc' ? 'bg-red-50 border-l-4 border-l-red-600' : 'hover:bg-gray-50'}`}
@@ -450,16 +400,67 @@ Kasabay nito ay taos pusong nagpasalamat din ang ating Punong Lungsod dahil sa k
                 </div>
               </div>
 
-              <div className="bg-gray-900 rounded-2xl p-5 text-white shadow-sm flex items-center justify-between cursor-pointer hover:bg-gray-800 transition-colors" onClick={() => setCurrentPage('alerts')}>
-                <div>
-                  <h4 className="font-bold text-sm tracking-wide">Back to Homepage</h4>
-                  <p className="text-xs text-gray-400">Return to main site</p>
-                </div>
-                <div className="bg-gray-800 p-2 rounded-full">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
+            </div>
+          </div>
+
+          {/* Article Description - Bottom Section */}
+          <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm space-y-6">
+            <p className="text-gray-700 leading-relaxed text-sm whitespace-pre-line">
+              {currentArticle.content}
+            </p>
+
+            <div className="flex flex-wrap gap-2 pt-2">
+              {currentArticle.tags.map((tag: string, idx: number) => (
+                <span key={idx} className="text-blue-600 text-sm font-medium hover:underline cursor-pointer">{tag}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Row with Back Button */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <div 
+              onClick={() => setCurrentPage('alerts')}
+              className="group bg-white rounded-2xl p-5 border border-gray-200/80 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200 cursor-pointer flex items-center justify-center space-x-3"
+            >
+              <div className="bg-gray-50 p-2 rounded-full text-gray-600 group-hover:bg-red-50 group-hover:text-red-600 transition-colors flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+              </div>
+              <span className="font-semibold text-gray-800 text-sm group-hover:text-red-600 transition-colors">Back to Homepage</span>
+            </div>
+
+            <div 
+              onClick={() => setSelectedArticleId(currentArticle.prevArticle.id)}
+              className="group bg-white rounded-2xl p-5 border border-gray-200/80 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200 cursor-pointer flex items-center space-x-4"
+            >
+              <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-red-50 group-hover:text-red-600 transition-colors flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </div>
+              <div className="min-w-0 flex-1">
+                <span className="text-[11px] font-semibold tracking-wider text-gray-400 uppercase block mb-0.5">Previous Article</span>
+                <h4 className="font-semibold text-gray-800 text-sm truncate group-hover:text-red-600 transition-colors">
+                  {currentArticle.prevArticle.title}
+                </h4>
+              </div>
+            </div>
+
+            <div 
+              onClick={() => setSelectedArticleId(currentArticle.nextArticle.id)}
+              className="group bg-white rounded-2xl p-5 border border-gray-200/80 shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-200 cursor-pointer flex items-center justify-between space-x-4 text-right"
+            >
+              <div className="min-w-0 flex-1">
+                <span className="text-[11px] font-semibold tracking-wider text-gray-400 uppercase block mb-0.5">Next Article</span>
+                <h4 className="font-semibold text-gray-800 text-sm truncate group-hover:text-red-600 transition-colors">
+                  {currentArticle.nextArticle.title}
+                </h4>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-red-50 group-hover:text-red-600 transition-colors flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                </svg>
               </div>
             </div>
           </div>
