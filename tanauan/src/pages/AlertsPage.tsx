@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Footer from '../components/layout/Footer.tsx'
 import collegeImage from '../assets/sections/AlertsPage/College.png';
 import kasalImage from '../assets/sections/AlertsPage/Kasal.png';
 import seniorcitizenImage from '../assets/sections/AlertsPage/SeniorCitizen.png';
@@ -457,12 +458,8 @@ Kasabay nito ay taos pusong nagpasalamat din ang ating Punong Lungsod dahil sa k
         </div>
       )}
 
-      <footer className="bg-gray-900 text-gray-400 py-6 px-4 text-center text-xs border-t border-gray-800 mt-auto">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p>City Government of Tanauan, Batangas, Philippines</p>
-          <p>&copy; {new Date().getFullYear()} All Rights Reserved.</p>
-        </div>
-      </footer>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
