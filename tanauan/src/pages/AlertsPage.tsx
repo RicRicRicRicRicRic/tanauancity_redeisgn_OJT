@@ -41,7 +41,7 @@ export default function App() {
       nextArticle: { id: 'aics', title: "Local AICS para sa mga Tanaueño at Senior Citizens..." }
     },
     aics: {
-      title: "Local AICS para sa mga Tanaueño at Senior Citizens' Cash Incentives, sabayang...",
+      title: "Local AICS para sa mga Tanaueño at Senior Citizens' Cash Incentives, sabayang ipinamahagi ng Tanauan LGU!",
       date: "Jun 11, 2026",
       image: seniorcitizenImage, 
       content: `Mula sa regular na implementasyon ng Local AICS sa Lungsod, mas dumami pa ang mga Tanaueñong natulungan nina Mayor Sonny Perez Collantes at Vice Mayor Dodong Panganiban Ablao sa aspeto ng medical, mortuary at hospitalization assistance katuwang ang Tanauan Local Social Welfare and Development at City Treasury Office sa pamumuno ni Mr. Fernando Manzanero.
@@ -414,7 +414,7 @@ Kasabay nito ay taos pusong nagpasalamat din ang ating Punong Lungsod dahil sa k
                     onClick={() => setSelectedArticleId('aics')}
                     className={`border-b border-gray-100 pb-3 cursor-pointer transition-colors p-2 rounded-lg ${selectedArticleId === 'aics' ? 'bg-red-50 border-l-4 border-l-red-600' : 'hover:bg-gray-50'}`}
                   >
-                    <span className="font-bold text-xs block text-gray-800">Local AICS para sa mga Tanaueño at Senior Citizens' Cash Incentives, sabayang...</span>
+                    <span className="font-bold text-xs block text-gray-800">Local AICS para sa mga Tanaueño at Senior Citizens' Cash Incentives, sabayang ipinamahagi ng Tanauan LGU!</span>
                     <span className="text-[10px] text-gray-400">Jun 11, 2026</span>
                   </div>
 
