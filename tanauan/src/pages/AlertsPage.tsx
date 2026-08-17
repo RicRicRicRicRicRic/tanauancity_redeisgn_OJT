@@ -214,8 +214,11 @@ Kasabay nito ay taos pusong nagpasalamat din ang ating Punong Lungsod dahil sa k
                 <p className="text-sm text-gray-600">Get real-time alerts and emergency assistance on your phone</p>
               </div>
               <div className="flex items-center space-x-3.5">
+                {/* Apple App Store Direct Link */}
                 <a 
-                  href="#download-ios" 
+                  href="https://apps.apple.com/ph/app/tanauan-ews/id6770605709" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   className="group flex items-center space-x-3 bg-gray-900 hover:bg-black text-white px-5 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 border border-gray-800"
                 >
                   <svg className="w-5 h-5 fill-current flex-shrink-0" viewBox="0 0 24 24">
@@ -227,12 +230,18 @@ Kasabay nito ay taos pusong nagpasalamat din ang ating Punong Lungsod dahil sa k
                   </div>
                 </a>
 
+                {/* Google Play Store Direct Link with Colored Play Store Icon */}
                 <a 
-                  href="#download-android" 
+                  href="https://play.google.com/store/search?q=Tanauan%20EWS&c=apps" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
                   className="group flex items-center space-x-3 bg-gray-900 hover:bg-black text-white px-5 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 border border-gray-800"
                 >
-                  <svg className="w-5 h-5 fill-current flex-shrink-0 text-emerald-400" viewBox="0 0 24 24">
-                    <path d="M3.609 1.814L13.792 12 3.61 22.186a1.512 1.512 0 0 1-.36-.614V2.428c0-.25.13-.483.359-.614zM15.207 13.415l1.91 1.91-11.83 6.837a1.492 1.492 0 0 1-.744.195l10.664-8.942zm0-2.83L4.593 1.643c.236.035.485.118.744.264l11.87 6.853-1.91 1.909zm1.758 1.758l2.585 1.493a1.5 1.5 0 0 1 0 2.598l-2.585 1.493-2.046-2.046 2.046-2.038z"/>
+                  <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+                    <path fill="#EA4335" d="M3.609 1.814L13.792 12 3.61 22.186a1.512 1.512 0 0 1-.36-.614V2.428c0-.25.13-.483.359-.614z"/>
+                    <path fill="#FBBC04" d="M17.165 15.324l-3.373-3.324L3.609 1.814c.26-.148.56-.233.882-.233.35 0 .684.099.978.272l11.696 13.471z"/>
+                    <path fill="#34A853" d="M17.165 8.676L5.469 2.148A1.854 1.854 0 0 0 4.491 1.9c-.322 0-.622.085-.882.233l10.556 10.557 3.001-3.014z"/>
+                    <path fill="#4285F4" d="M17.165 15.324L6.52 23.992c.26.148.56.233.882.233.35 0 .684-.099.978-.272l11.696-13.471-2.911-1.478z"/>
                   </svg>
                   <div className="flex flex-col text-left">
                     <span className="text-[10px] uppercase tracking-wider text-gray-400 font-medium leading-none">Get it on</span>
@@ -266,29 +275,28 @@ Kasabay nito ay taos pusong nagpasalamat din ang ating Punong Lungsod dahil sa k
               </div>
 
               <div className="flex items-center space-x-3">
-                {/* Facebook Share Channel Link */}
                 <a 
-  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://tanauancity.gov.ph')}`}
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="text-blue-600 hover:opacity-80 transition-opacity p-1"
-  title="Share on Facebook"
->
-  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-  </svg>
-</a>
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://tanauancity.gov.ph')}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:opacity-80 transition-opacity p-1"
+                  title="Share on Facebook"
+                >
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
                 <a 
-  href={`https://twitter.com/intent/post?text=${encodeURIComponent(currentArticle.title + ' https://tanauancity.gov.ph')}`}
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="text-sky-500 hover:opacity-80 transition-opacity p-1"
-  title="Share on Twitter"
->
-  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-  </svg>
-</a>
+                  href={`https://twitter.com/intent/post?text=${encodeURIComponent(currentArticle.title + ' https://tanauancity.gov.ph')}`}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sky-500 hover:opacity-80 transition-opacity p-1"
+                  title="Share on Twitter"
+                >
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
                 <button 
                   onClick={() => {
                     navigator.clipboard.writeText(window.location.href);
