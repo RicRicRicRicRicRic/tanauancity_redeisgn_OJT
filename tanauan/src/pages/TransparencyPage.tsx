@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import Footer from '../components/layout/Footer.tsx'
-import { Search, SortAsc, Download, Eye, FileText, ChevronRight, ChevronDown, LayoutGrid, List } from 'lucide-react'
+import { Search, SortAsc, Download, Eye, FileText, ChevronRight, ChevronDown, LayoutGrid, List, ChevronLeft } from 'lucide-react'
 
 // Organized dataset mapped by category / year / quarter keys with TypeScript Record typing
 const documentsDatabase: Record<string, Array<{ id: number; title: string; date: string }>> = {
@@ -211,6 +211,10 @@ export default function TransparencyPage() {
   const [showSortDropdown, setShowSortDropdown] = useState(false)
   const [showViewDropdown, setShowViewDropdown] = useState(false)
 
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 6
+
   const currentKey = selectedFdrQuarter ? selectedFdrQuarter : `${activeYear}-${activeCategory}`
 
   const filteredDocuments = useMemo(() => {
@@ -231,6 +235,18 @@ export default function TransparencyPage() {
     return result
   }, [currentKey, searchQuery, sortOption])
 
+  // Reset to page 1 whenever filters change
+  useMemo(() => {
+    setCurrentPage(1)
+  }, [currentKey, searchQuery, sortOption])
+
+  // Get current page slice of documents
+  const paginatedDocuments = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage
+    return filteredDocuments.slice(start, start + itemsPerPage)
+  }, [filteredDocuments, currentPage])
+
+  const totalPages = Math.ceil(filteredDocuments.length / itemsPerPage)
   const quarters = ['FIRST QUARTER', 'SECOND QUARTER', 'THIRD QUARTER', 'FOURTH QUARTER']
 
   return (
@@ -333,100 +349,142 @@ export default function TransparencyPage() {
 
             {/* Main Content Area */}
             <div className="flex-1 bg-white rounded-lg shadow-sm border border-slate-200 p-6">
-              {/* Top Toolbar */}
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100 relative">
-                <div className="flex items-center gap-4 w-full sm:w-auto">
-                  {/* Sort Dropdown */}
-                  <div className="relative">
-                    <button 
-                      onClick={() => { setShowSortDropdown(!showSortDropdown); setShowViewDropdown(false); }}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-md hover:bg-slate-50"
-                    >
-                      <SortAsc className="w-4 h-4 text-slate-500" />
-                      Sort {sortOption !== 'default' && `(${sortOption.toUpperCase()})`}
-                    </button>
-                    {showSortDropdown && (
-                      <div className="absolute left-0 mt-2 w-44 bg-white border border-slate-200 rounded-md shadow-lg z-10 py-1 text-sm">
-                        <button onClick={() => { setSortOption('default'); setShowSortDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700">Default</button>
-                        <button onClick={() => { setSortOption('az'); setShowSortDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700">Title (A - Z)</button>
-                        <button onClick={() => { setSortOption('za'); setShowSortDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700">Title (Z - A)</button>
-                        <button onClick={() => { setSortOption('newest'); setShowSortDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700">Newest Date</button>
-                      </div>
-                    )}
+              <div>
+                {/* Top Toolbar */}
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100 relative">
+                  <div className="flex items-center gap-4 w-full sm:w-auto">
+                    {/* Sort Dropdown */}
+                    <div className="relative">
+                      <button 
+                        onClick={() => { setShowSortDropdown(!showSortDropdown); setShowViewDropdown(false); }}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-md hover:bg-slate-50"
+                      >
+                        <SortAsc className="w-4 h-4 text-slate-500" />
+                        Sort {sortOption !== 'default' && `(${sortOption.toUpperCase()})`}
+                      </button>
+                      {showSortDropdown && (
+                        <div className="absolute left-0 mt-2 w-44 bg-white border border-slate-200 rounded-md shadow-lg z-10 py-1 text-sm">
+                          <button onClick={() => { setSortOption('default'); setShowSortDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700">Default</button>
+                          <button onClick={() => { setSortOption('az'); setShowSortDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700">Title (A - Z)</button>
+                          <button onClick={() => { setSortOption('za'); setShowSortDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700">Title (Z - A)</button>
+                          <button onClick={() => { setSortOption('newest'); setShowSortDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700">Newest Date</button>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* View Mode Dropdown */}
+                    <div className="relative">
+                      <button 
+                        onClick={() => { setShowViewDropdown(!showViewDropdown); setShowSortDropdown(false); }}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-md hover:bg-slate-50"
+                      >
+                        {viewMode === 'grid' ? <LayoutGrid className="w-4 h-4 text-slate-500" /> : <List className="w-4 h-4 text-slate-500" />}
+                        View ({viewMode === 'grid' ? 'Grid' : 'List'})
+                      </button>
+                      {showViewDropdown && (
+                        <div className="absolute left-0 mt-2 w-36 bg-white border border-slate-200 rounded-md shadow-lg z-10 py-1 text-sm">
+                          <button onClick={() => { setViewMode('grid'); setShowViewDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700 flex items-center gap-2"><LayoutGrid className="w-4 h-4" /> Grid View</button>
+                          <button onClick={() => { setViewMode('list'); setShowViewDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700 flex items-center gap-2"><List className="w-4 h-4" /> List View</button>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
-                  {/* View Mode Dropdown */}
-                  <div className="relative">
-                    <button 
-                      onClick={() => { setShowViewDropdown(!showViewDropdown); setShowSortDropdown(false); }}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-md hover:bg-slate-50"
-                    >
-                      {viewMode === 'grid' ? <LayoutGrid className="w-4 h-4 text-slate-500" /> : <List className="w-4 h-4 text-slate-500" />}
-                      View ({viewMode === 'grid' ? 'Grid' : 'List'})
-                    </button>
-                    {showViewDropdown && (
-                      <div className="absolute left-0 mt-2 w-36 bg-white border border-slate-200 rounded-md shadow-lg z-10 py-1 text-sm">
-                        <button onClick={() => { setViewMode('grid'); setShowViewDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700 flex items-center gap-2"><LayoutGrid className="w-4 h-4" /> Grid View</button>
-                        <button onClick={() => { setViewMode('list'); setShowViewDropdown(false); }} className="w-full text-left px-4 py-2 hover:bg-slate-100 text-slate-700 flex items-center gap-2"><List className="w-4 h-4" /> List View</button>
-                      </div>
-                    )}
+                  {/* Search Bar */}
+                  <div className="relative w-full sm:w-72">
+                    <Search className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search Documents"
+                      className="w-full pl-9 pr-4 py-1.5 text-sm bg-slate-50 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                    />
                   </div>
                 </div>
 
-                {/* Search Bar */}
-                <div className="relative w-full sm:w-72">
-                  <Search className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search Documents"
-                    className="w-full pl-9 pr-4 py-1.5 text-sm bg-slate-50 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-                  />
-                </div>
+                {/* Document Cards List/Grid with items-stretch and h-full */}
+                {paginatedDocuments.length === 0 ? (
+                  <div className="text-center py-12 text-slate-500 text-sm">
+                    No documents found matching "{searchQuery}".
+                  </div>
+                ) : (
+                  <div className={viewMode === 'grid' ? "grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch" : "flex flex-col gap-3"}>
+                    {paginatedDocuments.map((doc: any) => (
+                      <div 
+                        key={doc.id}
+                        className="flex items-start justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-xs hover:shadow-md transition-shadow h-full"
+                      >
+                        <div className="flex items-start gap-3 overflow-hidden pr-2">
+                          <div className="p-2.5 bg-red-50 text-red-600 rounded-md shrink-0 flex flex-col items-center justify-center border border-red-100">
+                            <FileText className="w-6 h-6" />
+                            <span className="text-[10px] font-bold mt-0.5">PDF</span>
+                          </div>
+                          <div className="overflow-hidden">
+                            <h3 className="font-semibold text-slate-800 text-sm leading-snug break-words">{doc.title}</h3>
+                            <p className="text-xs text-slate-500 mt-1">Published: {doc.date}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col gap-1.5 shrink-0 ml-2">
+                          <button 
+                            onClick={() => alert(`Downloading ${doc.title}...`)}
+                            className="flex items-center justify-center gap-1 px-3 py-1 text-xs font-medium text-white bg-red-700 rounded hover:bg-red-800 transition-colors"
+                          >
+                            <Download className="w-3 h-3" />
+                            Download
+                          </button>
+                          <button 
+                            onClick={() => alert(`Previewing ${doc.title}...`)}
+                            className="flex items-center justify-center gap-1 px-3 py-1 text-xs font-medium text-slate-700 bg-slate-100 rounded hover:bg-slate-200 transition-colors"
+                          >
+                            <Eye className="w-3 h-3" />
+                            Preview
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {/* Document Cards List/Grid */}
-              {filteredDocuments.length === 0 ? (
-                <div className="text-center py-12 text-slate-500 text-sm">
-                  No documents found matching "{searchQuery}".
-                </div>
-              ) : (
-                <div className={viewMode === 'grid' ? "grid grid-cols-1 md:grid-cols-2 gap-4" : "flex flex-col gap-3"}>
-                  {filteredDocuments.map((doc: any) => (
-                    <div 
-                      key={doc.id}
-                      className="flex items-center justify-between p-4 bg-white border border-slate-200 rounded-lg shadow-xs hover:shadow-md transition-shadow"
+              {/* Pagination Footer Controls */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-between border-t border-slate-100 mt-8 pt-4">
+                  <div className="text-xs text-slate-500">
+                    Showing page <span className="font-semibold text-slate-700">{currentPage}</span> of <span className="font-semibold text-slate-700">{totalPages}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                      className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="p-2.5 bg-red-50 text-red-600 rounded-md shrink-0 flex flex-col items-center justify-center border border-red-100">
-                          <FileText className="w-6 h-6" />
-                          <span className="text-[10px] font-bold mt-0.5">PDF</span>
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-slate-800 text-sm">{doc.title}</h3>
-                          <p className="text-xs text-slate-500 mt-0.5">Published: {doc.date}</p>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col gap-1.5 shrink-0 ml-2">
-                        <button 
-                          onClick={() => alert(`Downloading ${doc.title}...`)}
-                          className="flex items-center justify-center gap-1 px-3 py-1 text-xs font-medium text-white bg-red-700 rounded hover:bg-red-800 transition-colors"
+                      <ChevronLeft className="w-3.5 h-3.5" />
+                      Previous
+                    </button>
+                    
+                    <div className="flex items-center gap-1 px-2">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <button
+                          key={page}
+                          onClick={() => setCurrentPage(page)}
+                          className={`w-7 h-7 text-xs font-medium rounded transition-colors ${currentPage === page ? 'bg-red-800 text-white' : 'text-slate-700 hover:bg-slate-100'}`}
                         >
-                          <Download className="w-3 h-3" />
-                          Download
+                          {page}
                         </button>
-                        <button 
-                          onClick={() => alert(`Previewing ${doc.title}...`)}
-                          className="flex items-center justify-center gap-1 px-3 py-1 text-xs font-medium text-slate-700 bg-slate-100 rounded hover:bg-slate-200 transition-colors"
-                        >
-                          <Eye className="w-3 h-3" />
-                          Preview
-                        </button>
-                      </div>
+                      ))}
                     </div>
-                  ))}
+
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                      className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Next
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
