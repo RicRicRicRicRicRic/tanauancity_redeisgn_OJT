@@ -1,6 +1,6 @@
 function HeroSection() {
   return (
-    <section id="hero" className="relative w-full h-[768px] min-h-[768px] overflow-hidden -mt-30">
+    <section id="hero" className="relative w-full min-h-[768px] overflow-hidden">
       {/* Video Background - Fixed position so it stays in place while scrolling */}
       <video
         autoPlay
@@ -13,43 +13,33 @@ function HeroSection() {
       </video>
 
       {/* Dark Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
 
+      {/* Content Container - Centered Vertically and Horizontally within Left Column */}
+      <div className="relative z-10 w-full h-full min-h-[768px] flex items-center justify-start px-6 md:px-16 lg:px-24">
+        <div className="max-w-4xl text-left my-auto">
+          {/* Welcome Text */}
+          <p className="text-white md:text-2xl font-serif font-light tracking-widest uppercase drop-shadow-lg">
+            Welcome to
+          </p>
 
-      {/* Content Container */}
-      <div className="relative z-10 w-full h-full flex items-center ml-[37px] ">
-        <div className="w-full px-6 md:px-12 lg:px-16 mt-24">
-          <div className="max-w-3xl">
-            {/* Welcome Text */}
-            <p className="text-white md:text-4xl font-light drop-shadow-lg">
-              Welcome to
-            </p>
+          {/* Main Heading using Serif */}
+          <h1 className="!my-2 text-white text-6xl md:text-7xl lg:text-8xl font-serif font-bold tracking-wide uppercase drop-shadow-2xl">
+            Tanauan City
+          </h1>
 
-            {/* Main Heading */}
-            <h1 className="!my-3 text-white text-5xl md:text-6xl lg:text-7xl font-bold drop-shadow-lg">
-              Tanauan City
-            </h1>
-
-            {/* Tagline */}
-            <h2 className="!text-2xl md:text-3xl font-semibold inline-block gradient-text">
+          {/* Tagline using Serif Italic */}
+          <div className="mb-6">
+            <span className="text-3xl md:text-4xl lg:text-5xl font-serif italic tracking-wide text-amber-200 drop-shadow-md">
               Cradle of Noble Heroes
-            </h2>
-
-            {/* Description */}
-            <p className="text-white text-base md:text-lg leading-relaxed max-w-2xl drop-shadow-lg">
-              1st-class component city in the province of Batangas,<br></br> Philippines. Located along the northeastern part of the<br></br> province bordered by Taal Lake and serving as a key<br></br>gateway from Metro Manila.
-            </p>
+            </span>
           </div>
-        </div>
-      </div>
 
-      {/* Mayor Image - Right Side */}
-      <div className="absolute right-0 bottom-0 z-20 pointer-events-none -mr-[37px] ">
-        <img
-          src="/src/assets/sections/Home/hero/mayor_tanauan.png"
-          alt="Mayor of Tanauan City"
-          className="h-[489px] w-auto object-contain object-bottom "
-        />
+          {/* Description using Serif */}
+          <p className="text-white text-base md:text-lg font-serif leading-relaxed max-w-2xl drop-shadow-lg">
+            1st-class component city in the province of Batangas,<br /> Philippines. Located along the northeastern part of the<br /> province bordered by Taal Lake and serving as a key gateway from Metro Manila.
+          </p>
+        </div>
       </div>
     </section>
   )
