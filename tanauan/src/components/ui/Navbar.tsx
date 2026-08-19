@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Monitor, FileText, AlertCircle, ChevronDown, Search } from 'lucide-react'
+import { Monitor, FileText, AlertCircle, ChevronDown } from 'lucide-react'
 
 function Navbar() {
   const [isAtTop, setIsAtTop] = useState(true)
@@ -193,16 +193,6 @@ function Navbar() {
                 )}
               </div>
             ))}
-
-            {/* Search Icon */}
-            <button 
-              aria-label="Search"
-              className={`p-2 rounded transition-colors ml-1 ${
-                isAtTop ? 'text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] hover:bg-white/20' : 'text-white hover:bg-[#b30000]'
-              }`}
-            >
-              <Search className="w-4 h-4" />
-            </button>
           </div>
 
         </div>
