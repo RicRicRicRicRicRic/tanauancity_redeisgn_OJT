@@ -37,7 +37,7 @@ function Navbar() {
     { name: 'Home', href: '/', hasDropdown: false },
     { 
       name: 'The City', 
-      href: '/the-city', 
+      href: '#', 
       hasDropdown: true,
       dropdownItems: [
         { name: 'History', path: '/the-city/history' },
@@ -48,7 +48,7 @@ function Navbar() {
     },
     { 
       name: 'Government', 
-      href: '/government', 
+      href: '#', 
       hasDropdown: true,
       dropdownItems: [
         { name: 'Executive Department', path: '/government/executive' },
@@ -59,7 +59,7 @@ function Navbar() {
     },
     { 
       name: 'Services', 
-      href: '/services', 
+      href: '#', 
       hasDropdown: true,
       dropdownItems: [
         { name: 'Business Permit', path: '/services/business-permit' },
@@ -70,18 +70,15 @@ function Navbar() {
     },
     { 
       name: 'Transparency Report', 
-      href: '/transparency', 
+      href: '#', 
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Full Disclosure Policy', path: '/transparency/full-disclosure' },
-        { name: 'Bids and Awards', path: '/transparency/bids-awards' },
-        { name: 'Annual Budget', path: '/transparency/annual-budget' },
-        { name: 'Ordinances', path: '/transparency/ordinances' }
+        { name: 'Documents', path: '/transparency' },
       ]
     },
     { 
       name: 'Tourism', 
-      href: '/tourism', 
+      href: '#', 
       hasDropdown: true,
       dropdownItems: [
         { name: 'Attractions', path: '/tourism/attractions' },
