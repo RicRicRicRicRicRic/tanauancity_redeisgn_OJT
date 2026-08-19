@@ -115,11 +115,12 @@ function Navbar() {
             </Link>
           </div>
 
-          {/* Right Column - Realtime Updates (Date & Time) */}
+          {/* Right Column - Realtime Updates (Date, Time, & PHT) */}
           <div className="flex items-center gap-2 font-medium tracking-widest text-white bg-[#7a0000]/60 px-3 py-0.5 rounded shadow-sm">
             <span>{formattedDate}</span>
             <span className="text-red-300">|</span>
-            <span className="text-white">{formattedTime}</span>
+            <span>{formattedTime}</span>
+            <span className="text-white">PHT</span>
           </div>
 
         </div>
