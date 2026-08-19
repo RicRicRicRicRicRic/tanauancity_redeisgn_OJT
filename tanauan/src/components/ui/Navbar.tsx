@@ -144,11 +144,11 @@ function Navbar() {
         <div className="max-w-7xl mx-auto flex items-center justify-between relative z-10">
           
           {/* Left Brand Section */}
-          <Link to="/" className="flex items-center gap-3.5 group">
+          <Link to="/" className="flex items-center gap-4 group">
             <img
               src="/src/assets/sections/Home/navbar/tanauan logo.webp"
               alt="Tanauan City Logo"
-              className="h-12 w-auto object-contain transition-transform group-hover:scale-105 filter drop-shadow-md"
+              className="h-14 w-auto object-contain transition-transform group-hover:scale-105 filter drop-shadow-md"
             />
             <div className="flex flex-col justify-center">
               <span className={`text-xs font-normal tracking-normal normal-case font-serif transition-colors duration-500 ${isAtTop ? 'text-white/90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]' : 'text-red-100'}`}>
