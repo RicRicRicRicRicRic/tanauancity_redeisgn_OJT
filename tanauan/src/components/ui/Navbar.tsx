@@ -37,33 +37,58 @@ function Navbar() {
     { name: 'Home', href: '/', hasDropdown: false },
     { 
       name: 'The City', 
-      href: '#the-city', 
+      href: '/the-city', 
       hasDropdown: true,
-      dropdownItems: ['History', 'Vision & Mission', 'City Officials', 'Geographical Profile']
+      dropdownItems: [
+        { name: 'History', path: '/the-city/history' },
+        { name: 'Vision & Mission', path: '/the-city/vision-mission' },
+        { name: 'City Officials', path: '/the-city/officials' },
+        { name: 'Geographical Profile', path: '/the-city/geographical-profile' }
+      ]
     },
     { 
       name: 'Government', 
-      href: '#government', 
+      href: '/government', 
       hasDropdown: true,
-      dropdownItems: ['Executive Department', 'Legislative', 'Departments & Offices', 'Barangays']
+      dropdownItems: [
+        { name: 'Executive Department', path: '/government/executive' },
+        { name: 'Legislative', path: '/government/legislative' },
+        { name: 'Departments & Offices', path: '/government/departments' },
+        { name: 'Barangays', path: '/government/barangays' }
+      ]
     },
     { 
       name: 'Services', 
-      href: '#services', 
+      href: '/services', 
       hasDropdown: true,
-      dropdownItems: ['Business Permit', 'Civil Registry', 'Health Services', 'Social Services']
+      dropdownItems: [
+        { name: 'Business Permit', path: '/services/business-permit' },
+        { name: 'Civil Registry', path: '/services/civil-registry' },
+        { name: 'Health Services', path: '/services/health-services' },
+        { name: 'Social Services', path: '/services/social-services' }
+      ]
     },
     { 
       name: 'Transparency Report', 
-      href: '#transparency', 
+      href: '/transparency', 
       hasDropdown: true,
-      dropdownItems: ['Full Disclosure Policy', 'Bids and Awards', 'Annual Budget', 'Ordinances']
+      dropdownItems: [
+        { name: 'Full Disclosure Policy', path: '/transparency/full-disclosure' },
+        { name: 'Bids and Awards', path: '/transparency/bids-awards' },
+        { name: 'Annual Budget', path: '/transparency/annual-budget' },
+        { name: 'Ordinances', path: '/transparency/ordinances' }
+      ]
     },
     { 
       name: 'Tourism', 
-      href: '#tourism', 
+      href: '/tourism', 
       hasDropdown: true,
-      dropdownItems: ['Attractions', 'Festivals', 'Local Delicacies', 'Accommodations']
+      dropdownItems: [
+        { name: 'Attractions', path: '/tourism/attractions' },
+        { name: 'Festivals', path: '/tourism/festivals' },
+        { name: 'Local Delicacies', path: '/tourism/delicacies' },
+        { name: 'Accommodations', path: '/tourism/accommodations' }
+      ]
     },
   ]
 
@@ -181,13 +206,13 @@ function Navbar() {
                   <div className="absolute top-full left-0 pt-1 w-56 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-150 ease-in-out z-50">
                     <div className="bg-white/90 backdrop-blur-md rounded shadow-xl border border-white/40 py-1.5 overflow-hidden">
                       {item.dropdownItems.map((subItem, index) => (
-                        <a
+                        <Link
                           key={index}
-                          href="#"
+                          to={subItem.path}
                           className="block px-4 py-2 text-gray-900 hover:bg-black/5 hover:text-[#990000] text-xs font-semibold tracking-wider uppercase transition-colors border-b border-gray-100 last:border-none"
                         >
-                          {subItem}
-                        </a>
+                          {subItem.name}
+                        </Link>
                       ))}
                     </div>
                   </div>
