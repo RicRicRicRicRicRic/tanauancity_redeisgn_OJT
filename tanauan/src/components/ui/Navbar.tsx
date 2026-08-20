@@ -40,10 +40,8 @@ function Navbar() {
       href: '#', 
       hasDropdown: true,
       dropdownItems: [
-        { name: 'History', path: '/the-city/history' },
-        { name: 'Vision & Mission', path: '/the-city/vision-mission' },
-        { name: 'City Officials', path: '/the-city/officials' },
-        { name: 'Geographical Profile', path: '/the-city/geographical-profile' }
+        { name: 'News & Publications', path: '/news_and_publications' },
+        { name: 'Barangays', path: '/barangays' },
       ]
     },
     { 
@@ -51,10 +49,12 @@ function Navbar() {
       href: '#', 
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Executive Department', path: '/government/executive' },
-        { name: 'Legislative', path: '/government/legislative' },
-        { name: 'Departments & Offices', path: '/government/departments' },
-        { name: 'Barangays', path: '/government/barangays' }
+        { name: 'Mission and Vision', path: '/mission_and_vision' },
+        { name: 'Sanguniang Paglungsod', path: '/sanguinang_panglungsod' },
+        { name: 'Citizens Charter', path: '/citizens_charter' },
+        { name: 'City Officials', path: '/city_officials' },
+        { name: 'Departments', path: '/departments' },
+        { name: 'Investors', path: '/investors' },
       ]
     },
     { 
@@ -62,10 +62,13 @@ function Navbar() {
       href: '#', 
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Business Permit', path: '/services/business-permit' },
-        { name: 'Civil Registry', path: '/services/civil-registry' },
-        { name: 'Health Services', path: '/services/health-services' },
-        { name: 'Social Services', path: '/services/social-services' }
+        { name: 'Placeholder', path: '/services/business-permit' },
+        { name: 'Senior Citizen ID and Benefits', path: '/senior_citizen_id_benefits' },
+        { name: 'Educational Assistance', path: '/educational_assistance' },
+        { name: 'City Planning', path: '/city_planning' },
+        { name: 'CSWD Services', path: '/cswd_services' },
+        { name: 'PWD ID and Services', path: '/pwd_id_services' },
+        { name: 'Safety Seal Program', path: '/safety_seal_program' }
       ]
     },
     { 
@@ -81,10 +84,8 @@ function Navbar() {
       href: '#', 
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Attractions', path: '/tourism/attractions' },
-        { name: 'Festivals', path: '/tourism/festivals' },
-        { name: 'Local Delicacies', path: '/tourism/delicacies' },
-        { name: 'Accommodations', path: '/tourism/accommodations' }
+        { name: 'History', path: '/history' },
+        { name: 'Destination', path: '/destination' },
       ]
     },
   ]
