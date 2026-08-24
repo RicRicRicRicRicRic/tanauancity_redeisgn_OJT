@@ -1,15 +1,383 @@
+import React, { useState, useRef, useEffect } from 'react';
 import Footer from '../layout/Footer';
 
+export default function StatusHeader() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [inquiryType, setInquiryType] = useState('GENERAL INQUIRY');
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    barangayName: '',
+    message: ''
+  });
 
-export default function TransparencyPage() {
+  // Custom dropdown open state & ref for click outside handling
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Complete chronological array of all 48 barangays with logo properties added
+  const barangays = [
+    { name: "Altura Bata", address: "Barangay Altura Bata, Tanauan City", logo: "🏛️" },
+    { name: "Altura Matanda", address: "Barangay Altura Matanda, Tanauan City", logo: "🏛️" },
+    { name: "Altura South", address: "Barangay Altura South, Tanauan City", logo: "🏛️" },
+    { name: "Ambulong", address: "Barangay Ambulong, Tanauan City", logo: "🏛️" },
+    { name: "Bañadero", address: "Barangay Bañadero, Tanauan City", logo: "🏛️" },
+    { name: "Bagbag", address: "Barangay Bagbag, Tanauan City", logo: "🏛️" },
+    { name: "Bagumbayan", address: "Barangay Bagumbayan, Tanauan City", logo: "🏛️" },
+    { name: "Balele", address: "Barangay Balele, Tanauan City", logo: "🏛️" },
+    { name: "Banjo East", address: "Barangay Banjo East, Tanauan City", logo: "🏛️" },
+    { name: "Banjo Laurel (Banjo West)", address: "Barangay Banjo Laurel (Banjo West), Tanauan City", logo: "🏛️" },
+    { name: "Bilog-bilog", address: "Barangay Bilog-bilog, Tanauan City", logo: "🏛️" },
+    { name: "Boot", address: "Barangay Boot, Tanauan City", logo: "🏛️" },
+    { name: "Cale", address: "Barangay Cale, Tanauan City", logo: "🏛️" },
+    { name: "Darasa", address: "Barangay Darasa, Tanauan City", logo: "🏛️" },
+    { name: "Gonzales", address: "Barangay Gonzales, Tanauan City", logo: "🏛️" },
+    { name: "Hidalgo", address: "Barangay Hidalgo, Tanauan City", logo: "🏛️" },
+    { name: "Janopol Occidental", address: "Barangay Janopol Occidental, Tanauan City", logo: "🏛️" },
+    { name: "Janopol Oriental", address: "Barangay Janopol Oriental, Tanauan City", logo: "🏛️" },
+    { name: "Laurel", address: "Barangay Laurel, Tanauan City", logo: "🏛️" },
+    { name: "Luyos", address: "Barangay Luyos, Tanauan City", logo: "🏛️" },
+    { name: "Mabini", address: "Barangay Mabini, Tanauan City", logo: "🏛️" },
+    { name: "Malaking Pulo", address: "Barangay Malaking Pulo, Tanauan City", logo: "🏛️" },
+    { name: "Maria Paz", address: "Barangay Maria Paz, Tanauan City", logo: "🏛️" },
+    { name: "Maugat", address: "Barangay Maugat, Tanauan City", logo: "🏛️" },
+    { name: "Montaña (Ik-ik)", address: "Barangay Montaña (Ik-ik), Tanauan City", logo: "🏛️" },
+    { name: "Natatas", address: "Barangay Natatas, Tanauan City", logo: "🏛️" },
+    { name: "Pagaspas", address: "Barangay Pagaspas, Tanauan City", logo: "🏛️" },
+    { name: "Pantay Bata", address: "Barangay Pantay Bata, Tanauan City", logo: "🏛️" },
+    { name: "Pantay Matanda", address: "Barangay Pantay Matanda, Tanauan City", logo: "🏛️" },
+    { name: "Poblacion Barangay 1", address: "Poblacion Barangay 1, Tanauan City", logo: "🏛️" },
+    { name: "Poblacion Barangay 2", address: "Poblacion Barangay 2, Tanauan City", logo: "🏛️" },
+    { name: "Poblacion Barangay 3", address: "Poblacion Barangay 3, Tanauan City", logo: "🏛️" },
+    { name: "Poblacion Barangay 4", address: "Poblacion Barangay 4, Tanauan City", logo: "🏛️" },
+    { name: "Poblacion Barangay 5", address: "Poblacion Barangay 5, Tanauan City", logo: "🏛️" },
+    { name: "Poblacion Barangay 6", address: "Poblacion Barangay 6, Tanauan City", logo: "🏛️" },
+    { name: "Poblacion Barangay 7", address: "Poblacion Barangay 7, Tanauan City", logo: "🏛️" },
+    { name: "Sala", address: "Barangay Sala, Tanauan City", logo: "🏛️" },
+    { name: "Sambat", address: "Barangay Sambat, Tanauan City", logo: "🏛️" },
+    { name: "San Jose", address: "Barangay San Jose, Tanauan City", logo: "🏛️" },
+    { name: "Santol (Doña Jacoba Garcia)", address: "Barangay Santol (Doña Jacoba Garcia), Tanauan City", logo: "🏛️" },
+    { name: "Santor", address: "Barangay Santor, Tanauan City", logo: "🏛️" },
+    { name: "Sulpoc", address: "Barangay Sulpoc, Tanauan City", logo: "🏛️" },
+    { name: "Suplang", address: "Barangay Suplang, Tanauan City", logo: "🏛️" },
+    { name: "Talaga", address: "Barangay Talaga, Tanauan City", logo: "🏛️" },
+    { name: "Tinurik", address: "Barangay Tinurik, Tanauan City", logo: "🏛️" },
+    { name: "Trapiche", address: "Barangay Trapiche, Tanauan City", logo: "🏛️" },
+    { name: "Ulango", address: "Barangay Ulango, Tanauan City", logo: "🏛️" },
+    { name: "Wawa", address: "Barangay Wawa, Tanauan City", logo: "🏛️" }
+  ];
+
+  // Filter based on search input
+  const filteredBarangays = barangays.filter(item =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const inquiryTypes = [
+    "GENERAL INQUIRY",
+    "COMMUNITY ASSISTANCE",
+    "DOCUMENT REQUEST",
+    "HEALTH & SOCIAL SERVICES",
+    "PROJECT PROPOSAL"
+  ];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.barangayName) {
+      alert("Please select a target barangay.");
+      return;
+    }
+    alert(`Inquiry submitted successfully for ${formData.barangayName}!`);
+  };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 pt-36 md:pt-31">
-      
-      
-      
+    <div className="w-full bg-slate-50 min-h-screen flex flex-col justify-between">
+      <div>
+        {/* Top Header Section */}
+        <div className="w-full bg-white py-16 md:py-40 border-b border-slate-200">
+          <div className="max-w-5xl mx-auto px-4 md:px-0">
+            <div className="my-2">
+              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-2">
+                Barangays
+              </h1>
+              <p className="text-2xl md:text-3xl italic font-serif text-slate-600">
+                The list of 48 Barangays in Tanauan City
+              </p>
+            </div>
+
+            <div className="mt-8 mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-rose-600 uppercase">
+              <span>●</span>
+              <span>Integrity • Transparency • Harmony</span>
+            </div>
+
+            <p className="text-slate-600 text-base md:text-lg leading-relaxed max-w-2xl font-light">
+              Access comprehensive data and updates across all 48 districts of Tanauan City, designed to foster transparent governance and track local progress.
+            </p>
+          </div>
+        </div>
+
+        {/* Main Content Section */}
+        <section className="max-w-5xl mx-auto px-4 md:px-0 py-16">
+          
+          {/* Section Header & Search Bar Row */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
+                Barangay Directory
+              </h2>
+              <div className="w-12 h-1 bg-red-600 mt-2 mb-3 rounded-full"></div>
+              <p className="text-slate-600 text-sm md:text-base max-w-xl mx-auto font-light">
+              Connect with your barangay and share your concerns. Together, we build a stronger community.
+            </p>
+            </div>
+
+            <div className="w-full md:w-72">
+              <input
+                type="text"
+                placeholder="Search barangay name..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-600 shadow-sm"
+              />
+            </div>
+          </div>
+
+          {/* 2-Row Horizontal Scrolling Container with Logos */}
+          <div className="relative mb-24">
+            <div className="grid grid-rows-2 grid-flow-col overflow-x-auto gap-6 pb-6 pt-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-slate-300">
+              {filteredBarangays.length > 0 ? (
+                filteredBarangays.map((item, index) => (
+                  <div 
+                    key={index} 
+                    className="min-w-[280px] md:min-w-[320px] max-w-[320px] bg-white p-6 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col justify-between snap-start flex-shrink-0"
+                  >
+                    <div>
+                      <div className="flex items-center gap-3 mb-3">
+                        {/* Barangay Logo Container - replace with <img src={item.logo} alt="" /> if using actual image paths */}
+                        <div className="w-10 h-10 rounded-full bg-red-50 border border-red-100 flex items-center justify-center text-lg flex-shrink-0 shadow-inner">
+                          {item.logo}
+                        </div>
+                        <h3 className="text-lg font-bold text-slate-900 truncate">
+                          {item.name}
+                        </h3>
+                      </div>
+                      <p className="text-slate-600 text-sm mb-4 line-clamp-2">
+                        {item.address}
+                      </p>
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                      <span>📍</span>
+                      <span>Tanauan City, Batangas</span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="col-span-full w-full text-center py-12 text-slate-500">
+                  No barangays found matching "{searchTerm}".
+                </div>
+              )}
+            </div>
+            <p className="text-xs text-slate-400 text-right mt-2">← Scroll horizontally to see more →</p>
+          </div>
+
+          {/* Shrunk Barangay Inquiry Form Section */}
+          <div className="max-w-2xl mx-auto bg-white text-slate-900 p-6 md:p-8 rounded-xl shadow-xl border" style={{ borderColor: '#7a0000' }}>
+            
+            <div className="flex items-center gap-2 text-[11px] font-extrabold tracking-widest uppercase mb-3" style={{ color: '#7a0000' }}>
+              <span>—</span>
+              <span>BARANGAY INQUIRY & ASSISTANCE</span>
+            </div>
+
+            <h3 className="text-xl md:text-2xl font-extrabold mb-6 text-slate-900">
+              Send a Concern or Request
+            </h3>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              
+              {/* Inquiry Type Pills */}
+              <div>
+                <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-2">
+                  Inquiry Type *
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {inquiryTypes.map((type) => (
+                    <button
+                      type="button"
+                      key={type}
+                      onClick={() => setInquiryType(type)}
+                      className={`px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider transition-all duration-200 border ${
+                        inquiryType === type
+                          ? 'text-white shadow-md'
+                          : 'bg-slate-50 text-slate-800 border-slate-300 hover:border-[#7a0000]'
+                      }`}
+                      style={inquiryType === type ? { backgroundColor: '#7a0000', borderColor: '#7a0000' } : {}}
+                    >
+                      {type}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Input Fields Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="relative">
+                  <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-1.5">
+                    First Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Enter your first name"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                    className="w-full bg-transparent border-b border-slate-400 pb-1.5 text-slate-900 font-medium text-sm focus:outline-none transition-colors placeholder:text-slate-500"
+                    onFocus={(e) => e.target.style.borderColor = '#7a0000'}
+                    onBlur={(e) => e.target.style.borderColor = ''}
+                  />
+                </div>
+
+                <div className="relative">
+                  <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-1.5">
+                    Last Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Enter your last name"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                    className="w-full bg-transparent border-b border-slate-400 pb-1.5 text-slate-900 font-medium text-sm focus:outline-none transition-colors placeholder:text-slate-500"
+                    onFocus={(e) => e.target.style.borderColor = '#7a0000'}
+                    onBlur={(e) => e.target.style.borderColor = ''}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="relative">
+                  <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-1.5">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="name@example.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="w-full bg-transparent border-b border-slate-400 pb-1.5 text-slate-900 font-medium text-sm focus:outline-none transition-colors placeholder:text-slate-500"
+                    onFocus={(e) => e.target.style.borderColor = '#7a0000'}
+                    onBlur={(e) => e.target.style.borderColor = ''}
+                  />
+                </div>
+
+                <div className="relative">
+                  <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-1.5">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="+63 900 000 0000"
+                    maxLength={11}
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="w-full bg-transparent border-b border-slate-400 pb-1.5 text-slate-900 font-medium text-sm focus:outline-none transition-colors placeholder:text-slate-500"
+                    onFocus={(e) => e.target.style.borderColor = '#7a0000'}
+                    onBlur={(e) => e.target.style.borderColor = ''}
+                  />
+                </div>
+              </div>
+
+              {/* Custom Downward-Flowing Barangay Dropdown Field */}
+              <div className="relative" ref={dropdownRef}>
+                <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-1.5">
+                  Target Barangay *
+                </label>
+                
+                <div 
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="w-full bg-transparent border-b border-slate-400 pb-1.5 text-sm text-slate-900 cursor-pointer flex justify-between items-center select-none"
+                >
+                  <span className={formData.barangayName ? "text-slate-900 font-medium" : "text-slate-500 font-normal"}>
+                    {formData.barangayName || "Select specific barangay"}
+                  </span>
+                  <span className="text-slate-600 text-xs">▼</span>
+                </div>
+
+                {isDropdownOpen && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-52 overflow-y-auto z-50">
+                    {barangays.map((b, i) => (
+                      <div
+                        key={i}
+                        onClick={() => {
+                          setFormData({...formData, barangayName: b.name});
+                          setIsDropdownOpen(false);
+                        }}
+                        className="px-4 py-2 text-sm font-medium text-slate-800 hover:bg-red-50 hover:text-[#7a0000] cursor-pointer transition-colors border-b border-slate-100 last:border-none"
+                      >
+                        {b.name}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Message Box */}
+              <div className="relative">
+                <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-1.5">
+                  Your Message *
+                </label>
+                <textarea
+                  required
+                  rows={3}
+                  placeholder="Tell us about your concern, request details, or barangay issue..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  className="w-full bg-transparent border-b border-slate-400 pb-1.5 text-slate-900 font-medium text-sm focus:outline-none transition-colors resize-none placeholder:text-slate-500"
+                  onFocus={(e) => e.target.style.borderColor = '#7a0000'}
+                  onBlur={(e) => e.target.style.borderColor = ''}
+                ></textarea>
+              </div>
+
+              {/* Submit Row */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+                <p className="text-[11px] font-medium text-slate-600 max-w-xs">
+                  By submitting, you agree to our privacy policy regarding local data handling.
+                </p>
+
+                <button
+                  type="submit"
+                  className="w-full sm:w-auto px-6 py-3 text-white font-bold text-xs tracking-widest uppercase rounded-lg shadow-md transition-all duration-200 cursor-pointer"
+                  style={{ backgroundColor: '#7a0000' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#5c0000')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#7a0000')}
+                >
+                  Submit Inquiry
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+
+        </section>
+      </div>
+
       {/* Footer */}
-      <Footer />
+      <div className="mt-20">
+        <Footer />
+      </div>
     </div>
   );
 }
