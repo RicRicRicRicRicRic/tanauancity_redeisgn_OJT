@@ -62,7 +62,6 @@ function Navbar() {
       href: '#', 
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Placeholder', path: '/services/business-permit' },
         { name: 'Senior Citizen ID and Benefits', path: '/senior_citizen_id_benefits' },
         { name: 'Educational Assistance', path: '/educational_assistance' },
         { name: 'City Planning', path: '/city_planning' },
