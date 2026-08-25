@@ -202,7 +202,7 @@ export default function TransparencyPage() {
                   }`}
                 >
                   {/* Top Inner Light Highlight Edge */}
-<div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-300/80 to-transparent"></div>
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-300/80 to-transparent"></div>
                   {/* Ambient Back Glow Effect */}
                   <div className="absolute -right-16 -top-16 w-48 h-48 bg-red-500/10 rounded-full blur-2xl group-hover:bg-red-400/25 transition-all duration-500 pointer-events-none"></div>
 

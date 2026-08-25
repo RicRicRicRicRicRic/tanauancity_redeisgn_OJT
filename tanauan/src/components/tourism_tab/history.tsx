@@ -92,7 +92,7 @@ export default function TransparencyPage() {
                   </span>
                   <span>• Special Chronicle</span>
                 </div>
-                <span>Batangas Heritage Series</span>
+                <span>Batangas Heritage</span>
               </div>
 
               {/* Section 1: Foundation & Cataclysm */}
