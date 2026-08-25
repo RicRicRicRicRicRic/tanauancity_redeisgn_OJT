@@ -5,6 +5,24 @@ export default function TransparencyPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#080204] text-slate-100 selection:bg-red-600 selection:text-white pt-24 md:pt-28">
       
+      {/* Custom Keyframe Animations */}
+      <style>{`
+        @keyframes fadeInDown {
+          from { opacity: 0; transform: translateY(-25px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes expandWidth {
+          from { width: 0%; opacity: 0; }
+          to { width: 5rem; opacity: 1; }
+        }
+        .animate-fade-down {
+          animation: fadeInDown 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-expand-line {
+          animation: expandWidth 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+      `}</style>
+
       {/* Compact Deep Crimson Hero Section */}
       <section className="relative w-full py-12 md:py-16 flex flex-col items-center justify-center text-center px-4 overflow-hidden">
         
@@ -14,12 +32,12 @@ export default function TransparencyPage() {
         {/* Subtle Ambient Crimson Glows */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-red-700/15 blur-[120px] rounded-full pointer-events-none"></div>
 
-        {/* Content Wrapper */}
-        <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
+        {/* Content Wrapper with Fade-Down Animation */}
+        <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center animate-fade-down">
           
-          {/* Compact Floating Glass Seal Badge */}
+          {/* Compact Floating Glass Seal Badge with Pulse Effect */}
           <div className="relative mb-5 group">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-600 to-rose-500 opacity-50 blur-sm group-hover:opacity-90 transition duration-500"></div>
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-600 to-rose-500 opacity-50 blur-sm group-hover:opacity-90 transition duration-500 animate-pulse"></div>
             <div className="relative rounded-full bg-slate-950/80 backdrop-blur-xl border border-red-500/20 shadow-xl">
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex items-center justify-center bg-white/5 border border-white/10 shadow-inner">
                 <img 
@@ -42,8 +60,8 @@ export default function TransparencyPage() {
             The History of Tanauan
           </h1>
 
-          {/* Thematic Accent Bar */}
-          <div className="w-20 h-1 bg-gradient-to-r from-red-600 to-rose-500 rounded-full mb-4 shadow-md shadow-red-900/50"></div>
+          {/* Thematic Accent Bar with Expanding Animation */}
+          <div className="h-1 bg-gradient-to-r from-red-600 to-rose-500 rounded-full mb-4 shadow-md shadow-red-900/50 animate-expand-line"></div>
 
           {/* Subtitle */}
           <p className="text-sm sm:text-base text-red-100/80 font-light max-w-xl tracking-wide leading-relaxed">
@@ -131,13 +149,11 @@ export default function TransparencyPage() {
             <article className="bg-slate-900/40 backdrop-blur-md border border-slate-800/80 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
               <div className="absolute -top-24 -left-24 w-96 h-96 bg-red-600/10 blur-[100px] rounded-full pointer-events-none"></div>
               
-              {/* Card Header matching the rest of the section titles with proper gap and styling */}
               <h2 className="text-2xl font-bold text-white mb-4 tracking-tight flex items-center gap-3">
                 <span className="w-2 h-6 bg-red-600 rounded-full inline-block"></span>
                 Tanauan as a City
               </h2>
 
-              {/* Card Body Text matching the requested screenshot word-for-word */}
               <p className="text-slate-300 leading-relaxed text-base sm:text-lg">
                 Tanauan, one of the oldest town in the province of Batangas became a 1st class municipality in 1996 and eventually became a city by virtue of Republic Ac 9005, otherwise known as &quot;An Act converting the Municipality of Tanauan into a Component City to be known as the City of Tanauan, enaceted on February 2, 2001. It was signed into law by then President Gloria Macapal Arroyo, was duly ratified and approved through a plebascite held on March 10, 2001.
               </p>

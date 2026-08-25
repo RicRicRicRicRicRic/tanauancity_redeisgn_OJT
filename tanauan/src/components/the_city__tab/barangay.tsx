@@ -107,12 +107,25 @@ export default function StatusHeader() {
       <div>
         {/* Header Section Container with Shrunk & Right-Concentrated Background Image */}
         <div 
-          className="relative w-full mt-31 overflow-hidden shadow-xl bg-no-repeat bg-right bg-[length:75%_auto]" 
-          style={{ 
-            minHeight: '380px',
-            backgroundImage: `url(${tanauan_bg})` 
-          }}
+          className="relative w-full mt-31 overflow-hidden shadow-xl" 
+          style={{ minHeight: '380px' }}
         >
+          {/* Custom Keyframe Animation for Background Picture Fade-In */}
+          <style>{`
+            @keyframes imageFadeIn {
+              from { opacity: 0; }
+              to { opacity: 1; }
+            }
+            .animate-image-fade {
+              animation: imageFadeIn 0.5s ease-in-out forwards;
+            }
+          `}</style>
+
+          {/* Fading Background Picture Layer */}
+          <div 
+            className="absolute inset-0 bg-no-repeat bg-right bg-[length:75%_auto] animate-image-fade pointer-events-none"
+            style={{ backgroundImage: `url(${tanauan_bg})` }}
+          ></div>
           
           {/* Optional soft dark overlay for blending */}
           <div className="absolute inset-0 z-0 bg-black/10 pointer-events-none"></div>
@@ -126,30 +139,41 @@ export default function StatusHeader() {
             }}
           >
             
-            {/* Subtle Ambient Overlay for Depth */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/30 pointer-events-none"></div>
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+          {/* Subtle Ambient Overlay for Depth */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/30 pointer-events-none"></div>
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
-            {/* Left-Aligned Text Content */}
-            <div className="max-w-3xl mx-8 px-6 md:px-12 relative z-10">
-              <div className="my-2">
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-2">
-                  Barangays
-                </h1>
-                <p className="text-2xl md:text-3xl italic font-serif text-red-100/90">
-                  The list of 48 Barangays in Tanauan City
-                </p>
-              </div>
+          {/* Custom Keyframe Animation for Right-to-Left Slide & Fade (Slowed Down) */}
+          <style>{`
+            @keyframes slideInFromRightFade {
+              from { opacity: 0; transform: translateX(50px); }
+              to { opacity: 1; transform: translateX(0); }
+            }
+            .animate-slide-right-slow {
+              animation: slideInFromRightFade 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+          `}</style>
 
-              <div className="mt-8 mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-red-200 uppercase">
-                <span>●</span>
-                <span>Integrity • Transparency • Harmony</span>
-              </div>
-
-              <p className="text-red-50/90 text-base md:text-lg leading-relaxed max-w-xl font-light">
-                Access comprehensive data and updates across all 48 districts of Tanauan City, designed to foster transparent governance and track local progress.
+          {/* Right-to-Left Sliding & Fading Text Content */}
+          <div className="max-w-3xl mx-8 px-6 md:px-12 relative z-10 animate-slide-right-slow">
+            <div className="my-2">
+              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-2">
+                Barangays
+              </h1>
+              <p className="text-2xl md:text-3xl italic font-serif text-red-100/90">
+                The list of 48 Barangays in Tanauan City
               </p>
             </div>
+
+        <div className="mt-8 mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-red-200 uppercase">
+          <span>●</span>
+          <span>Integrity • Transparency • Harmony</span>
+        </div>
+
+        <p className="text-red-50/90 text-base md:text-lg leading-relaxed max-w-xl font-light">
+          Access comprehensive data and updates across all 48 districts of Tanauan City, designed to foster transparent governance and track local progress.
+        </p>
+      </div>
           </div>
         </div>
 
