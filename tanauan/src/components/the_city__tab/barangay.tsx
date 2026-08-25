@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Footer from '../layout/Footer';
+import tanauan_bg from '../../assets/sections/pictures/Tnauan.png'
 
 export default function StatusHeader() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -27,7 +28,7 @@ export default function StatusHeader() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Complete chronological array of all 48 barangays with logo properties added[cite: 3]
+  // Complete chronological array of all 48 barangays with logo properties added
   const barangays = [
     { name: "Altura Bata", address: "Barangay Altura Bata, Tanauan City", logo: "🏛️" },
     { name: "Altura Matanda", address: "Barangay Altura Matanda, Tanauan City", logo: "🏛️" },
@@ -79,7 +80,7 @@ export default function StatusHeader() {
     { name: "Wawa", address: "Barangay Wawa, Tanauan City", logo: "🏛️" }
   ];
 
-  // Filter based on search input[cite: 3]
+  // Filter based on search input
   const filteredBarangays = barangays.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -104,26 +105,51 @@ export default function StatusHeader() {
   return (
     <div className="w-full bg-slate-50/70 min-h-screen flex flex-col justify-between font-sans">
       <div>
-        {/* Top Header Section */}
-        <div className="w-full bg-white py-16 md:py-38 border-b border-slate-200">
-          <div className="max-w-5xl mx-auto px-4 md:px-0">
-            <div className="my-2">
-              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-2">
-                Barangays
-              </h1>
-              <p className="text-2xl md:text-3xl italic font-serif text-slate-600">
-                The list of 48 Barangays in Tanauan City
+        {/* Header Section Container with Shrunk & Right-Concentrated Background Image */}
+        <div 
+          className="relative w-full mt-31 overflow-hidden shadow-xl bg-no-repeat bg-right bg-[length:75%_auto]" 
+          style={{ 
+            minHeight: '380px',
+            backgroundImage: `url(${tanauan_bg})` 
+          }}
+        >
+          
+          {/* Optional soft dark overlay for blending */}
+          <div className="absolute inset-0 z-0 bg-black/10 pointer-events-none"></div>
+
+          {/* Trimmed Crimson Content Box */}
+          <div 
+            className="relative z-10 w-full text-white pt-12 pb-10 md:pt-16 md:pb-29"
+            style={{ 
+              backgroundColor: '#7a0000',
+              clipPath: 'polygon(0 0, 78% 0, 53% 100%, 0 100%)' 
+            }}
+          >
+            
+            {/* Subtle Ambient Overlay for Depth */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/30 pointer-events-none"></div>
+            <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            {/* Left-Aligned Text Content */}
+            <div className="max-w-3xl mx-8 px-6 md:px-12 relative z-10">
+              <div className="my-2">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-2">
+                  Barangays
+                </h1>
+                <p className="text-2xl md:text-3xl italic font-serif text-red-100/90">
+                  The list of 48 Barangays in Tanauan City
+                </p>
+              </div>
+
+              <div className="mt-8 mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-red-200 uppercase">
+                <span>●</span>
+                <span>Integrity • Transparency • Harmony</span>
+              </div>
+
+              <p className="text-red-50/90 text-base md:text-lg leading-relaxed max-w-xl font-light">
+                Access comprehensive data and updates across all 48 districts of Tanauan City, designed to foster transparent governance and track local progress.
               </p>
             </div>
-
-            <div className="mt-8 mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-rose-600 uppercase">
-              <span>●</span>
-              <span>Integrity • Transparency • Harmony</span>
-            </div>
-
-            <p className="text-slate-600 text-base md:text-lg leading-relaxed max-w-2xl font-light">
-              Access comprehensive data and updates across all 48 districts of Tanauan City, designed to foster transparent governance and track local progress.
-            </p>
           </div>
         </div>
 
@@ -361,7 +387,7 @@ export default function StatusHeader() {
               {/* Submit Row */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-slate-100">
                 <p className="text-[11px] font-medium text-slate-500 max-w-xs leading-relaxed">
-                  By submitting, you agree to our privacy policy regarding local data handling[cite: 3].
+                  By submitting, you agree to our privacy policy regarding local data handling.
                 </p>
 
                 <button
