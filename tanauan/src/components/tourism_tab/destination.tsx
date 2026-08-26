@@ -207,7 +207,7 @@ export default function TransparencyPage() {
       </section>
 
       {/* Explore Tanauan Section (Pure White, Borderless) */}
-      <section className="py-20 px-6 sm:px-10 md:px-14 max-w-7xl mx-auto w-full bg-white">
+      <section className="py-20 px-6 md:mt-20 sm:px-10 md:px-14 max-w-7xl mx-auto w-full bg-white">
         
         {/* Section Heading */}
         <div className="text-center max-w-2xl mx-auto mb-16">
