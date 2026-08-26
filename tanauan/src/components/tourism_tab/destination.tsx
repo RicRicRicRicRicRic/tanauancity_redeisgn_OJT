@@ -6,6 +6,30 @@ import museo_ni_mabini from '../../assets/sections/Home/CulturalHeritagePics/Mus
 import napayong_island from '../../assets/sections/Home/CulturalHeritagePics/NapayongIsland.png';
 import old_muni_hall from '../../assets/sections/Home/CulturalHeritagePics/OldMuniHall.png';
 import st_evangelist_parish from '../../assets/sections/Home/CulturalHeritagePics/StEvangelistParish.jpg';
+import nilupak_ice_cream from '../../assets/sections/pictures/nilupak_ice_cream.png';
+import bulalo_ice_cream from '../../assets/sections/pictures/bulalo_ice_cream.webp';
+import bibingka from '../../assets/sections/pictures/bibingka.webp';
+
+const delicacies = [
+  {
+    image: nilupak_ice_cream,
+    title: "Nilupak Ice Cream",
+    badge: "Signature Fusion",
+    description: "A delightful twist on traditional Batangas nilupak, transformed into a creamy, artisanal frozen treat."
+  },
+  {
+    image: bulalo_ice_cream,
+    title: "Bulalo Ice Cream",
+    badge: "Unique Specialty",
+    description: "An adventurous culinary creation blending the rich, savory essence of Batangas bulalo with sweet cream."
+  },
+  {
+    image: bibingka,
+    title: "Special Bibingka",
+    badge: "Traditional Favorite",
+    description: "Warm, freshly baked rice cake topped with salted egg and cheese, baked to perfection in traditional clay pots."
+  }
+];
 
 export default function TransparencyPage() {
   const [activeDestination, setActiveDestination] = useState(0);
@@ -446,6 +470,165 @@ export default function TransparencyPage() {
               })()}
             </div>
 
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* Redesigned Premium Local Delicacies Section (Correctly placed outside the map container) */}
+      <section className="py-24 px-6  sm:px-10 md:px-14 max-w-7xl mx-auto w-full bg-gradient-to-b from-white via-red-50/20 to-white">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-xs uppercase tracking-widest text-[#7a0000] font-semibold bg-red-50 px-4 py-1.5 rounded-full border border-red-200 mb-4 inline-block shadow-sm">
+            Food & Heritage
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-slate-900 tracking-tight mb-4">
+            Local <span className="font-normal italic text-[#7a0000]">Delicacies</span>
+          </h2>
+          <p className="text-slate-600 text-base sm:text-lg font-light leading-relaxed">
+            Taste the authentic flavors of Tanauan through our traditional dishes and unique culinary innovations.
+          </p>
+        </div>
+
+        {/* 3-Column Premium Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+          {delicacies.map((item, index) => (
+            <div 
+              key={index} 
+              className="group relative h-[440px] rounded-3xl overflow-hidden shadow-xl border border-slate-100 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl flex flex-col justify-end"
+            >
+              {/* Background Image with Zoom on Hover */}
+              <div className="absolute inset-0 w-full h-full overflow-hidden">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              </div>
+
+              {/* Sophisticated Dark Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent transition-opacity duration-300 opacity-90 group-hover:opacity-95" />
+
+              {/* Floating Top Badge */}
+              <div className="absolute top-5 left-5 z-20">
+                <span className="bg-white/90 backdrop-blur-md text-[#7a0000] text-[11px] font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+                  {item.badge}
+                </span>
+              </div>
+
+              {/* Card Content Footer Area */}
+              <div className="relative z-20 p-8 flex flex-col justify-end">
+                <h3 className="font-serif text-2xl font-normal text-white mb-2 tracking-wide drop-shadow-md">
+                  {item.title}
+                </h3>
+                <p className="text-slate-200 text-sm font-light leading-relaxed mb-6 opacity-90">
+                  {item.description}
+                </p>
+
+                <button className="self-start bg-white/10 hover:bg-white text-white hover:text-slate-950 border border-white/30 hover:border-white text-xs font-semibold px-5 py-2.5 rounded-full backdrop-blur-md transition-all duration-300 flex items-center gap-2 shadow-sm cursor-pointer">
+                  <span>Discover Recipe</span>
+                  <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+      {/* Visit Us / API-Free Elegant Map Section */}
+      <section className="py-24 px-6 sm:px-10 md:px-14 max-w-7xl mx-auto w-full bg-white">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <span className="text-xs uppercase tracking-widest text-[#7a0000] font-semibold bg-red-50 px-4 py-1.5 rounded-full border border-red-200 mb-4 inline-block shadow-sm">
+            Location & Directions
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-slate-900 tracking-tight mb-4">
+            Visit Us in <span className="font-normal italic text-[#7a0000]">Tanauan City</span>
+          </h2>
+          <p className="text-slate-600 text-base sm:text-lg font-light leading-relaxed">
+            Located in the heart of Batangas, Tanauan City welcomes you with open arms. Plan your visit today and discover the charm of our city.
+          </p>
+        </div>
+
+        {/* Premium Map Wrapper */}
+        <div className="relative max-w-5xl mx-auto">
+          
+          {/* Decorative Ambient Glow / Background Card Frame */}
+          <div className="absolute -inset-2 bg-gradient-to-r from-[#7a0000]/20 via-amber-500/10 to-[#7a0000]/20 rounded-[32px] blur-xl opacity-70 pointer-events-none" />
+
+          {/* Main Container Card */}
+          <div className="relative bg-white p-3 sm:p-4 rounded-[28px] border border-slate-200/80 shadow-2xl overflow-hidden">
+            
+            {/* Map Inner Frame with rounded corners */}
+            <div className="relative w-full h-[460px] sm:h-[520px] rounded-2xl overflow-hidden border border-slate-200 shadow-inner group">
+              
+              {/* Google Maps Iframe */}
+              <iframe
+                title="Tanauan City Map Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3865.617469608226!2d121.1508!3d14.0857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd6d6a5d4d3d21%3A0xf0c541738722!2sTalisay%20-%20Tanauan%20Rd%2C%20Tanauan%2C%20Batangas!5e0!3m2!1sen!2sph!4v1650000000000!5m2!1sen!2sph"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full grayscale-[25%] contrast-[105%] group-hover:grayscale-0 transition-all duration-700"
+              />
+
+              {/* Bottom Bar Floating Action CTA */}
+              <div className="absolute bottom-4 right-4 z-10">
+                <a
+                  href="https://maps.google.com/?q=Talisay+-+Tanauan+Rd,+Tanauan,+Batangas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-slate-900/90 hover:bg-[#7a0000] text-white backdrop-blur-md text-xs font-semibold px-5 py-3 rounded-xl transition-all duration-300 shadow-xl flex items-center gap-2 border border-white/10"
+                >
+                  <svg className="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                  </svg>
+                  <span>Get Directions on Google Maps</span>
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* Call to Action Banner Section */}
+      <section className="relative py-24 px-6 sm:px-10 md:px-14 bg-transparent text-slate-900 text-center overflow-hidden">
+        
+        <div className="relative z-10 max-w-3xl mx-auto">
+
+          {/* Main Headline */}
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-slate-900 mb-4">
+            Start Your Tanauan <span className="font-normal italic text-[#7a0000]">Adventure Today</span>
+          </h2>
+
+          <p className="text-slate-600 text-base sm:text-lg font-light tracking-wide mb-10 max-w-xl mx-auto leading-relaxed">
+            Let us help you plan your perfect visit to our beautiful city
+          </p>
+
+          <div>
+            <a
+              href="#contact" 
+              className="inline-flex items-center gap-2 bg-[#7a0000] hover:bg-red-800 text-white text-xs md:mt-8 uppercase tracking-wider font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+            >
+              <span>Contact Tourism Office</span>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
           </div>
 
         </div>
