@@ -1,7 +1,106 @@
+import { useState, useRef } from 'react';
 import Footer from '../layout/Footer';
 import sample from '../../assets/sections/pictures/Tnauan.png';
+import iluhan_ng_tubo from '../../assets/sections/Home/CulturalHeritagePics/IluhanNgTubo.png';
+import museo_ni_mabini from '../../assets/sections/Home/CulturalHeritagePics/MuseoNiMabini.png';
+import napayong_island from '../../assets/sections/Home/CulturalHeritagePics/NapayongIsland.png';
+import old_muni_hall from '../../assets/sections/Home/CulturalHeritagePics/OldMuniHall.png';
+import st_evangelist_parish from '../../assets/sections/Home/CulturalHeritagePics/StEvangelistParish.jpg';
 
 export default function TransparencyPage() {
+  const [activeDestination, setActiveDestination] = useState(0);
+
+  // References for drag-to-scroll functionality on the map view
+  const mapViewportRef = useRef<HTMLDivElement>(null);
+  const isDown = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!mapViewportRef.current) return;
+    isDown.current = true;
+    mapViewportRef.current.classList.add('cursor-grabbing');
+    startX.current = e.pageX - mapViewportRef.current.offsetLeft;
+    scrollLeft.current = mapViewportRef.current.scrollLeft;
+  };
+
+  const handleMouseLeave = () => {
+    isDown.current = false;
+    if (mapViewportRef.current) {
+      mapViewportRef.current.classList.remove('cursor-grabbing');
+    }
+  };
+
+  const handleMouseUp = () => {
+    isDown.current = false;
+    if (mapViewportRef.current) {
+      mapViewportRef.current.classList.remove('cursor-grabbing');
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDown.current || !mapViewportRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - mapViewportRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5; // Scroll speed multiplier
+    mapViewportRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    if (mapViewportRef.current && e.deltaY !== 0) {
+      e.preventDefault();
+      mapViewportRef.current.scrollLeft += e.deltaY;
+    }
+  };
+
+  const destinations = [
+    {
+      id: 0,
+      title: "ILUHAN NG TUBO / OLD TOWER IN CALE",
+      category: "Tourism",
+      date: "Jun 16, 2025",
+      image: iluhan_ng_tubo,
+      description: "A historic sugar cane processing ruin reflecting Tanauan's rich agricultural heritage.",
+      coords: { x: 15, y: 45 }
+    },
+    {
+      id: 1,
+      title: "NAPAYONG ISLAND",
+      category: "Tourism",
+      date: "Jun 16, 2025",
+      image: napayong_island,
+      description: "A serene island escape located on Taal Lake, perfect for nature lovers and scenic views.",
+      coords: { x: 38, y: 32 }
+    },
+    {
+      id: 2,
+      title: "APOLINARIO MABINI SHRINE",
+      category: "Heritage",
+      date: "Jun 18, 2025",
+      image: museo_ni_mabini,
+      description: "The birthplace and historical sanctuary dedicated to the 'Sublime Paralytic', Apolinario Mabini.",
+      coords: { x: 55, y: 58 }
+    },
+    {
+      id: 3,
+      title: "OLD MUNICIPAL HALL",
+      category: "Heritage",
+      date: "Jun 19, 2025",
+      image: old_muni_hall,
+      description: "A cherished architectural landmark preserving the historic civic governance of early Tanauan.",
+      coords: { x: 75, y: 35 }
+    },
+    {
+      id: 4,
+      title: "ST. JOHN THE EVANGELIST PARISH",
+      category: "Culture",
+      date: "Jun 20, 2025",
+      image: st_evangelist_parish,
+      description: "A magnificent spiritual and cultural cornerstone standing proudly at the heart of the city.",
+      coords: { x: 90, y: 50 }
+    }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans">
 
@@ -19,7 +118,7 @@ export default function TransparencyPage() {
 
         {/* Maroon Overlay Panel (35% top, 65% bottom) */}
         <div 
-          className="absolute inset-0 bg-[#5c0000] z-10 pointer-events-none"
+          className="absolute inset-0 bg-[#7a0000] z-10 pointer-events-none"
           style={{
             clipPath: 'polygon(0 0, 35% 0, 65% 100%, 0 100%)'
           }}
@@ -35,7 +134,7 @@ export default function TransparencyPage() {
 
         {/* Maroon Border Accent Stripe (Main split) */}
         <div 
-          className="absolute inset-0 bg-[#5c0000] z-30 pointer-events-none hidden md:block"
+          className="absolute inset-0 bg-[#7a0000] z-30 pointer-events-none hidden md:block"
           style={{
             clipPath: 'polygon(36.4% 0, 37.8% 0, 67.8% 100%, 66.4% 100%)'
           }}
@@ -51,7 +150,7 @@ export default function TransparencyPage() {
 
         {/* Upper-Right Maroon Accent Border (Overlapped to prevent hairline gaps) */}
         <div 
-          className="absolute inset-0 bg-[#5c0000] z-25 pointer-events-none hidden md:block"
+          className="absolute inset-0 bg-[#7a0000] z-25 pointer-events-none hidden md:block"
           style={{
             clipPath: 'polygon(100.2% -0.2%, 88% -0.2%, 100.2% 39.2%, 100.2% 9.8%)'
           }}
@@ -87,7 +186,7 @@ export default function TransparencyPage() {
       <section className="py-20 px-6 sm:px-10 md:px-14 max-w-7xl mx-auto w-full bg-white">
         
         {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-4">
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-slate-900 tracking-tight mb-4">
             Explore <span className="font-normal text-[#7A1C1C]">Tanauan</span>
           </h2>
@@ -178,6 +277,175 @@ export default function TransparencyPage() {
             <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center text-xs font-semibold uppercase tracking-wider text-[#7A1C1C] group-hover:translate-x-1 transition-transform">
               <span>Find Stays &rarr;</span>
             </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* Interactive Treasure Map Section (Plain White Background) */}
+      <section className="relative py-24 bg-white text-slate-900 overflow-hidden border-t border-slate-100">
+
+        {/* Section Header */}
+        <div className="relative z-10 text-center max-w-2xl mx-auto mb-12 px-6">
+          <span className="text-xs uppercase tracking-widest text-[#7a0000] font-semibold bg-red-50 px-4 py-1.5 rounded-full border border-red-200 mb-4 inline-block shadow-sm">
+            Interactive Destination Chart
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-slate-900 tracking-tight mb-4">
+            Tanauan <span className="font-normal italic text-[#7a0000]">Destination Map</span>
+          </h2>
+          <p className="text-slate-600 text-base sm:text-lg font-light leading-relaxed">
+            Drag horizontally or use your mouse wheel to pan across the map. Click on any marker to inspect landmarks.
+          </p>
+        </div>
+
+        {/* Map Container & Interactive Interface */}
+        <div className="relative max-w-6xl mx-auto px-6 sm:px-10">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Left Column: Scrollable Interactive Map Canvas (7 cols) */}
+            <div className="lg:col-span-7 relative">
+              
+              {/* Outer Viewport with Horizontal Scrolling enabled */}
+              <div 
+                ref={mapViewportRef}
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}
+                onWheel={handleWheel}
+                className="relative bg-white rounded-3xl overflow-x-auto overflow-y-hidden border-2 border-[#7a0000]/20 shadow-xl h-[400px] sm:h-[480px] cursor-grab select-none [scrollbar-width:thin] [scrollbar-color:#7a0000_#e2e8f0]"
+              >
+                
+                {/* Inner Plain White Canvas */}
+                <div className="relative w-[1400px] h-full bg-white overflow-hidden">
+
+                  {/* Map Grid Lines & Border Frame */}
+                  <svg className="absolute inset-0 w-full h-full text-slate-200 pointer-events-none" viewBox="0 0 1400 480" preserveAspectRatio="none" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <line x1="350" y1="0" x2="350" y2="480" strokeDasharray="8 8" />
+                    <line x1="700" y1="0" x2="700" y2="480" strokeDasharray="8 8" />
+                    <line x1="1050" y1="0" x2="1050" y2="480" strokeDasharray="8 8" />
+                    <rect x="10" y="10" width="1380" height="460" stroke="#7a0000" strokeWidth="2.5" className="opacity-30" />
+                    <rect x="16" y="16" width="1368" height="448" stroke="#7a0000" strokeWidth="1" className="opacity-15" />
+                  </svg>
+
+                  {/* Dashed Red Treasure Trail */}
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" viewBox="0 0 1400 480" preserveAspectRatio="none">
+                    <path 
+                      d="M 210 216 Q 350 320, 600 180 T 1232 260" 
+                      fill="none" 
+                      stroke="#7a0000" 
+                      strokeWidth="3.5" 
+                      strokeDasharray="8 6" 
+                      className="opacity-80" 
+                    />
+                  </svg>
+
+                  {/* Compass Rose Watermark */}
+                  <div className="absolute top-10 right-14 opacity-15 pointer-events-none z-10">
+                    <svg className="w-24 h-24 text-[#7a0000]" viewBox="0 0 100 100" fill="currentColor">
+                      <path d="M50 0 L55 45 L100 50 L55 55 L50 100 L45 55 L0 50 L45 45 Z" />
+                    </svg>
+                  </div>
+
+                  {/* Map Title Tag */}
+                  <div className="absolute top-6 left-6 z-20 bg-[#7a0000] text-white px-3.5 py-1.5 rounded-lg border border-red-900 text-xs tracking-widest uppercase font-mono shadow-md">
+                    Destination Chart &harr;
+                  </div>
+
+                  {/* Interactive Treasure Pins Placed on Map */}
+                  {destinations.map((dest) => {
+                    const isSelected = activeDestination === dest.id;
+                    return (
+                      <button
+                        key={dest.id}
+                        onClick={() => setActiveDestination(dest.id)}
+                        style={{ left: `${dest.coords.x}%`, top: `${dest.coords.y}%` }}
+                        className={`absolute -translate-x-1/2 -translate-y-1/2 z-30 group transition-all duration-300 focus:outline-none`}
+                        aria-label={`Select ${dest.title}`}
+                      >
+                        {/* Pulsing Outer Ring */}
+                        <span className={`absolute -inset-2 rounded-full animate-ping opacity-75 ${isSelected ? 'bg-white' : 'bg-[#7a0000]/40'}`} />
+
+                        {/* Pin Icon Body */}
+                        <div className={`relative w-10 h-10 rounded-full flex items-center justify-center shadow-xl border-2 transition-transform duration-300 ${isSelected ? 'bg-white text-slate-950 border-[#7a0000] scale-125' : 'bg-[#7a0000] text-white border-white hover:scale-110'}`}>
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          </svg>
+                        </div>
+
+                        {/* Floating Label Tooltip */}
+                        <div className="absolute top-12 left-1/2 -translate-x-1/2 whitespace-nowrap bg-slate-900/95 text-white text-[11px] font-medium px-2.5 py-1 rounded shadow-lg border border-[#7a0000]/40 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                          {dest.title}
+                        </div>
+                      </button>
+                    );
+                  })}
+
+                </div>
+              </div>
+
+              {/* Map Footer Legend */}
+              <div className="absolute bottom-3 left-4 right-4 z-40 flex items-center justify-between text-xs text-slate-700 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl border border-slate-200 pointer-events-none shadow-md">
+                <span>↔️ Drag horizontally to navigate the map</span>
+              </div>
+            </div>
+
+            {/* Right Column: Active Destination Card (5 cols) */}
+            <div className="lg:col-span-5">
+              {(() => {
+                const current = destinations[activeDestination];
+                return (
+                  <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl relative">
+                    
+                    {/* Category Badge */}
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="bg-[#7a0000] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+                        <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                        {current.category}
+                      </span>
+                      <span className="text-xs text-[#7a0000] font-mono font-medium flex items-center gap-1">
+                        🗓️ {current.date}
+                      </span>
+                    </div>
+
+                    {/* Destination Image Thumbnail */}
+                    <div className="relative h-48 rounded-2xl overflow-hidden mb-6 border border-slate-100 shadow-inner">
+                      <img 
+                        src={current.image} 
+                        alt={current.title} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Title & Description */}
+                    <h3 className="font-serif text-xl font-normal text-slate-900 mb-2 tracking-wide">
+                      {current.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm font-light leading-relaxed mb-6">
+                      {current.description}
+                    </p>
+
+                    {/* Action & Navigation */}
+                    <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                      <span className="text-xs text-slate-500 font-mono">
+                        Landmark #{current.id + 1} of {destinations.length}
+                      </span>
+                      <button className="bg-[#7a0000] hover:bg-red-800 text-white text-xs font-semibold px-5 py-2.5 rounded-full transition-colors flex items-center gap-2 shadow-md cursor-pointer">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Visit Destination
+                      </button>
+                    </div>
+
+                  </div>
+                );
+              })()}
+            </div>
+
           </div>
 
         </div>
