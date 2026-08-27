@@ -9,7 +9,7 @@ export default function TransparencyPage() {
     {
       number: "01",
       title: "Senior Citizen ID",
-      description: "Get your official Senior Citizen ID to access various essential benefits, discounts, and privileges across institutions.",
+      description: "Get your official Senior Citizen ID to access various essential benefits, discounts, and privileges across institutions",
       icon: (
         <svg className="w-6 h-6" style={{ color: '#7a0000' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a1 1 0 100-2 1 1 0 000 2zm0 0h4m-4 3h4" />
@@ -19,7 +19,7 @@ export default function TransparencyPage() {
     {
       number: "02",
       title: "Purchase Booklet",
-      description: "Obtain your purchase booklet for specialized medical and basic necessity discounts.",
+      description: "Obtain your purchase booklet for specialized medical and basic necessity discounts",
       icon: (
         <svg className="w-6 h-6" style={{ color: '#7a0000' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -29,7 +29,7 @@ export default function TransparencyPage() {
     {
       number: "03",
       title: "Centenarian Award",
-      description: "Special recognition packages and financial benefits for our beloved centenarian citizens reaching a century of wisdom.",
+      description: "Special recognition packages and financial benefits for our beloved centenarian citizens reaching a century of wisdom",
       icon: (
         <svg className="w-6 h-6" style={{ color: '#7a0000' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
@@ -39,7 +39,7 @@ export default function TransparencyPage() {
     {
       number: "04",
       title: "Mortuary Assistance",
-      description: "Compassionate financial and administrative support services for bereaved senior citizen families.",
+      description: "Compassionate financial and administrative support services for bereaved senior citizen families",
       icon: (
         <svg className="w-6 h-6" style={{ color: '#7a0000' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -49,7 +49,7 @@ export default function TransparencyPage() {
     {
       number: "05",
       title: "Birthday & Christmas Gifts",
-      description: "Seasonal packages, holiday tokens, and special celebratory gifts delivered during festive periods.",
+      description: "Seasonal packages, holiday tokens, and special celebratory gifts delivered during festive periods",
       icon: (
         <svg className="w-6 h-6" style={{ color: '#7a0000' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -59,7 +59,7 @@ export default function TransparencyPage() {
     {
       number: "06",
       title: "Social Pension",
-      description: "Consistent monthly financial assistance programs designed to support qualified senior citizens with daily livelihoods.",
+      description: "Consistent monthly financial assistance programs designed to support qualified senior citizens with daily livelihoods",
       icon: (
         <svg className="w-6 h-6" style={{ color: '#7a0000' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
