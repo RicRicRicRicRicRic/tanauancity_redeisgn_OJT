@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import Footer from '../layout/Footer';
-import sample from '../../assets/sections/pictures/Tnauan.png';
+import tanauan_view from '../../assets/sections/pictures/Tnauan.png';
 import iluhan_ng_tubo from '../../assets/sections/Home/CulturalHeritagePics/IluhanNgTubo.png';
 import museo_ni_mabini from '../../assets/sections/Home/CulturalHeritagePics/MuseoNiMabini.png';
 import napayong_island from '../../assets/sections/Home/CulturalHeritagePics/NapayongIsland.png';
@@ -134,7 +134,7 @@ export default function TransparencyPage() {
         {/* Background Image (Base Layer) */}
         <div className="absolute inset-0 w-full h-full">
           <img
-            src={sample}
+            src={tanauan_view}
             alt="Tanauan City Landscape"
             className="w-full h-full object-cover"
           />
