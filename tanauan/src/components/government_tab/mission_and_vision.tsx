@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Footer from '../layout/Footer';
 import mision_and_vision_bg from '../../assets/sections/pictures/Tnauan.png';
 
