@@ -415,7 +415,7 @@ export default function TransparencyPage() {
                 <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-100">
                   <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 flex items-center space-x-3">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#7a000015' }}>
-                      <span className="text-base">💰</span>
+                      <span className="text-base">₱</span>
                     </div>
                     <div>
                       <div className="text-xs uppercase tracking-wider font-semibold text-slate-500">Fees to Be Paid</div>
@@ -546,7 +546,7 @@ export default function TransparencyPage() {
                 <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-100">
                   <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/60 flex items-center space-x-3">
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#7a000015' }}>
-                      <span className="text-base">💰</span>
+                      <span className="text-base">₱</span>
                     </div>
                     <div>
                       <div className="text-xs uppercase tracking-wider font-semibold text-slate-500">Fees to be Paid</div>
