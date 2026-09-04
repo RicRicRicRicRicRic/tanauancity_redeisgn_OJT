@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Footer from '../layout/Footer';
-import tanauan_logo from '../../assets/sections/pictures/tanauan_logo.webp';
 
 
 export default function TransparencyPage() {
@@ -48,7 +47,7 @@ export default function TransparencyPage() {
 
               {/* File Specs Text */}
               <p className="text-[11px] text-stone-500 font-medium tracking-wide text-center">
-                File Size: <span className="text-stone-800 font-semibold">6.8MB</span> &bull; File Type: <span className="text-stone-800 font-semibold">PDF</span>
+                File Size: <span className="text-stone-800 font-semibold">6.8MB</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &bull; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File Type: <span className="text-stone-800 font-semibold">PDF</span>
               </p>
 
               {/* Download Button */}
