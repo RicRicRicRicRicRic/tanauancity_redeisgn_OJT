@@ -85,7 +85,7 @@ export default function TransparencyPage() {
             <div className="flex items-center justify-center gap-3 mb-4">
               <span className="h-px w-10 bg-[#7a0000]" />
               <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#7a0000]">
-                2025 · Official Documentation
+                2026 · Official Documentation
               </span>
               <span className="h-px w-10 bg-[#7a0000]" />
             </div>
