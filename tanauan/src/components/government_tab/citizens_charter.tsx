@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Footer from '../layout/Footer';
 import tanauan_logo from '../../assets/sections/pictures/tanauan_logo.webp';
-import citizen_charter_file from '../../assets/sections/PDF_Files/Citizens-Charter-2025-Final.docx.pdf'
+
 
 export default function TransparencyPage() {
   const [openAccordion, setOpenAccordion] = useState<string | null>('intro');
@@ -53,8 +53,8 @@ export default function TransparencyPage() {
 
               {/* Download Button */}
               <a
-                href={citizen_charter_file}
-                download= {citizen_charter_file}
+                href="Citizens-Charter-2025-Final.docx.pdf"
+                download= "Citizens-Charter-2025-Final.docx.pdf"
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#7a0000] text-white text-xs font-semibold tracking-wide shadow-sm hover:bg-[#5c0000] transition-all duration-200 hover:scale-[1.02]"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -594,7 +594,7 @@ export default function TransparencyPage() {
             <div className="w-full bg-white shadow-sm rounded-xl border border-stone-300/80 overflow-hidden">
               
               <iframe
-                src={citizen_charter_file}
+                src="Citizens-Charter-2025-Final.docx.pdf"
                 className="w-full h-[700px]"
                 title="Tanauan City Citizen's Charter 2025 PDF Viewer"
               />
