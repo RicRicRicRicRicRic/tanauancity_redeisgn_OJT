@@ -48,7 +48,7 @@ export default function TransparencyPage() {
 
               {/* File Specs Text */}
               <p className="text-[11px] text-stone-500 font-medium tracking-wide text-center">
-                File Size: <span className="text-stone-800 font-semibold">122MB</span> &bull; File Type: <span className="text-stone-800 font-semibold">PDF</span>
+                File Size: <span className="text-stone-800 font-semibold">6.8MB</span> &bull; File Type: <span className="text-stone-800 font-semibold">PDF</span>
               </p>
 
               {/* Download Button */}
