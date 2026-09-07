@@ -278,10 +278,10 @@ export default function InvestorsPage() {
           COMMITMENT TO EXCELLENCE (Editorial Pull-Quote Banner)
       ====================================================== */}
       <section className="max-w-7xl mx-auto px-6 lg:px-16 py-12 w-full">
-        <div className="bg-[#7a0000] text-[#F7F4EF] p-10 md:p-14 relative overflow-hidden shadow-xl">
+        <div className="bg-stone-900 text-[#F7F4EF] p-10 md:p-14 relative overflow-hidden shadow-xl">
           <div className="absolute -right-10 -bottom-10 font-serif text-9xl text-white/10 select-none pointer-events-none">“</div>
           <div className="max-w-4xl relative z-10 space-y-4">
-            <span className="text-xs uppercase tracking-[0.25em] text-stone-300 font-semibold block font-mono">Commitment to Excellence</span>
+            <span className="text-[#7a0000] text-xs uppercase tracking-[0.25em] font-semibold block font-mono">Commitment to Excellence</span>
             <p className="font-serif text-xl md:text-2xl leading-relaxed italic">
               "Kaugnay nito, patuloy ang Pamahalaang Lungsod ng Tanauan sa hangarin nitong maging isang huwarang lungsod na kinikilala ang mahalagang papel ng mga tapat na pagbabayad ng buwis at maayos na pamamahalang pananalapi ng lungsod tungo sa pagtataguyod ng isang inklusibo at maunlad na Tanauan."
             </p>
@@ -301,34 +301,34 @@ export default function InvestorsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-300 border border-stone-300">
           
-          <div className="bg-[#F7F4EF] p-8 space-y-3">
+          <div className="bg-stone-900 p-8 space-y-3">
             <h3 className="font-serif text-2xl font-medium text-[#7a0000]">Strategic Location</h3>
-            <p className="text-sm text-stone-700 leading-relaxed font-light">Direct access to SLEX and STAR Tollway, just 45 minutes from Metro Manila, making logistics and transportation highly efficient.</p>
+            <p className="text-white leading-relaxed font-light">Direct access to SLEX and STAR Tollway, just 45 minutes from Metro Manila, making logistics and transportation highly efficient.</p>
           </div>
           
-          <div className="bg-[#F7F4EF] p-8 space-y-3">
+          <div className="bg-stone-900 p-8 space-y-3">
             <h3 className="font-serif text-2xl font-medium text-[#7a0000]">Industrial Powerhouse</h3>
-            <p className="text-sm text-stone-700 leading-relaxed font-light">Home to the First Philippine Industrial Park (FPIP) with over 67 multinational companies operating in various sectors.</p>
+            <p className="text-white leading-relaxed font-light">Home to the First Philippine Industrial Park (FPIP) with over 67 multinational companies operating in various sectors.</p>
           </div>
           
-          <div className="bg-[#F7F4EF] p-8 space-y-3">
+          <div className="bg-stone-900 p-8 space-y-3">
             <h3 className="font-serif text-2xl font-medium text-[#7a0000]">Green Energy Leader</h3>
-            <p className="text-sm text-stone-700 leading-relaxed font-light">Site of a 64-MW solar power facility supporting clean energy goals and sustainable development initiatives.</p>
+            <p className="text-white leading-relaxed font-light">Site of a 64-MW solar power facility supporting clean energy goals and sustainable development initiatives.</p>
           </div>
           
-          <div className="bg-[#F7F4EF] p-8 space-y-3">
+          <div className="bg-stone-900 p-8 space-y-3">
             <h3 className="font-serif text-2xl font-medium text-[#7a0000]">Robust Workforce</h3>
-            <p className="text-sm text-stone-700 leading-relaxed font-light">Young, skilled, and job-ready population with access to quality education and training facilities.</p>
+            <p className="text-white leading-relaxed font-light">Young, skilled, and job-ready population with access to quality education and training facilities.</p>
           </div>
           
-          <div className="bg-[#F7F4EF] p-8 space-y-3">
+          <div className="bg-stone-900 p-8 space-y-3">
             <h3 className="font-serif text-2xl font-medium text-[#7a0000]">Investor-Friendly Policies</h3>
-            <p className="text-sm text-stone-700 leading-relaxed font-light">Fast, transparent, and efficient business processing with supportive local government policies.</p>
+            <p className="text-white leading-relaxed font-light">Fast, transparent, and efficient business processing with supportive local government policies.</p>
           </div>
           
-          <div className="bg-[#F7F4EF] p-8 space-y-3">
+          <div className="bg-stone-900 p-8 space-y-3">
             <h3 className="font-serif text-2xl font-medium text-[#7a0000]">Established Ecosystem</h3>
-            <p className="text-sm text-stone-700 leading-relaxed font-light">Join global brands like Honda, Canon, Nestlé, and B/E Aerospace that have already made Tanauan their home.</p>
+            <p className="text-white leading-relaxed font-light">Join global brands like Honda, Canon, Nestlé, and B/E Aerospace that have already made Tanauan their home.</p>
           </div>
 
         </div>
@@ -399,9 +399,9 @@ export default function InvestorsPage() {
           CALL TO ACTION BANNER
       ====================================================== */}
       <section id="contact-section" className="max-w-7xl mx-auto px-6 lg:px-16 py-16 w-full">
-        <div className="bg-[#7a0000] text-[#F7F4EF] p-12 md:p-16 text-center space-y-6 shadow-xl">
-          <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight">Tanauan City is ready. Are you?</h2>
-          <p className="max-w-xl mx-auto text-stone-200 text-sm leading-relaxed font-light">
+        <div className="flex flex-col items-center bg-stone-900 text-[#F7F4EF] p-12 md:p-16 text-center space-y-6 shadow-xl">
+          <h2 className="font-serif text-[#7a0000] text-4xl md:text-5xl font-medium tracking-tight">Tanauan City is ready. Are you?</h2>
+          <p className="max-w-xl mx-auto text-white text-sm leading-relaxed font-light">
             Partner with us and build the future—today. Connect with our investment team to explore opportunities.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-4">
