@@ -4,19 +4,40 @@ import investors2 from '../../assets/sections/pictures/investors2.webp';
 
 export default function InvestorsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#F7F4EF] text-stone-900 pt-32 md:pt-32 selection:bg-[#7a0000] selection:text-white font-sans">
+    <div className="md:pt-38 min-h-screen flex flex-col bg-[#F7F4EF] text-stone-900 pt-32 md:pt-32 selection:bg-[#7a0000] selection:text-white font-sans">
       
       {/* =====================================================
           BROADSHEET EDITORIAL MASTHEAD
       ====================================================== */}
-      <header className="max-w-7xl mx-auto px-6 lg:px-12 w-full pt-6 pb-10">
+      <header className="max-w-7xl mx-auto px-6 lg:px-12 w-full pt-6 pb-10 relative">
+        
+        {/* Left Asymmetric Large Tilted Photocard (Desktop Only) */}
+        <div className="absolute left-2 top-1/3 -translate-y-1/2 -rotate-12 hidden lg:block w-52 bg-white p-2.5 pb-4 shadow-2xl border border-stone-300 transition-transform hover:rotate-0 hover:scale-105 duration-300 z-10">
+          <img 
+            src={investors1} 
+            alt="Tanauan Investment Delegation" 
+            className="w-full h-40 object-cover filter contrast-[1.08]"
+          />
+          <p className="font-serif text-xs text-stone-600 mt-2 text-center truncate italic">FPIP Corridor</p>
+        </div>
+
+        {/* Right Asymmetric Large Tilted Photocard (Desktop Only) */}
+        <div className="absolute right-2 top-1/3 -translate-y-1/2 rotate-5 hidden lg:block w-56 bg-white p-2.5 pb-4 shadow-2xl border border-stone-300 transition-transform hover:rotate-0 hover:scale-105 duration-300 z-10">
+          <img 
+            src={investors2} 
+            alt="Taxpayers Recognition Night" 
+            className="w-full h-44 object-cover filter contrast-[1.08]"
+          />
+          <p className="font-serif text-xs text-stone-600 mt-2 text-center truncate italic">Awards 2024</p>
+        </div>
+
         <div className="flex flex-col md:flex-row justify-between items-center text-xs uppercase tracking-[0.25em] text-stone-500 mb-4 font-semibold gap-2">
           <span></span>
           <span>Tanauan City, Batangas</span>
           <span></span>
         </div>
         
-        <div className="flex flex-col items-center text-center py-6">
+        <div className="flex flex-col items-center text-center py-6 px-4 md:px-24">
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-serif font-extrabold text-stone-950 tracking-tight leading-none mb-3">
             INVESTORS <span className="italic font-light text-[#7a0000]">CORNER</span>
           </h1>
@@ -25,7 +46,7 @@ export default function InvestorsPage() {
           </p>
         </div>
 
-        <div className="flex justify-between items-center pt-4 border-t border-stone-300 text-[11px] font-mono tracking-wider text-stone-600">
+        <div className="pt-14 flex justify-between items-center pt-4 border-t border-stone-300 text-[11px] font-mono tracking-wider text-stone-600">
           <span>EST. 2026 EDITION</span>
           <span className="text-[#7a0000] font-bold uppercase">Confidential &bull; Public Record</span>
           <span>SOUTHERN LUZON HUB</span>
@@ -35,7 +56,7 @@ export default function InvestorsPage() {
       {/* =====================================================
           FEATURE SPREAD: THE LEAD ARTICLE (Dark Mode Variant)
       ====================================================== */}
-      <section className="bg-stone-900 text-stone-100 py-20 px-6 lg:px-12 w-full my-6 shadow-xl">
+      <section className="md:mt-20 bg-stone-900 text-stone-100 py-20 px-6 lg:px-12 w-full my-6 shadow-xl">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Drop-Cap Editorial Story (7 Cols) */}
