@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from "react";
 import Navbar from './components/ui/Navbar'
 import HomePage from './pages/HomePage'
 import EServicesPage from './pages/EServicesPage'
@@ -21,9 +22,20 @@ import SeniorCitizensBenefits from './components/services_tab/senior_citizen_ben
 import History from './components/tourism_tab/history'
 import Destination from './components/tourism_tab/destination'
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <ScrollToTop/>
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
