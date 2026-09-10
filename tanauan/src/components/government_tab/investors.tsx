@@ -299,7 +299,7 @@ export default function InvestorsPage() {
           COMMITMENT TO EXCELLENCE (Editorial Pull-Quote Banner)
       ====================================================== */}
       <section className="max-w-7xl mx-auto px-6 lg:px-16 py-12 w-full">
-        <div className="bg-stone-900 text-[#F7F4EF] p-10 md:p-14 relative overflow-hidden shadow-xl">
+        <div className="text-black p-10 md:p-14 relative overflow-hidden shadow-xl">
           <div className="absolute -right-10 -bottom-10 font-serif text-9xl text-white/10 select-none pointer-events-none">“</div>
           <div className="max-w-4xl relative z-10 space-y-4">
             <span className="text-[#7a0000] text-xs uppercase tracking-[0.25em] font-semibold block font-mono">Commitment to Excellence</span>
