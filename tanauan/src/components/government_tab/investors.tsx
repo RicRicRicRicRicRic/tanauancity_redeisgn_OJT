@@ -12,7 +12,7 @@ export default function InvestorsPage() {
       <header className="max-w-7xl mx-auto px-6 lg:px-12 w-full pt-6 pb-10 relative">
         
         {/* Left Asymmetric Large Tilted Photocard (Desktop Only) */}
-        <div className="absolute left-2 top-1/3 -translate-y-1/2 -rotate-12 hidden lg:block w-52 bg-white p-2.5 pb-4 shadow-2xl border border-stone-300 transition-transform hover:rotate-0 hover:scale-105 duration-300 z-10">
+        <div className="absolute left-3 top-1/3 -translate-y-1/2 -rotate-12 hidden lg:block w-52 bg-white p-2.5 pb-4 shadow-2xl border border-stone-300 transition-transform hover:rotate-0 hover:scale-105 duration-300 z-10">
           <img 
             src={investors1} 
             alt="Tanauan Investment Delegation" 
@@ -22,7 +22,7 @@ export default function InvestorsPage() {
         </div>
 
         {/* Right Asymmetric Large Tilted Photocard (Desktop Only) */}
-        <div className="absolute right-2 top-1/3 -translate-y-1/2 rotate-5 hidden lg:block w-56 bg-white p-2.5 pb-4 shadow-2xl border border-stone-300 transition-transform hover:rotate-0 hover:scale-105 duration-300 z-10">
+        <div className="absolute right-3 top-1/3 -translate-y-1/2 rotate-5 hidden lg:block w-56 bg-white p-2.5 pb-4 shadow-2xl border border-stone-300 transition-transform hover:rotate-0 hover:scale-105 duration-300 z-10">
           <img 
             src={investors2} 
             alt="Taxpayers Recognition Night" 
