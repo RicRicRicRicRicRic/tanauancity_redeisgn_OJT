@@ -1,6 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Footer from '../layout/Footer';
-import tanauan_bg from '../../assets/sections/pictures/Tnauan.png'
+import tanauan_bg from '../../assets/sections/pictures/Tnauan.png';
+import tanauan_logo from '../../assets/sections/pictures/tanauan_logo.webp';
+
+// Optional: Define an interface for your barangay type for clean TypeScript typing
+interface Barangay {
+  name: string;
+  address: string;
+  logo: string;
+}
 
 export default function StatusHeader() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -28,56 +36,56 @@ export default function StatusHeader() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Complete chronological array of all 48 barangays with logo properties added
-  const barangays = [
-    { name: "Altura Bata", address: "Barangay Altura Bata, Tanauan City", logo: "🏛️" },
-    { name: "Altura Matanda", address: "Barangay Altura Matanda, Tanauan City", logo: "🏛️" },
-    { name: "Altura South", address: "Barangay Altura South, Tanauan City", logo: "🏛️" },
-    { name: "Ambulong", address: "Barangay Ambulong, Tanauan City", logo: "🏛️" },
-    { name: "Bañadero", address: "Barangay Bañadero, Tanauan City", logo: "🏛️" },
-    { name: "Bagbag", address: "Barangay Bagbag, Tanauan City", logo: "🏛️" },
-    { name: "Bagumbayan", address: "Barangay Bagumbayan, Tanauan City", logo: "🏛️" },
-    { name: "Balele", address: "Barangay Balele, Tanauan City", logo: "🏛️" },
-    { name: "Banjo East", address: "Barangay Banjo East, Tanauan City", logo: "🏛️" },
-    { name: "Banjo Laurel (Banjo West)", address: "Barangay Banjo Laurel (Banjo West), Tanauan City", logo: "🏛️" },
-    { name: "Bilog-bilog", address: "Barangay Bilog-bilog, Tanauan City", logo: "🏛️" },
-    { name: "Boot", address: "Barangay Boot, Tanauan City", logo: "🏛️" },
-    { name: "Cale", address: "Barangay Cale, Tanauan City", logo: "🏛️" },
-    { name: "Darasa", address: "Barangay Darasa, Tanauan City", logo: "🏛️" },
-    { name: "Gonzales", address: "Barangay Gonzales, Tanauan City", logo: "🏛️" },
-    { name: "Hidalgo", address: "Barangay Hidalgo, Tanauan City", logo: "🏛️" },
-    { name: "Janopol Occidental", address: "Barangay Janopol Occidental, Tanauan City", logo: "🏛️" },
-    { name: "Janopol Oriental", address: "Barangay Janopol Oriental, Tanauan City", logo: "🏛️" },
-    { name: "Laurel", address: "Barangay Laurel, Tanauan City", logo: "🏛️" },
-    { name: "Luyos", address: "Barangay Luyos, Tanauan City", logo: "🏛️" },
-    { name: "Mabini", address: "Barangay Mabini, Tanauan City", logo: "🏛️" },
-    { name: "Malaking Pulo", address: "Barangay Malaking Pulo, Tanauan City", logo: "🏛️" },
-    { name: "Maria Paz", address: "Barangay Maria Paz, Tanauan City", logo: "🏛️" },
-    { name: "Maugat", address: "Barangay Maugat, Tanauan City", logo: "🏛️" },
-    { name: "Montaña (Ik-ik)", address: "Barangay Montaña (Ik-ik), Tanauan City", logo: "🏛️" },
-    { name: "Natatas", address: "Barangay Natatas, Tanauan City", logo: "🏛️" },
-    { name: "Pagaspas", address: "Barangay Pagaspas, Tanauan City", logo: "🏛️" },
-    { name: "Pantay Bata", address: "Barangay Pantay Bata, Tanauan City", logo: "🏛️" },
-    { name: "Pantay Matanda", address: "Barangay Pantay Matanda, Tanauan City", logo: "🏛️" },
-    { name: "Poblacion Barangay 1", address: "Poblacion Barangay 1, Tanauan City", logo: "🏛️" },
-    { name: "Poblacion Barangay 2", address: "Poblacion Barangay 2, Tanauan City", logo: "🏛️" },
-    { name: "Poblacion Barangay 3", address: "Poblacion Barangay 3, Tanauan City", logo: "🏛️" },
-    { name: "Poblacion Barangay 4", address: "Barangay Poblacion Barangay 4, Tanauan City", logo: "🏛️" },
-    { name: "Poblacion Barangay 5", address: "Barangay Poblacion Barangay 5, Tanauan City", logo: "🏛️" },
-    { name: "Poblacion Barangay 6", address: "Barangay Poblacion Barangay 6, Tanauan City", logo: "🏛️" },
-    { name: "Poblacion Barangay 7", address: "Barangay Poblacion Barangay 7, Tanauan City", logo: "🏛️" },
-    { name: "Sala", address: "Barangay Sala, Tanauan City", logo: "🏛️" },
-    { name: "Sambat", address: "Barangay Sambat, Tanauan City", logo: "🏛️" },
-    { name: "San Jose", address: "Barangay San Jose, Tanauan City", logo: "🏛️" },
-    { name: "Santol (Doña Jacoba Garcia)", address: "Barangay Santol (Doña Jacoba Garcia), Tanauan City", logo: "🏛️" },
-    { name: "Santor", address: "Barangay Santor, Tanauan City", logo: "🏛️" },
-    { name: "Sulpoc", address: "Barangay Sulpoc, Tanauan City", logo: "🏛️" },
-    { name: "Suplang", address: "Barangay Suplang, Tanauan City", logo: "🏛️" },
-    { name: "Talaga", address: "Barangay Talaga, Tanauan City", logo: "🏛️" },
-    { name: "Tinurik", address: "Barangay Tinurik, Tanauan City", logo: "🏛️" },
-    { name: "Trapiche", address: "Barangay Trapiche, Tanauan City", logo: "🏛️" },
-    { name: "Ulango", address: "Barangay Ulango, Tanauan City", logo: "🏛️" },
-    { name: "Wawa", address: "Barangay Wawa, Tanauan City", logo: "🏛️" }
+  // Complete chronological array of all 48 barangays using the imported logo
+  const barangays: Barangay[] = [
+    { name: "Altura Bata", address: "Barangay Altura Bata, Tanauan City", logo: tanauan_logo },
+    { name: "Altura Matanda", address: "Barangay Altura Matanda, Tanauan City", logo: tanauan_logo },
+    { name: "Altura South", address: "Barangay Altura South, Tanauan City", logo: tanauan_logo },
+    { name: "Ambulong", address: "Barangay Ambulong, Tanauan City", logo: tanauan_logo },
+    { name: "Bañadero", address: "Barangay Bañadero, Tanauan City", logo: tanauan_logo },
+    { name: "Bagbag", address: "Barangay Bagbag, Tanauan City", logo: tanauan_logo },
+    { name: "Bagumbayan", address: "Barangay Bagumbayan, Tanauan City", logo: tanauan_logo },
+    { name: "Balele", address: "Barangay Balele, Tanauan City", logo: tanauan_logo },
+    { name: "Banjo East", address: "Barangay Banjo East, Tanauan City", logo: tanauan_logo },
+    { name: "Banjo Laurel (Banjo West)", address: "Barangay Banjo Laurel (Banjo West), Tanauan City", logo: tanauan_logo },
+    { name: "Bilog-bilog", address: "Barangay Bilog-bilog, Tanauan City", logo: tanauan_logo },
+    { name: "Boot", address: "Barangay Boot, Tanauan City", logo: tanauan_logo },
+    { name: "Cale", address: "Barangay Cale, Tanauan City", logo: tanauan_logo },
+    { name: "Darasa", address: "Barangay Darasa, Tanauan City", logo: tanauan_logo },
+    { name: "Gonzales", address: "Barangay Gonzales, Tanauan City", logo: tanauan_logo },
+    { name: "Hidalgo", address: "Barangay Hidalgo, Tanauan City", logo: tanauan_logo },
+    { name: "Janopol Occidental", address: "Barangay Janopol Occidental, Tanauan City", logo: tanauan_logo },
+    { name: "Janopol Oriental", address: "Barangay Janopol Oriental, Tanauan City", logo: tanauan_logo },
+    { name: "Laurel", address: "Barangay Laurel, Tanauan City", logo: tanauan_logo },
+    { name: "Luyos", address: "Barangay Luyos, Tanauan City", logo: tanauan_logo },
+    { name: "Mabini", address: "Barangay Mabini, Tanauan City", logo: tanauan_logo },
+    { name: "Malaking Pulo", address: "Barangay Malaking Pulo, Tanauan City", logo: tanauan_logo },
+    { name: "Maria Paz", address: "Barangay Maria Paz, Tanauan City", logo: tanauan_logo },
+    { name: "Maugat", address: "Barangay Maugat, Tanauan City", logo: tanauan_logo },
+    { name: "Montaña (Ik-ik)", address: "Barangay Montaña (Ik-ik), Tanauan City", logo: tanauan_logo },
+    { name: "Natatas", address: "Barangay Natatas, Tanauan City", logo: tanauan_logo },
+    { name: "Pagaspas", address: "Barangay Pagaspas, Tanauan City", logo: tanauan_logo },
+    { name: "Pantay Bata", address: "Barangay Pantay Bata, Tanauan City", logo: tanauan_logo },
+    { name: "Pantay Matanda", address: "Barangay Pantay Matanda, Tanauan City", logo: tanauan_logo },
+    { name: "Poblacion Barangay 1", address: "Poblacion Barangay 1, Tanauan City", logo: tanauan_logo },
+    { name: "Poblacion Barangay 2", address: "Poblacion Barangay 2, Tanauan City", logo: tanauan_logo },
+    { name: "Poblacion Barangay 3", address: "Poblacion Barangay 3, Tanauan City", logo: tanauan_logo },
+    { name: "Poblacion Barangay 4", address: "Barangay Poblacion Barangay 4, Tanauan City", logo: tanauan_logo },
+    { name: "Poblacion Barangay 5", address: "Barangay Poblacion Barangay 5, Tanauan City", logo: tanauan_logo },
+    { name: "Poblacion Barangay 6", address: "Barangay Poblacion Barangay 6, Tanauan City", logo: tanauan_logo },
+    { name: "Poblacion Barangay 7", address: "Barangay Poblacion Barangay 7, Tanauan City", logo: tanauan_logo },
+    { name: "Sala", address: "Barangay Sala, Tanauan City", logo: tanauan_logo },
+    { name: "Sambat", address: "Barangay Sambat, Tanauan City", logo: tanauan_logo },
+    { name: "San Jose", address: "Barangay San Jose, Tanauan City", logo: tanauan_logo },
+    { name: "Santol (Doña Jacoba Garcia)", address: "Barangay Santol (Doña Jacoba Garcia), Tanauan City", logo: tanauan_logo },
+    { name: "Santor", address: "Barangay Santor, Tanauan City", logo: tanauan_logo },
+    { name: "Sulpoc", address: "Barangay Sulpoc, Tanauan City", logo: tanauan_logo },
+    { name: "Suplang", address: "Barangay Suplang, Tanauan City", logo: tanauan_logo },
+    { name: "Talaga", address: "Barangay Talaga, Tanauan City", logo: tanauan_logo },
+    { name: "Tinurik", address: "Barangay Tinurik, Tanauan City", logo: tanauan_logo },
+    { name: "Trapiche", address: "Barangay Trapiche, Tanauan City", logo: tanauan_logo },
+    { name: "Ulango", address: "Barangay Ulango, Tanauan City", logo: tanauan_logo },
+    { name: "Wawa", address: "Barangay Wawa, Tanauan City", logo: tanauan_logo }
   ];
 
   // Filter based on search input
@@ -105,12 +113,11 @@ export default function StatusHeader() {
   return (
     <div className="w-full bg-slate-50/70 min-h-screen flex flex-col justify-between font-sans">
       <div>
-        {/* Header Section Container with Shrunk & Right-Concentrated Background Image */}
+        {/* Header Section Container */}
         <div 
           className="relative w-full mt-31 overflow-hidden shadow-xl" 
           style={{ minHeight: '380px' }}
         >
-          {/* Custom Keyframe Animation for Background Picture Fade-In */}
           <style>{`
             @keyframes imageFadeIn {
               from { opacity: 0; }
@@ -121,16 +128,13 @@ export default function StatusHeader() {
             }
           `}</style>
 
-          {/* Fading Background Picture Layer */}
           <div 
             className="absolute inset-0 bg-no-repeat bg-right bg-[length:75%_auto] animate-image-fade pointer-events-none"
             style={{ backgroundImage: `url(${tanauan_bg})` }}
           ></div>
           
-          {/* Optional soft dark overlay for blending */}
           <div className="absolute inset-0 z-0 bg-black/10 pointer-events-none"></div>
 
-          {/* Trimmed Crimson Content Box */}
           <div 
             className="relative z-10 w-full text-white pt-12 pb-10 md:pt-16 md:pb-29"
             style={{ 
@@ -138,49 +142,44 @@ export default function StatusHeader() {
               clipPath: 'polygon(0 0, 78% 0, 53% 100%, 0 100%)' 
             }}
           >
-            
-          {/* Subtle Ambient Overlay for Depth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/30 pointer-events-none"></div>
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/30 pointer-events-none"></div>
+            <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
-          {/* Custom Keyframe Animation for Right-to-Left Slide & Fade (Slowed Down) */}
-          <style>{`
-            @keyframes slideInFromRightFade {
-              from { opacity: 0; transform: translateX(50px); }
-              to { opacity: 1; transform: translateX(0); }
-            }
-            .animate-slide-right-slow {
-              animation: slideInFromRightFade 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            }
-          `}</style>
+            <style>{`
+              @keyframes slideInFromRightFade {
+                from { opacity: 0; transform: translateX(50px); }
+                to { opacity: 1; transform: translateX(0); }
+              }
+              .animate-slide-right-slow {
+                animation: slideInFromRightFade 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+              }
+            `}</style>
 
-          {/* Right-to-Left Sliding & Fading Text Content */}
-          <div className="max-w-3xl mx-8 px-6 md:px-12 relative z-10 animate-slide-right-slow">
-            <div className="my-2">
-              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-2">
-                Barangays
-              </h1>
-              <p className="text-2xl md:text-3xl italic font-serif text-red-100/90">
-                The list of 48 Barangays in Tanauan City
+            <div className="max-w-3xl mx-8 px-6 md:px-12 relative z-10 animate-slide-right-slow">
+              <div className="my-2">
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-2">
+                  Barangays
+                </h1>
+                <p className="text-2xl md:text-3xl italic font-serif text-red-100/90">
+                  The list of 48 Barangays in Tanauan City
+                </p>
+              </div>
+
+              <div className="mt-8 mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-red-200 uppercase">
+                <span>●</span>
+                <span>Integrity • Transparency • Harmony</span>
+              </div>
+
+              <p className="text-red-50/90 text-base md:text-lg leading-relaxed max-w-xl font-light">
+                Access comprehensive data and updates across all 48 districts of Tanauan City, designed to foster transparent governance and track local progress.
               </p>
             </div>
-
-        <div className="mt-8 mb-3 flex items-center gap-2 text-xs font-bold tracking-widest text-red-200 uppercase">
-          <span>●</span>
-          <span>Integrity • Transparency • Harmony</span>
-        </div>
-
-        <p className="text-red-50/90 text-base md:text-lg leading-relaxed max-w-xl font-light">
-          Access comprehensive data and updates across all 48 districts of Tanauan City, designed to foster transparent governance and track local progress.
-        </p>
-      </div>
           </div>
         </div>
 
         {/* Main Content Section */}
         <section className="max-w-5xl mx-auto px-4 md:px-0 py-16">
           
-          {/* Section Header & Search Bar Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
             <div>
               <div className="flex items-center gap-2 text-xs font-extrabold tracking-widest text-red-700 uppercase mb-2">
@@ -197,11 +196,11 @@ export default function StatusHeader() {
 
             <div className="w-full md:w-80 relative">
               <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </span>
               <input
                 type="text"
                 placeholder="Search barangay name..."
@@ -212,7 +211,7 @@ export default function StatusHeader() {
             </div>
           </div>
 
-          {/* 2-Row Horizontal Scrolling Container with Logos */}
+          {/* 2-Row Horizontal Scrolling Container with Image Logos */}
           <div className="relative mb-24">
             <div className="grid grid-rows-2 grid-flow-col overflow-x-auto gap-6 pb-6 pt-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-slate-300">
               {filteredBarangays.length > 0 ? (
@@ -223,8 +222,12 @@ export default function StatusHeader() {
                   >
                     <div>
                       <div className="flex items-center gap-3.5 mb-4">
-                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-50 to-red-100 border border-red-200 flex items-center justify-center text-xl flex-shrink-0 shadow-inner group-hover:scale-105 transition-transform">
-                          {item.logo}
+                        <div className="w-16 h-16 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+                          <img 
+                            src={item.logo} 
+                            alt={`${item.name} logo`} 
+                            className="w-full h-full object-contain drop-shadow-sm"
+                          />
                         </div>
                         <div className="overflow-hidden">
                           <span className="text-[10px] font-bold tracking-wider text-red-600 uppercase">Barangay</span>
@@ -256,7 +259,7 @@ export default function StatusHeader() {
             <p className="text-xs text-slate-400 text-right font-medium">← Scroll horizontally to see more →</p>
           </div>
 
-          {/* Shrunk Barangay Inquiry Form Section */}
+          {/* Barangay Inquiry Form Section */}
           <div className="max-w-2xl mx-auto bg-white text-slate-900 p-8 md:p-10 rounded-3xl shadow-2xl border border-slate-100 relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-red-700 via-rose-600 to-red-800"></div>
 
@@ -274,7 +277,6 @@ export default function StatusHeader() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               
-              {/* Inquiry Type Pills */}
               <div>
                 <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-2.5">
                   Inquiry Type *
@@ -298,7 +300,6 @@ export default function StatusHeader() {
                 </div>
               </div>
 
-              {/* Input Fields Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="relative">
                   <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-2">
@@ -359,7 +360,6 @@ export default function StatusHeader() {
                 </div>
               </div>
 
-              {/* Custom Downward-Flowing Barangay Dropdown Field */}
               <div className="relative" ref={dropdownRef}>
                 <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-2">
                   Target Barangay *
@@ -393,7 +393,6 @@ export default function StatusHeader() {
                 )}
               </div>
 
-              {/* Message Box */}
               <div className="relative">
                 <label className="block text-xs font-bold tracking-wider text-slate-700 uppercase mb-2">
                   Your Message *
@@ -408,7 +407,6 @@ export default function StatusHeader() {
                 ></textarea>
               </div>
 
-              {/* Submit Row */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-slate-100">
                 <p className="text-[11px] font-medium text-slate-500 max-w-xs leading-relaxed">
                   By submitting, you agree to our privacy policy regarding local data handling.
@@ -430,7 +428,6 @@ export default function StatusHeader() {
         </section>
       </div>
 
-      {/* Footer */}
       <div className="mt-20">
         <Footer />
       </div>
